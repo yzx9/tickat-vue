@@ -9,8 +9,6 @@
 </template>
 
 <style lang="less">
-@import "./less/_variables.less";
-
 * {
   margin: 0;
   padding: 0;
@@ -22,7 +20,7 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  background-color: @c-bg--body;
+  background-color: #eef3f6;
 }
 #nav {
   padding: 30px;
