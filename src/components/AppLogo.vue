@@ -19,16 +19,14 @@ export default class AppLogo extends Vue {
   private get hei() {
     if (this.h === undefined) {
       return '100px';
-    }
-    else {
+    } else {
       return this.h;
     }
   }
   private get wid() {
     if (this.w === undefined) {
       return '100px';
-    }
-    else {
+    } else {
       return this.w;
     }
   }

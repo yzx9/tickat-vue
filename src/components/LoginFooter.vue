@@ -21,9 +21,9 @@ import Component from 'vue-class-component';
 
 @Component
 export default class LoginFooter extends Vue {
-    private qq = '';
-    private wechat = '';
-    private github = '';
+  private qq = '';
+  private wechat = '';
+  private github = '';
 }
 </script>
 

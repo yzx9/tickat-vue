@@ -79,28 +79,33 @@ export default class SignupForm extends Vue {
     passwordReword: '',
     mobile: '',
     license: false,
-  }
+  };
   private rules = {
     username: [
-      { max: 20, message: '长度不大于 20 个字符', trigger: 'blur', },
-      { validator: this.validateUsername , trigger: 'blur', },
+      { max: 20, message: '长度不大于 20 个字符', trigger: 'blur' },
+      { validator: this.validateUsername , trigger: 'blur' },
     ],
     password: [
-      { required: true, message: '请输入密码', trigger: 'blur', },
-      { max: 20, message: '长度不大于 20 个字符', trigger: 'blur', },
+      { required: true, message: '请输入密码', trigger: 'blur' },
+      { max: 20, message: '长度不大于 20 个字符', trigger: 'blur' },
     ],
     passwordReword: [
-      { required: true, validator: this.validatePasswordReword, trigger: 'blur', },
+      { required: true, validator: this.validatePasswordReword, trigger: 'blur' },
     ],
     mobile: [
-      { required: true, validator: this.validateMobile, trigger: 'blur', },
+      { required: true, validator: this.validateMobile, trigger: 'blur' },
     ],
-  }
+  };
   private loading = false;
   private formError = '';
   
+  public setError(e?: string) {
+    this.formError = e === undefined ? '' : e;
+    // (this.$refs['form'] as any).validateField('error');
+  }
   private submit(): void {
-    (this.$refs['form'] as any).validate((valid: boolean) => {
+    const form = 'form';
+    (this.$refs[form] as any).validate((valid: boolean) => {
       if (valid) {
         if (!this.form.license) {
           this.setError('请同意用户使用协议');
@@ -121,10 +126,11 @@ export default class SignupForm extends Vue {
             this.setError('服务器开小差了，请稍后再试');
           });
       }
-    })
+    });
   }
   private reset(): void {
-    (this.$refs['form'] as any).resetFields();
+    const form = 'form';
+    (this.$refs[form] as any).resetFields();
   }
   private validateUsername(rule: object, value: string, callback: (e?: Error) => void): void {
     this.setError();
@@ -178,12 +184,6 @@ export default class SignupForm extends Vue {
     } else {
       callback();
     }
-  }
-  public setError(e?: string) {
-    console.log(this);
-    console.log(e)
-    this.formError = e === undefined ? '' : e;
-    // (this.$refs['form'] as any).validateField('error');
   }
 }
 </script>
