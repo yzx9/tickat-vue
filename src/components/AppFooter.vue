@@ -1,5 +1,5 @@
 <template>
-  <p>{{ text }}</p>
+  <p class="footerText">{{ text }}</p>
 </template>
 
 <script lang="ts">
@@ -19,5 +19,8 @@ export default class AppFooter extends Vue {
 </script>
 
 <style lang="less">
-
+.footerText {
+  color: gray;
+  margin: 20px 10px;
+}
 </style>

@@ -1,11 +1,12 @@
 <template>
   <el-row>
     <el-col :span="20"
-            :offset="2"
-            v-loading="loading">
+            :offset="2">
       <el-form class="form"
                :model="form"
-               :rules="rules">
+               :rules="rules"
+               ref="form"
+               v-loading="loading">
         <el-form-item prop="username">
           <el-input v-model="form.username"
                     placeholder="用户名"
@@ -21,15 +22,16 @@
                     clearable>
           </el-input>
         </el-form-item>
+        <el-form-item prop="error" :error="formError"></el-form-item>
         <el-form-item>
           <el-row>
             <el-col :span="12">
-              <router-link to="/signup" class="toSignup">
+              <router-link to="/signup" class="link">
                 没有账号？
               </router-link>
             </el-col>
             <el-col :span="12">
-              <el-button @click="login" class="btnLogin" type="primary">
+              <el-button @click="submit" class="btn" type="primary">
                 登录
               </el-button>
             </el-col>
@@ -54,37 +56,76 @@ export default class LoginForm extends Vue {
     username: [
       { required: true, message: '请输入用户名', trigger: 'blur', },
       { max: 20, message: '长度不大于 20 个字符', trigger: 'blur', },
+      { validator: this.validateUsername },
     ],
     password: [
-      { required: true, message: '请输入密码', },
-      { max: 20, message: '长度不大于 20 个字符', },
+      { required: true, message: '请输入密码', trigger: 'blur', },
+      { max: 20, message: '长度不大于 20 个字符', trigger: 'blur', },
+      { max: 20, message: '长度不大于 20 个字符', trigger: 'blur', },
+      { validator: this.validatePassword },
     ],
+    error: [
+      { validator: this.validateError, },
+    ]
   }
   private loading: boolean = false;
+  private formError: string = '';
   
-  private login() {
-    this.loading = true;
-    this.$http.post('/login', {
-      username: this.form.username,
-      password: this.form.password,
+  private submit() {
+    (this.$refs['form'] as any).validate((valid: boolean) => {
+      if (valid) {
+        this.loading = true;
+        this.$http.post('/login', {
+          username: this.form.username,
+          password: this.form.password,
+        })
+          .then ((re) => {
+            this.loading = false;
+            if (re.data.type === 0) {
+              this.$router.push('/');
+              //TODO:commit state
+            }
+            else if (re.data.type === 1) {
+              this.setError(re.data.message);
+            }
+          })
+          .catch ((error) => {
+            this.loading = false;
+            this.setError('服务器开小差了，请稍后再试');
+          });
+      }
     })
-      .then ((data) => {
-        this.loading = false;
-      })
-      .catch ((error) => {
-        setTimeout(() => {
-          this.loading = false;
-        }, 1000);
-      });
+  }
+  private reset(): void {
+    (this.$refs['form'] as any).resetFields();
+  }
+  private validateUsername(rule: object, value: string, callback: (e?: Error) => void) {
+    this.setError();
+    callback();
+  }
+  private validatePassword(rule: object, value: string, callback: (e?: Error) => void) {
+    this.setError();
+    callback();
+  }
+  private validateError(rule: object, value: string, callback: (e?: Error) => void) {
+    if (this.formError) {
+      callback(new Error(this.formError));
+    } else {
+      callback();
+    }
+  }
+  public setError(e?: string) {
+    this.formError = e === undefined ? '' : e;
+    // (this.$refs['form'] as any).validateField('error');
   }
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 @linkColor: gray;
 .form {
   margin-top: 20px;
-  .toSignup {
+  .link {
     float: left;
     text-align: left;
     &:link {
@@ -97,7 +138,7 @@ export default class LoginForm extends Vue {
       color: @linkColor + #111;
     }
   }
-  .btnLogin {
+  .btn {
     float: right;
     width: 100%
   }
