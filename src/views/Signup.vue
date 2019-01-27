@@ -1,11 +1,11 @@
 <template>
-    <el-container>
-        <el-main>
-            <app-logo></app-logo>
-            <app-signup></app-signup>
-            <app-footer></app-footer>
-        </el-main>
-    </el-container>
+  <el-container>
+    <el-main>
+      <app-logo :h="logo.height" :w="logo.width"></app-logo>
+      <app-signup></app-signup>
+      <app-footer></app-footer>
+    </el-main>
+  </el-container>
 </template>
 
 <script lang="ts">
@@ -16,13 +16,16 @@ import AppSignup from '@/components/AppSignup.vue';
 import AppFooter from '@/components/AppFooter.vue';
 
 @Component({
-    components: {
-        AppLogo,
-        AppSignup,
-        AppFooter,
-    },
+  components: {
+    AppLogo,
+    AppSignup,
+    AppFooter,
+  },
 })
 export default class Signup extends Vue {
-    
+  private logo = {
+    height: '100px',
+    width: '100px',
+  };
 }
 </script>
