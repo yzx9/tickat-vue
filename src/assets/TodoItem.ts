@@ -29,10 +29,10 @@ export default class TodoItem {
   constructor(
     public id: string,
     public title: string,
-    public text: string,
     public createTime: Date,
-    public allowEdit: boolean,
-    public isDone: boolean,
+    public allowEdit: boolean = true,
+    public isDone: boolean = false,
+    public content: string = '',
   ) {}
 
   // 设置重复事项，arr表示周重复信息，从周一开始

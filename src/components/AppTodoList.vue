@@ -49,49 +49,53 @@ export default class AppTodoList extends Vue {
     this.todos.push(new TodoItem(
       (this.nextTodoId++).toString(),
       'This is first',
-      '',
       new Date(),
-      true,
-      false
     ));
     this.todos.push(new TodoItem(
       (this.nextTodoId++).toString(),
       'OMG, I can\'t what is it happend',
-      '',
       new Date(),
-      true,
-      false
     ));
     this.todos.push(new TodoItem(
       (this.nextTodoId++).toString(),
       'Well, I am third',
-      '',
       new Date(),
-      true,
-      false
     ));
     for(let i = 0; i < 10; i++) {
       this.todos.push(new TodoItem(
         (this.nextTodoId++).toString(),
         `Well, I am ${i + 4}th`,
-        '',
         new Date(),
-        true,
-        false
       ));
     }
   }
   private handleAdd() {
     let text = this.newTodoText.trim();
-    if (text) {
-      this.todos.push({
-        id: (this.nextTodoId++).toString(),
-        text: text,
-        isDone: false,
-        isStar: false,
-        isRemove: false,
+    let todo = new TodoItem(
+      (this.nextTodoId++).toString(),
+      text,
+      new Date(),
+    );
+
+    this.$http
+      .post('/todolist', todo)
+      .then((re) => {
+        if (re.data.type === 0) {
+          todo = re.data.data as TodoItem;
+        } else {
+          // 新建失败
+        }
       })
-      this.newTodoText = ''
+      .catch((e) => {
+        // 错误
+      })
+    if (text) {
+      this.todos.push(new TodoItem(
+        (this.nextTodoId++).toString(),
+        text,
+        new Date(),
+      ))
+      this.newTodoText = '';
     }
   }
   private handleDone(id: string) {
@@ -103,10 +107,16 @@ export default class AppTodoList extends Vue {
   }
   private handleDelete(id: string) {
     this.todos.map((todo) => {
-      if(todo.id === id) {
-        this.removeTodoIds.push(id);
-        todo.isRemove = !todo.isRemove;
-      }
+      this.$http
+        .delete(`/todolist/${ id }`)
+        .then((re) => {
+          if(todo.id === id) {
+            this.removeTodoIds.push(id);
+          }
+        })
+        .catch((e) => {
+          // 删除失败
+        })
     });
   }
 }
