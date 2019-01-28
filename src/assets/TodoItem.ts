@@ -29,7 +29,7 @@ export default class TodoItem {
   constructor(
     public id: string,
     public title: string,
-    public content: string,
+    public text: string,
     public createTime: Date,
     public allowEdit: boolean,
     public isDone: boolean,

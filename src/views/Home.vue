@@ -1,18 +1,23 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <div>
+    <el-row>
+      <el-col :span="8" :offset="8">
+        <app-todo-list style="height:400px"></app-todo-list>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+import AppTodoList from '@/components/AppTodoList.vue';
 
 @Component({
   components: {
-    HelloWorld,
+    AppTodoList,
   },
 })
-export default class Home extends Vue {}
+export default class Home extends Vue {
+
+}
 </script>

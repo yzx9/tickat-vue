@@ -1,27 +1,30 @@
 <template>
-  <transition name="el-fade-in">
-    <tr v-if="!todo.isRemove">
-      <td :class="textClassObject">
-        {{ todo.text }}
-      </td>
-      <td style="width: 30px"></td>
-      <td width="38px">
+  <transition>
+    <el-row class="todoItem" @click.native="handleClick">
+      <el-col :class="{ 'doneItem': todo.isDone, 'txt': true }"
+              :span="24">
+        <i :class="{ 'fa fa-circle-o': !todo.isDone,
+                      'fa fa-check-circle-o':todo.isDone,
+                      'icon': true }"
+            @click="handleDone">
+        </i>{{ todo.title }}
+      </el-col>
+      <!--<el-col class="btn" :span="4">
+        <i class="el-icon-delete" @click="handleDelete"></i>
         <el-button :class="{ 'el-button--success': !todo.isDone }"
-                   @click="$emit('done', todo.id)"
-                   icon="el-icon-check"
-                   size="medium"
-                   circle>
+                    @click="done"
+                    icon="el-icon-check"
+                    size="medium"
+                    circle>
         </el-button>
-      </td>
-      <td width="38px">
         <el-button :class="{ 'el-button--danger': !todo.isDone }"
-                   @click="$emit('remove', todo.id)"
-                   icon="el-icon-delete"
-                   size="medium"
-                   circle>
-        </el-button>
-      </td>
-    </tr>
+                    @click="handleDelete"
+                    icon="el-icon-delete"
+                    size="medium"
+                    circle>
+        </el-button>-->
+      </el-col>
+    </el-row>
   </transition>
 </template>
 
@@ -32,25 +35,44 @@ import TodoItem from '@/assets/TodoItem';
 @Component
 export default class TodoListItem extends Vue {
   @Prop({ type: Object, required: true }) private todo!: TodoItem;
-  private get textClassObject() {
-    return {
-      showItem: true,
-      doneItem: this.todo.isDone,
-    }
+  
+  private handleClick() {
+    console.log(`click:${this.todo.id}`);
+  }
+  private handleDone() {
+    this.$emit('done', this.todo.id);
+  }
+  private handleDelete() {
+    this.$emit('delete', this.todo.id);
   }
 }
 </script>
 
-<style lang="less">
-.showItem {
-  font-size: 20px;
-}
-.doneItem {
-  color: #909399;
-  text-decoration:line-through;
-}
-.starItem {
-  color: #E6A23C;
-  font-weight:bold;
+<style lang="less" scoped>
+.todoItem {
+  margin: 1px 1px;
+  padding: 10px 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(250, 250, 250, 1);
+  .txt {
+    text-align: left;
+  }
+  .icon {
+    margin-right: 5px;
+    z-index: 1;
+  }
+  .btn {
+    color: red;
+  }
+  .doneItem {
+    color: #909399;
+    text-decoration:line-through;
+  }
+  .starItem {
+    color: #E6A23C;
+    font-weight:bold;
+  }
 }
 </style>
