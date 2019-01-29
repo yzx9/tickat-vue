@@ -5,13 +5,14 @@
     <div slot="header"
          :body-style="{ padding:'0px' }">
       <todo-input v-model="newTodoText"
-                       :placeholder="placeholder"
-                       @submit="handleAdd">
+                  :placeholder="placeholder"
+                  @submit="handleAdd">
       </todo-input>
     </div>
     <todo-list :todos="filter"
                @delete="handleDelete"
-               @done="handleDone">
+               @done="handleDone"
+               @edit="handleEdit">
     </todo-list>
     <todo-footer :todos="todos"
                  v-model="mode">
@@ -142,18 +143,56 @@ export default class AppTodoList extends Vue {
     });
   }
   private handleDelete(id: string) {
-    this.todos.map((todo) => {
-      this.$http
-        .delete(`/todolist/${ id }`)
-        .then((re) => {
+    this.$http
+      .delete(`/todolist/${ id }`)
+      .then((re) => {
+        let index = -1;
+        this.todos.map((todo) => {
           if (todo.id === id) {
+            index = this.todos.indexOf(todo);
             this.removeTodoIds.push(id);
           }
-        })
-        .catch((e) => {
-          // 删除失败
         });
+        if (index >= 0) {
+          this.todos.splice(index, 1);
+        }
+      })
+      .catch((e) => {
+        
+      });
+    
+    // demo数据
+    let index = -1;
+    this.todos.map((todo) => {
+      if (todo.id === id) {
+        index = this.todos.indexOf(todo);
+      }
     });
+    if (index >= 0){
+      this.todos.splice(index, 1);
+    }
+  }
+  private handleEdit(todo: Todo) {
+    this.$http
+      .put(`/todolist/${todo.id}`, todo)
+      .then((re) => {
+
+      })
+      .catch((e) => {
+        
+      });
+
+    let index = -1;
+    this.todos.map((t) => {
+      if (t.id === todo.id) {
+        index = this.todos.indexOf(t);
+      }
+    });
+    if (index >= 0) {
+      this.todos[index] = todo;
+    } else {
+      this.todos.push(todo);
+    }
   }
 }
 </script>

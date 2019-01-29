@@ -7,6 +7,7 @@
                  :key="todo.id"
                  :todo="todo"
                  @done="handleDone"
+                 @edit="handleEdit"
                  @delete="handleDelete">
       </todo-item>
   </el-collapse>
@@ -34,6 +35,9 @@ export default class TodoList extends Vue {
   }
   private handleDelete(id: string) {
     this.$emit('delete', id);
+  }
+  private handleEdit(todo: Todo) {
+    this.$emit('edit', todo);
   }
 }
 </script>
