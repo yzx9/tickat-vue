@@ -30,11 +30,11 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
-import TodoItem from '@/assets/TodoItem';
+import Todo from '@/assets/Todo';
 
 @Component
 export default class TodoListItem extends Vue {
-  @Prop({ type: Object, required: true }) private todo!: TodoItem;
+  @Prop({ type: Object, required: true }) private todo!: Todo;
   
   private handleClick() {
     console.log(`click:${this.todo.id}`);

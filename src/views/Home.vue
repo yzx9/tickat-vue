@@ -2,7 +2,7 @@
   <div>
     <el-row>
       <el-col :span="8" :offset="8">
-        <app-todo-list style="height:400px"></app-todo-list>
+        <app-todo-list></app-todo-list>
       </el-col>
     </el-row>
   </div>

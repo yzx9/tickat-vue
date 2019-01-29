@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Model } from 'vue-property-decorator';
+import { Vue, Component, Model } from 'vue-property-decorator';
 
 @Component
 export default class TodoListInput extends Vue {

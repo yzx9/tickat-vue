@@ -1,4 +1,4 @@
-export default class TodoItem {
+export default class Todo {
   private isRepeat: boolean = false;
   private startDate: Date = new Date();
   private endDate: Date = new Date();
@@ -30,9 +30,9 @@ export default class TodoItem {
     public id: string,
     public title: string,
     public createTime: Date,
+    public content: string = '',
     public allowEdit: boolean = true,
     public isDone: boolean = false,
-    public content: string = '',
   ) {}
 
   // 设置重复事项，arr表示周重复信息，从周一开始

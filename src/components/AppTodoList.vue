@@ -1,77 +1,82 @@
 <template>
-  <div class="todoList">
-    <todo-list-input v-model="newTodoText"
-                     @addTodo="handleAdd"
-                     class="todoInput">
-    </todo-list-input>
-    <div v-if="todos.length" class="todoItems">
-      <div v-for="todo in todos" :key="todo.id">
-        <todo-list-item :todo="todo"
-                        v-if="!todo.isDone"
-                        @delete="handleDelete"
-                        @done="handleDone"
-                        class="todoItem">
-        </todo-list-item>
-      </div>
+  <el-card class="todoList"
+           :body-style="{ padding:'0px' }"
+           shadow="hover">
+    <div slot="header"
+         :body-style="{ padding:'0px' }">
+      <todo-input v-model="newTodoText"
+                       :placeholder="placeholder"
+                       @submit="handleAdd">
+      </todo-input>
     </div>
-  </div>
+    <todo-list :todos="todos"
+               @delete="handleDelete"
+               @done="handleDone">
+    </todo-list>
+  </el-card>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
-import TodoItem from '@/assets/TodoItem';
-import TodoListInput from '@/components/TodoListInput.vue';
-import TodoListItem from '@/components/TodoListItem.vue';
+import Todo from '@/assets/Todo';
+import TodoInput from '@/components/TodoInput.vue';
+import TodoList from '@/components/TodoList.vue';
 
 @Component({
   components: {
-    TodoListInput,
-    TodoListItem,
+    TodoInput,
+    TodoList,
   },
 })
 export default class AppTodoList extends Vue {
   nextTodoId = 1;
   newTodoText = '';
+  placeholder = 'Todo List';
   removeTodoIds: string[] = [];
   showAlert = false;
-  todos: TodoItem[] = [];
+  todos: Todo[] = [];
 
   private created() {
     this.$http
       .get('/todolist')
       .then((re) => {
-        re.data.map((todo: TodoItem)=>{
+        re.data.map((todo: Todo)=>{
           this.todos.push(todo);
         })
       })
 
     // demo数据
-    this.todos.push(new TodoItem(
+    this.todos.push(new Todo(
       (this.nextTodoId++).toString(),
-      'This is first',
+      '1',
       new Date(),
+      'This is first'
     ));
-    this.todos.push(new TodoItem(
+    this.todos.push(new Todo(
       (this.nextTodoId++).toString(),
-      'OMG, I can\'t what is it happend',
+      '2',
       new Date(),
+      'OMG, I can\'t what is it happend that i am not first',
     ));
-    this.todos.push(new TodoItem(
+    this.todos.push(new Todo(
       (this.nextTodoId++).toString(),
+      '3',
+      new Date(),
       'Well, I am third',
-      new Date(),
     ));
-    for(let i = 0; i < 10; i++) {
-      this.todos.push(new TodoItem(
+    for(let i = 0; i < 0; i++) {
+      this.todos.push(new Todo(
         (this.nextTodoId++).toString(),
-        `Well, I am ${i + 4}th`,
+        `${i + 4}`,
         new Date(),
+        `Well, I am ${i + 4}th`,
       ));
     }
   }
   private handleAdd() {
+    console.log(`add:${this.newTodoText}`)
     let text = this.newTodoText.trim();
-    let todo = new TodoItem(
+    let todo = new Todo(
       (this.nextTodoId++).toString(),
       text,
       new Date(),
@@ -81,7 +86,7 @@ export default class AppTodoList extends Vue {
       .post('/todolist', todo)
       .then((re) => {
         if (re.data.type === 0) {
-          todo = re.data.data as TodoItem;
+          todo = re.data.data as Todo;
         } else {
           // 新建失败
         }
@@ -90,7 +95,7 @@ export default class AppTodoList extends Vue {
         // 错误
       })
     if (text) {
-      this.todos.push(new TodoItem(
+      this.todos.push(new Todo(
         (this.nextTodoId++).toString(),
         text,
         new Date(),
@@ -125,31 +130,5 @@ export default class AppTodoList extends Vue {
 <style lang="less" scoped>
 .todoList {
   margin: 20px 10px;
-  background-color: rgba(170, 170, 170, 0.5);
-  border-radius: 5px;
-  .todoItems {
-    height: calc(100% - 40px);
-    overflow: hidden;
-    overflow-y: auto;
-    /*滚动条样式*/
-    &::-webkit-scrollbar {
-      /*滚动条整体样式*/
-      /*高宽分别对应横竖滚动条的尺寸*/
-      width: 4px;
-      height: 4px;
-    }
-    &::-webkit-scrollbar-thumb {
-      /*滚动条里面小方块*/
-      border-radius: 5px;
-      box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
-      background: rgba(0,0,0,0.2);
-    }
-    &::-webkit-scrollbar-track {
-      /*滚动条里面轨道*/
-      box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
-      border-radius: 0;
-      background: rgba(0,0,0,0.1);
-    }
-  }
 }
 </style>
