@@ -1,5 +1,5 @@
 <template>
-  <el-collapse class="todoItems"
+  <el-collapse class="todo-items"
                v-model="activeName"
                @change="handleChange"
                accordion>
@@ -38,8 +38,8 @@ export default class TodoList extends Vue {
 }
 </script>
 
-<style lang="less" scoped>
-.todoItems {
+<style lang="less">
+.todo-items {
   overflow-y: none;
   /*滚动条样式*/
   &::-webkit-scrollbar {

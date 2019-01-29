@@ -1,5 +1,5 @@
 <template>
-  <input class="input"
+  <input class="todo-input"
          :placeholder="placeholder"
          title="Add a new todo"
          v-model="value"
@@ -28,7 +28,7 @@ export default class TodoInput extends Vue {
 </script>
 
 <style lang="less">
-  .input {
+  .todo-input {
     border: none;
     outline: none;
     width: calc(100% - 40px);

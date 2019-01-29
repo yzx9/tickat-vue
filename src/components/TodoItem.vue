@@ -1,6 +1,5 @@
 <template>
-  <el-collapse-item :name="todo.id"
-                    class="todoItem">
+  <el-collapse-item :name="todo.id" class="todo-item">
     <template slot="title">
         <i :class="{ 'icon': !todo.isDone, 'icon-done': todo.isDone}"
           @click.stop="handleDone">
@@ -20,9 +19,6 @@ import Todo from '@/assets/Todo';
 export default class TodoItem extends Vue {
   @Prop({ type: Object, required: true }) private todo!: Todo;
   
-  private handleChange() {
-    console.log(`change:${this.todo.id}`);
-  }
   private handleDone() {
     this.$emit('done', this.todo.id);
   }
@@ -33,7 +29,7 @@ export default class TodoItem extends Vue {
 </script>
 
 <style lang="less" scoped>
-.todoItem {
+.todo-item {
   .txt {
     padding-left: 20px;
     text-align: left;

@@ -1,5 +1,5 @@
 <template>
-  <el-card class="todoList"
+  <el-card class="todo-list"
            :body-style="{ padding:'0px' }"
            shadow="hover">
     <div slot="header"
@@ -9,10 +9,13 @@
                        @submit="handleAdd">
       </todo-input>
     </div>
-    <todo-list :todos="todos"
+    <todo-list :todos="filter"
                @delete="handleDelete"
                @done="handleDone">
     </todo-list>
+    <todo-footer :todos="todos"
+                 v-model="mode">
+    </todo-footer>
   </el-card>
 </template>
 
@@ -21,11 +24,13 @@ import { Vue, Component, Prop } from 'vue-property-decorator';
 import Todo from '@/assets/Todo';
 import TodoInput from '@/components/TodoInput.vue';
 import TodoList from '@/components/TodoList.vue';
+import  TodoFooter, { Mode } from '@/components/TodoFooter.vue';
 
 @Component({
   components: {
     TodoInput,
     TodoList,
+    TodoFooter,
   },
 })
 export default class AppTodoList extends Vue {
@@ -35,6 +40,31 @@ export default class AppTodoList extends Vue {
   removeTodoIds: string[] = [];
   showAlert = false;
   todos: Todo[] = [];
+  mode: Mode = Mode.todo;
+
+  private get filter() {
+    if (!this.todos.length) return;
+
+    let filter: Todo[] = [];
+    switch(this.mode) {
+      case Mode.all:
+        filter = this.todos;
+        break;
+      case Mode.todo:
+        this.todos.map((todo) => {
+          if (!todo.isDone)
+            filter.push(todo);
+        })
+        break;
+      case Mode.completed:
+        this.todos.map((todo) => {
+          if (todo.isDone)
+            filter.push(todo);
+        })
+        break;
+    }
+    return filter;
+  }
 
   private created() {
     this.$http
@@ -128,7 +158,7 @@ export default class AppTodoList extends Vue {
 </script>
 
 <style lang="less" scoped>
-.todoList {
+.todo-list {
   margin: 20px 10px;
 }
 </style>
