@@ -20,13 +20,13 @@ import TodoItem from '@/components/TodoItem.vue';
 @Component({
   components: {
     TodoItem,
-  }
+  },
 })
 export default class TodoList extends Vue {
   @Prop({ type: Array, required: true }) private todos!: Todo[];
-  private activeName : string = '';
+  private activeName: string = '';
   
-  private handleChange(id :string) {
+  private handleChange(id: string) {
     // do something
   }
   private handleDone(id: string) {

@@ -24,7 +24,7 @@ import { Vue, Component, Prop } from 'vue-property-decorator';
 import Todo from '@/assets/Todo';
 import TodoInput from '@/components/TodoInput.vue';
 import TodoList from '@/components/TodoList.vue';
-import  TodoFooter, { Mode } from '@/components/TodoFooter.vue';
+import TodoFooter, { Mode } from '@/components/TodoFooter.vue';
 
 @Component({
   components: {
@@ -34,33 +34,35 @@ import  TodoFooter, { Mode } from '@/components/TodoFooter.vue';
   },
 })
 export default class AppTodoList extends Vue {
-  nextTodoId = 1;
-  newTodoText = '';
-  placeholder = 'Todo List';
-  removeTodoIds: string[] = [];
-  showAlert = false;
-  todos: Todo[] = [];
-  mode: Mode = Mode.todo;
+  public nextTodoId = 1;
+  public newTodoText = '';
+  public placeholder = 'Todo List';
+  public removeTodoIds: string[] = [];
+  public showAlert = false;
+  public todos: Todo[] = [];
+  public mode: Mode = Mode.todo;
 
   private get filter() {
-    if (!this.todos.length) return;
+    if (!this.todos.length) { return; }
 
     let filter: Todo[] = [];
-    switch(this.mode) {
+    switch (this.mode) {
       case Mode.all:
         filter = this.todos;
         break;
       case Mode.todo:
         this.todos.map((todo) => {
-          if (!todo.isDone)
+          if (!todo.isDone) {
             filter.push(todo);
-        })
+          }
+        });
         break;
       case Mode.completed:
         this.todos.map((todo) => {
-          if (todo.isDone)
+          if (todo.isDone) {
             filter.push(todo);
-        })
+          }
+        });
         break;
     }
     return filter;
@@ -70,17 +72,17 @@ export default class AppTodoList extends Vue {
     this.$http
       .get('/todolist')
       .then((re) => {
-        re.data.map((todo: Todo)=>{
+        re.data.map((todo: Todo ) => {
           this.todos.push(todo);
-        })
-      })
+        });
+      });
 
     // demo数据
     this.todos.push(new Todo(
       (this.nextTodoId++).toString(),
       '1',
       new Date(),
-      'This is first'
+      'This is first',
     ));
     this.todos.push(new Todo(
       (this.nextTodoId++).toString(),
@@ -94,7 +96,7 @@ export default class AppTodoList extends Vue {
       new Date(),
       'Well, I am third',
     ));
-    for(let i = 0; i < 0; i++) {
+    for (let i = 0; i < 0; i++) {
       this.todos.push(new Todo(
         (this.nextTodoId++).toString(),
         `${i + 4}`,
@@ -104,8 +106,7 @@ export default class AppTodoList extends Vue {
     }
   }
   private handleAdd() {
-    console.log(`add:${this.newTodoText}`)
-    let text = this.newTodoText.trim();
+    const text = this.newTodoText.trim();
     let todo = new Todo(
       (this.nextTodoId++).toString(),
       text,
@@ -123,19 +124,19 @@ export default class AppTodoList extends Vue {
       })
       .catch((e) => {
         // 错误
-      })
+      });
     if (text) {
       this.todos.push(new Todo(
         (this.nextTodoId++).toString(),
         text,
         new Date(),
-      ))
+      ));
       this.newTodoText = '';
     }
   }
   private handleDone(id: string) {
     this.todos.map((todo) => {
-      if(todo.id === id) {
+      if (todo.id === id) {
         todo.isDone = !todo.isDone;
       }
     });
@@ -145,13 +146,13 @@ export default class AppTodoList extends Vue {
       this.$http
         .delete(`/todolist/${ id }`)
         .then((re) => {
-          if(todo.id === id) {
+          if (todo.id === id) {
             this.removeTodoIds.push(id);
           }
         })
         .catch((e) => {
           // 删除失败
-        })
+        });
     });
   }
 }

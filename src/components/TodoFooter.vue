@@ -33,7 +33,7 @@ export default class TodoFooter extends Vue {
     let c = 0;
     this.todos.map((todo) => {
       c += todo.isDone ? 0 : 1;
-    })
+    });
     return c;
   }
   private get m() {

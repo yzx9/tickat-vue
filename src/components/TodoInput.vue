@@ -11,12 +11,12 @@ import { Vue, Component, Model, Prop } from 'vue-property-decorator';
 
 @Component
 export default class TodoInput extends Vue {
-  @Model('input', { type: String }) private _value!: string;
+  @Model('input', { type: String }) private v!: string;
   @Prop({ type: String }) private placeholder!: string;
   
   private get value() {
-    return this._value;
-  };
+    return this.v;
+  }
   private set value(value: string) {
     this.$emit('input', value);
   }
