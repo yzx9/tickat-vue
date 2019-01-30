@@ -17,12 +17,15 @@
            @click="handleChange('completed')">完成</a>
       </li>
     </ul>
+    <span class="todo-flex-helper">
+      {{ count }} items left
+    </span>
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Prop, Model } from 'vue-property-decorator';
-import Todo from '@/assets/Todo';
+import Todo from '@/assets/scripts/Todo';
 
 @Component
 export default class TodoFooter extends Vue {
@@ -63,21 +66,17 @@ export enum Mode {
     height: 40px;
     text-align: center;
     border-top: 1px solid #e6e6e6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     .todo-count {
-      float: left;
       text-align: left;
     }
     .todo-filter {
-      margin: 0;
-      padding: 0;
       list-style: none;
-      position: absolute;
-      right: 0;
-      left: 0;
       li {
         display: inline;
         a {
-          color: inherit;
           margin: 3px;
           padding: 3px 7px;
           text-decoration: none;
@@ -90,6 +89,10 @@ export enum Mode {
           }
         }
       }
+    }
+    .todo-flex-helper {
+      // 帮助类，用于居中对齐
+      visibility: hidden;
     }
   }
 </style>
