@@ -17,18 +17,19 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
+import { Post, Type } from '@/assets/scripts/Post';
 
 @Component
 export default class PostContent extends Vue {
   @Prop({ type: Object, required: true })
-  public post!: object;
+  public post!: Post;
   public publicPath = process.env.BASE_URL;
 
   public get src() {
-    return `${ this.publicPath }${ (this.post as any).image }`;
+    return `${ this.publicPath }${ this.post.image }`;
   }
   public get href() {
-    return `/post/${ (this.post as any).id }`;
+    return `/post/${ this.post.id }`;
   }
 }
 </script>

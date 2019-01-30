@@ -15,18 +15,19 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
+import { Post, Type } from '@/assets/scripts/Post';
 
 @Component
 export default class PostHeader extends Vue {
   @Prop({ type: Object, required: true })
-  public post!: object;
+  public post!: Post;
   public publicPath = process.env.BASE_URL;
 
   public get src() {
-    return `${ this.publicPath }${ (this.post as any).avatar }`;
+    return `${ this.publicPath }${ this.post.avatar }`;
   }
   public get passed() {
-    const begintime = (this.post as any).createTime;
+    const begintime = this.post.createTime;
     if (!begintime) {
       return '';
     }

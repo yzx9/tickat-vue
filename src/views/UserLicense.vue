@@ -10,4 +10,3 @@ export default class UserLicense extends Vue {
 
 }
 </script>
-

@@ -23,12 +23,13 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
+import { Post, Type } from '@/assets/scripts/Post';
 import '@/assets/fonts/sharehub/style.css';
 
 @Component
 export default class PostFooter extends Vue {
   @Prop({ type: Object, required: true })
-  public post!: object;
+  public post!: Post;
 }
 </script>
 

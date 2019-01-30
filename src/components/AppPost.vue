@@ -10,6 +10,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
+import { Post, Type } from '@/assets/scripts/Post';
 import PostHeader from '@/components/PostHeader.vue';
 import PostContent from '@/components/PostContent.vue';
 import PostFooter from '@/components/PostFooter.vue';
@@ -21,9 +22,9 @@ import PostFooter from '@/components/PostFooter.vue';
     PostFooter,
   },
 })
-export default class Post extends Vue {
+export default class AppPost extends Vue {
   @Prop({ type: Object, required: true })
-  public post!: object;
+  public post!: Post;
 }
 </script>
 
