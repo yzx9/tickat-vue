@@ -33,7 +33,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
-import { Pager, Order } from '@/assets/Pager';
+import { Pager, Order } from '@/assets/scripts/Pager';
 
 @Component
 export default class ScrollToLoad extends Vue {

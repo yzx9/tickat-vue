@@ -1,7 +1,7 @@
 <template>
   <div class="logo">
     <img alt="logo"
-         src="@/assets/logo.png"
+         src="@/assets/icons/logo.png"
          class="pic"
          :style="{ height:hei, width:wid }">
   </div>

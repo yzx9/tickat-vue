@@ -38,13 +38,13 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
-import Todo from '@/assets/Todo';
+import Todo from '@/assets/scripts/Todo';
 import EditDiv from '@/components/EditDiv.vue';
 
 @Component({
   components: {
     EditDiv,
-  }
+  },
 })
 export default class TodoItem extends Vue {
   @Prop({ type: Object, required: true }) private todo!: Todo;
@@ -104,10 +104,10 @@ export default class TodoItem extends Vue {
       height: 40px;
     }
     &:not(.done)::after {
-      content: url('../assets/todo-checkbox.svg');
+      content: url('../assets/icons/todo-checkbox.svg');
     }
     &.done::after {
-      content: url('../assets/todo-checkbox-done.svg');
+      content: url('../assets/icons/todo-checkbox-done.svg');
     }
   }
 }

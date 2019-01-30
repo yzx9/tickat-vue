@@ -15,7 +15,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
-import Todo from '@/assets/Todo';
+import Todo from '@/assets/scripts/Todo';
 import TodoItem from '@/components/TodoItem.vue';
 
 @Component({

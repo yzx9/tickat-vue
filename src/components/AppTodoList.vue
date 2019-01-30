@@ -22,7 +22,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
-import Todo from '@/assets/Todo';
+import Todo from '@/assets/scripts/Todo';
 import TodoInput from '@/components/TodoInput.vue';
 import TodoList from '@/components/TodoList.vue';
 import TodoFooter, { Mode } from '@/components/TodoFooter.vue';
@@ -168,7 +168,7 @@ export default class AppTodoList extends Vue {
         index = this.todos.indexOf(todo);
       }
     });
-    if (index >= 0){
+    if (index >= 0) {
       this.todos.splice(index, 1);
     }
   }
