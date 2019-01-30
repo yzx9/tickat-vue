@@ -1,5 +1,5 @@
 <template>
-  <el-card class="todo-list"
+  <el-card class="todo-list-warpper"
            :body-style="{ padding:'0px' }"
            shadow="hover">
     <div slot="header"
@@ -197,8 +197,8 @@ export default class AppTodoList extends Vue {
 }
 </script>
 
-<style lang="less" scoped>
-.todo-list {
+<style lang="less">
+.todo-list-warpper {
   margin: 20px 10px;
 }
 </style>

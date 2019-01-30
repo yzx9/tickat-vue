@@ -62,29 +62,29 @@ export enum State {
 </script>
 
 <style lang="less" scoped>
-  .loadMore {
-    padding: 40px 15px 70px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    p {
-      margin-left: 30px;
-      color: #63616b;
-      display: inline;
-    }
-    span {
-      font-size: 36px;
-      &::before {
-        color: #63616b !important;
-      }
-    }
-    &-disable {
-      pointer-events: none;
-      cursor: default;
-      opacity: 0.5;
-      filter: alpha(opacity=50);
+.loadMore {
+  padding: 40px 15px 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  p {
+    margin-left: 30px;
+    color: #63616b;
+    display: inline;
+  }
+  span {
+    font-size: 36px;
+    &::before {
+      color: #63616b !important;
     }
   }
+  &-disable {
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+  }
+}
 </style>
 

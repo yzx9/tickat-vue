@@ -31,9 +31,10 @@ import AppLogo from '@/components/AppLogo.vue';
 })
 export default class AppNav extends Vue {
   public avatar = 'images/avatars/avatar-11.png';
+  public activeIndex!: string;
 
   public handleSelect(active: string) {
-    console.log(active);
+    
   }
 }
 </script>

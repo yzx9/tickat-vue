@@ -1,9 +1,14 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+// 首页
 import Home from './views/Home.vue';
+// 关于
 import About from '@/views/About.vue';
+// 登录注册
 import Login from '@/views/Login.vue';
 import Signup from '@/views/Signup.vue';
+import UserLicense from '@/views/UserLicense.vue';
+// 404
 import NotFound from '@/views/NotFound.vue';
 
 Vue.use(Router);
@@ -34,6 +39,11 @@ export default new Router({
       path: '/signup',
       name: 'signup',
       component: Signup,
+    },
+    {
+      path: '/userLicense',
+      name: 'userLicense',
+      component: UserLicense,
     },
     {
       path: '/404',

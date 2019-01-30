@@ -1,14 +1,14 @@
 <template>
-    <div>
-        <el-row>
-            <el-col :span="8"
-                    :offset="8"
-                    class="content">
-                <signup-form></signup-form>
-                <login-footer></login-footer>
-            </el-col>
-        </el-row>
-    </div>
+  <div>
+    <el-row>
+      <el-col :span="8"
+              :offset="8"
+              class="signup-warpper">
+        <signup-form></signup-form>
+        <login-footer></login-footer>
+      </el-col>
+    </el-row>
+  </div>
 </template>
 
 <script lang="ts">
@@ -18,10 +18,10 @@ import SignupForm from '@/components/SignupForm.vue';
 import LoginFooter from '@/components/LoginFooter.vue';
 
 @Component({
-    components: {
-        SignupForm,
-        LoginFooter,
-    },
+  components: {
+    SignupForm,
+    LoginFooter,
+  },
 })
 export default class AppSignup extends Vue {
 
@@ -29,10 +29,10 @@ export default class AppSignup extends Vue {
 </script>
 
 <style lang="less" scoped>
-.content {
-    padding: 36px 30px;
-    background-color: white;
-    border-radius: 6px;
-    box-shadow: 0px 2px 6px -2px rgba(0, 0, 0, 0.1);
+.signup-warpper {
+  padding: 36px 30px;
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0px 2px 6px -2px rgba(0, 0, 0, 0.1);
 }
 </style>

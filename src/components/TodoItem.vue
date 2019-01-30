@@ -1,6 +1,6 @@
 <template>
   <el-collapse-item :name="todo.id"
-                    class="todo-item">
+                    class="todo-item-warpper">
     <template slot="title">
         <i :class="['todo-checkbox', { 'done': todo.isDone }]"
            @click.stop="handleDone">
@@ -30,7 +30,7 @@
             确定
           </el-button>
         </div>
-        <a slot="reference" class="fa fa-close icon"></a>
+        <a slot="reference" class="fa fa-close todo-icon"></a>
       </el-popover>
     </div>
   </el-collapse-item>
@@ -64,8 +64,8 @@ export default class TodoItem extends Vue {
 }
 </script>
 
-<style lang="less" scoped>
-.todo-item {
+<style lang="less">
+.todo-item-warpper {
   .todo-item-content {
     margin: 10px 45px 10px 30px;
     text-align: left;
@@ -83,7 +83,7 @@ export default class TodoItem extends Vue {
     text-align: right;
     font-size: 130%;
     line-height: 50%;
-    .icon {
+    .todo-icon {
       margin-left: 15px;
       margin-right: 15px;
       opacity:0.8;

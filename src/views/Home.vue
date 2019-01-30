@@ -64,6 +64,6 @@ export default class Home extends Vue {
       favorite: 1274,
       comment: 982,
     },
-  ]
+  ];
 }
 </script>

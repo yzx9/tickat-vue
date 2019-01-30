@@ -47,63 +47,76 @@ export default class PostContent extends Vue {
       width: 100%;
       border-radius: 6px;
     }
-  }
-  .sh-section__image-gif a::after {
-    position: absolute;
-    content: 'gif';
-    display: block;
-    padding: 0 4px;
-    border-radius: 3px;
-    background-color: rgba(0, 0, 0, 0.6);
-    font-weight: 700;
-    font-size: 14px;
-    color: #ffffff;
-    text-transform: uppercase;
-    right: 16px;
-    top: 16px;
-  }
-  .sh-section__image-info {
-    position: absolute;
-    width: 100%;
-    padding: 28px 24px;
-    bottom: -1px;
-    background-color: #ffffff;
-    border-bottom-right-radius: 6px;
-    border-bottom-left-radius: 6px;
-    border-bottom: solid 1px #f3f3f3;
-    border-left: solid 1px #f3f3f3;
-    border-right: solid 1px #f3f3f3;
+    &-gif a::after {
+      position: absolute;
+      content: 'gif';
+      display: block;
+      padding: 0 4px;
+      border-radius: 3px;
+      background-color: rgba(0, 0, 0, 0.6);
+      font-weight: 700;
+      font-size: 14px;
+      color: #ffffff;
+      text-transform: uppercase;
+      right: 16px;
+      top: 16px;
+    }
+    &-info {
+      position: absolute;
+      width: 100%;
+      padding: 28px 24px;
+      bottom: -1px;
+      background-color: #ffffff;
+      border-bottom-right-radius: 6px;
+      border-bottom-left-radius: 6px;
+      border-bottom: solid 1px #f3f3f3;
+      border-left: solid 1px #f3f3f3;
+      border-right: solid 1px #f3f3f3;
+      div {
+        font-weight: 600;
+      }
+      p {
+        color: #63616b;
+      }
+      span {
+        color: #9fa3ac;
+      }
+    }
+    &-curtain {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-image: linear-gradient(transparent 40%, rgba(0, 0, 0, 0.7));
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      &-text {
+        margin-bottom: 24px;
+        margin-left: 30px;
+        p {
+          color: #ffffff;
+          font-weight: 400;
+        }
+        span {
+          color: #ffffff;
+          font-size: 18px;
+          font-weight: 600;
+        }
+        .sh-btn {
+          margin-bottom: 24px;
+          margin-right: 30px;
+          border-width: 1px;
+        }
+      }
+    }
   }
   @media only screen and (max-width: 1024px) {
     .sh-section__image-info {
       position: relative;
       top: -10px;
     }
-  }
-  .sh-section__image-info {
-    div {
-      font-weight: 600;
-    }
-    p {
-      color: #63616b;
-    }
-    span {
-      color: #9fa3ac;
-    }
-  }
-  .sh-section__image-curtain {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-image: linear-gradient(transparent 40%, rgba(0, 0, 0, 0.7));
-    align-items: flex-end;
-    justify-content: space-between;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
   }
   @media only screen and (max-width: 479px) {
     .sh-section__image-curtain {
@@ -112,42 +125,16 @@ export default class PostContent extends Vue {
       flex-wrap: wrap;
       background-image: none;
     }
-  }
-  .sh-section__image-curtain-text {
-    margin-bottom: 24px;
-    margin-left: 30px;
-  }
-  @media only screen and (max-width: 479px) {
     .sh-section__image-curtain-text {
       margin: 0;
       margin-bottom: 15px;
     }
-  }
-  .sh-section__image-curtain-text p {
-    color: #ffffff;
-    font-weight: 400;
-  }
-  @media only screen and (max-width: 479px) {
     .sh-section__image-curtain-text p {
       color: #1e1633;
     }
-  }
-  .sh-section__image-curtain-text span {
-    color: #ffffff;
-    font-size: 18px;
-    font-weight: 600;
-  }
-  @media only screen and (max-width: 479px) {
     .sh-section__image-curtain-text span {
       color: #1e1633;
     }
-  }
-  .sh-section__image-curtain .sh-btn {
-    margin-bottom: 24px;
-    margin-right: 30px;
-    border-width: 1px;
-  }
-  @media only screen and (max-width: 479px) {
     .sh-section__image-curtain .sh-btn {
       margin: 0;
       margin-bottom: 15px;

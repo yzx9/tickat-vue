@@ -37,21 +37,21 @@ export default class EditDiv extends Vue {
 </script>
 
 <style lang="less">
-  .edit-div {
-    width: 100%;
-    height: 100%;
-    word-break: break-all;
-    outline: none;
-    user-select: text;
-    white-space: pre-wrap;
-    text-align: left;
-    &[contenteditable=true] {
-      user-modify: read-write-plaintext-only;
-      &:empty:before {
-          content: attr(placeholder);
-          display: block;
-          color: #ccc;
-      }
+.edit-div {
+  width: 100%;
+  height: 100%;
+  word-break: break-all;
+  outline: none;
+  user-select: text;
+  white-space: pre-wrap;
+  text-align: left;
+  &[contenteditable=true] {
+    user-modify: read-write-plaintext-only;
+    &:empty:before {
+        content: attr(placeholder);
+        display: block;
+        color: #ccc;
     }
   }
+}
 </style>

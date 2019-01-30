@@ -28,7 +28,7 @@ import '@/assets/fonts/sharehub/style.css';
 @Component
 export default class PostFooter extends Vue {
   @Prop({ type: Object, required: true })
-  post!: Object;
+  public post!: object;
 }
 </script>
 

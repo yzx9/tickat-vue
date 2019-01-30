@@ -34,16 +34,16 @@ export default class AppLogo extends Vue {
 </script>
 
 <style lang="less">
-  .logo {
-    line-height: 100px;
-    margin: 10px 20px 20px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    .pic {
-      max-width: 100%;
-      max-height: 100%;
-    }
+.logo {
+  line-height: 100px;
+  margin: 10px 20px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  .pic {
+    max-width: 100%;
+    max-height: 100%;
   }
+}
 </style>
 

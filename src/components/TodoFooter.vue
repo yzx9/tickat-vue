@@ -60,40 +60,40 @@ export enum Mode {
 </script>
 
 <style lang="less">
-  .todo-footer {
-    color: #777;
-    padding: 10px 15px;
-    height: 40px;
-    text-align: center;
-    border-top: 1px solid #e6e6e6;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    .todo-count {
-      text-align: left;
-    }
-    .todo-filter {
-      list-style: none;
-      li {
-        display: inline;
-        a {
-          margin: 3px;
-          padding: 3px 7px;
-          text-decoration: none;
-          border: 1px solid transparent;
-          border-radius: 3px;
-          line-height: 50%;
-          cursor: pointer;
-          &.active {
-            border-color: rgba(175, 47, 47, 0.2);
-          }
+.todo-footer {
+  color: #777;
+  padding: 10px 15px;
+  height: 40px;
+  text-align: center;
+  border-top: 1px solid #e6e6e6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .todo-count {
+    text-align: left;
+  }
+  .todo-filter {
+    list-style: none;
+    li {
+      display: inline;
+      a {
+        margin: 3px;
+        padding: 3px 7px;
+        text-decoration: none;
+        border: 1px solid transparent;
+        border-radius: 3px;
+        line-height: 50%;
+        cursor: pointer;
+        &.active {
+          border-color: rgba(175, 47, 47, 0.2);
         }
       }
     }
-    .todo-flex-helper {
-      // 帮助类，用于居中对齐
-      visibility: hidden;
-    }
   }
+  .todo-flex-helper {
+    // 帮助类，用于居中对齐
+    visibility: hidden;
+  }
+}
 </style>
 
