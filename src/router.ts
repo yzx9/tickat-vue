@@ -4,6 +4,7 @@ import Home from './views/Home.vue';
 import About from '@/views/About.vue';
 import Login from '@/views/Login.vue';
 import Signup from '@/views/Signup.vue';
+import NotFound from '@/views/NotFound.vue';
 
 Vue.use(Router);
 
@@ -33,6 +34,16 @@ export default new Router({
       path: '/signup',
       name: 'signup',
       component: Signup,
+    },
+    {
+      path: '/404',
+      alias: '/notfound',
+      name: 'notfound',
+      component: NotFound,
+    },
+    {
+      path: '*',
+      redirect: '/404',
     },
   ],
 });
