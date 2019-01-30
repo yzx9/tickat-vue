@@ -14,8 +14,8 @@ import { Prop } from 'vue-property-decorator';
 
 @Component
 export default class AppLogo extends Vue {
-  @Prop({ type: String }) private h !: string;
-  @Prop({ type: String }) private w !: string;
+  @Prop({ type: String, default: '100px' }) private h !: string;
+  @Prop({ type: String, default: '100px' }) private w !: string;
   private get hei() {
     if (this.h === undefined) {
       return '100px';

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <app-nav></app-nav>
     <el-row>
       <el-col :span="8">
         <app-todo-list></app-todo-list>
@@ -14,11 +15,13 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import AppNav from '@/components/AppNav.vue';
 import AppTodoList from '@/components/AppTodoList.vue';
 import AppPost from '@/components/AppPost.vue';
 
 @Component({
   components: {
+    AppNav,
     AppTodoList,
     AppPost,
   },
