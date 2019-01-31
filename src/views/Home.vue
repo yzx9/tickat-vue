@@ -1,15 +1,15 @@
 <template>
   <div>
-    <app-nav></app-nav>
+    <TheNav />
     <el-row>
       <el-col :span="8">
-        <app-todo-list></app-todo-list>
+        <AppTodoList />
       </el-col>
       <el-col
         v-for="post in posts"
         :key="post.id"
         :span="8">
-        <app-post :post="post" />
+        <AppPost :post="post" />
       </el-col>
       <el-col
         v-for="card in cards"
@@ -25,14 +25,14 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { Post, Type } from '@/assets/scripts/Post';
 import Card from '@/assets/scripts/Card';
-import AppNav from '@/components/AppNav.vue';
+import TheNav from '@/components/TheNav.vue';
 import AppTodoList from '@/components/AppTodoList.vue';
 import AppPost from '@/components/AppPost.vue';
 import AppCard from '@/components/AppCard.vue';
 
 @Component({
   components: {
-    AppNav,
+    TheNav,
     AppTodoList,
     AppPost,
     AppCard,
@@ -85,7 +85,6 @@ export default class Home extends Vue {
       1,
     ),
   ];
-
   public cards: Card[] = [
     new Card (
       '1',

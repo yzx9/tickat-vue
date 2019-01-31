@@ -38,7 +38,21 @@ export default class LoginFooter extends Vue {
     wechat: '',
     github: '',
   };
+  
+  // hooks
+  public created() {
+    this.$http.post('/api/login/oauth')
+      .then((re) => {
+        this.href.qq = re.data.qq;
+        this.href.wechat = re.data.wechat;
+        this.href.github = re.data.github;
+      })
+      .then((e) => {
+        // 错误处理
+      })
+  }
 
+  // methods
   public clickHandle(name: string) {
     switch(name) {
       case 'qq':

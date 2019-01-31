@@ -17,8 +17,7 @@
             v-model="form.username"
             placeholder="用户名"
             prefix-icon="fa fa-user-o"
-            clearable>
-          </el-input>
+            clearable/>
         </el-form-item>
         <el-form-item prop="password">
           <el-input
@@ -26,8 +25,7 @@
             type="password"
             placeholder="密码"
             prefix-icon="fa fa-lock"
-            clearable>
-          </el-input>
+            clearable/>
         </el-form-item>
         <el-form-item prop="error" :error="formError"></el-form-item>
         <el-form-item>

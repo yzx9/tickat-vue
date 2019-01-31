@@ -1,9 +1,11 @@
 <template>
   <el-container>
     <el-main>
-      <app-logo :h="logo.height" :w="logo.width"></app-logo>
-      <app-login></app-login>
-      <app-footer></app-footer>
+      <AppLogo
+        :height="logo.height"
+        :width="logo.width" />
+      <AppLogin />
+      <TheFooter />
     </el-main>
   </el-container>
 </template>
@@ -13,13 +15,13 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import AppLogo from '@/components/AppLogo.vue';
 import AppLogin from '@/components/AppLogin.vue';
-import AppFooter from '@/components/AppFooter.vue';
+import TheFooter from '@/components/TheFooter.vue';
 
 @Component({
   components: {
     AppLogo,
     AppLogin,
-    AppFooter,
+    TheFooter,
   },
 })
 export default class Login extends Vue {

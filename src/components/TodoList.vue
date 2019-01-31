@@ -1,15 +1,16 @@
 <template>
-  <el-collapse class="todo-items"
-               v-model="activeName"
-               @change="handleChange"
-               accordion>
-      <todo-item v-for="todo in todos"
-                 :key="todo.id"
-                 :todo="todo"
-                 @done="handleDone"
-                 @edit="handleEdit"
-                 @delete="handleDelete">
-      </todo-item>
+  <el-collapse
+    class="todo-items"
+    v-model="activeName"
+    @change="handleChange"
+    accordion>
+    <TodoItem
+      v-for="todo in todos"
+      :key="todo.id"
+      :todo="todo"
+      @done="handleDone"
+      @edit="handleEdit"
+      @delete="handleDelete" />
   </el-collapse>
 </template>
 

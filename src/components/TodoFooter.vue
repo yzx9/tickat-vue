@@ -5,16 +5,19 @@
     </span>
     <ul class="todo-filter">
       <li>
-        <a :class="{ 'active': m === 'all' }"
-           @click="handleChange('all')">全部</a>
+        <a
+          :class="{ 'active': m === 'all' }"
+          @click="handleChange('all')">全部</a>
       </li>
       <li>
-        <a :class="{ 'active': m === 'todo' }"
-           @click="handleChange('todo')">待办</a>
+        <a
+          :class="{ 'active': m === 'todo' }"
+          @click="handleChange('todo')">待办</a>
       </li>
       <li>
-        <a :class="{ 'active': m === 'completed' }"
-           @click="handleChange('completed')">完成</a>
+        <a
+          :class="{ 'active': m === 'completed' }"
+          @click="handleChange('completed')">完成</a>
       </li>
     </ul>
     <span class="todo-flex-helper">

@@ -1,9 +1,10 @@
 <template>
-  <input class="todo-input"
-         :placeholder="placeholder"
-         title="Add a new todo"
-         v-model="value"
-         @keydown.enter="submit"/>
+  <input
+    class="todo-input"
+    title="Add a new todo"
+    v-model="value"
+    :placeholder="placeholder"
+    @keydown.enter="submit"/>
 </template>
 
 <script lang="ts">
@@ -11,8 +12,10 @@ import { Vue, Component, Model, Prop } from 'vue-property-decorator';
 
 @Component
 export default class TodoInput extends Vue {
-  @Model('input', { type: String }) private v!: string;
-  @Prop({ type: String }) private placeholder!: string;
+  @Model('input', { type: String })
+  public v!: string;
+  @Prop({ type: String, default:'' })
+  public placeholder!: string;
   
   private get value() {
     return this.v;

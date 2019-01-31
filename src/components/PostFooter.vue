@@ -1,22 +1,34 @@
 <template>
   <div class="post-footer">
-    <a href="#" class="sh-section__btn-upvote sh-btn-icon">
-      <i class="icon-Upvote"></i>
+    <a
+      href="#"
+      class="sh-section__btn-upvote sh-btn-icon">
+      <i class="icon-Upvote"/>
     </a>
-    <a href="#" class="sh-section__btn-downvote sh-btn-icon">
-      <i class="icon-Downvote"></i>
+    <a
+      href="#"
+      class="sh-section__btn-downvote sh-btn-icon">
+      <i class="icon-Downvote"/>
     </a>
-    <a href="#" class="sh-section__btn-repost sh-btn-icon">
-      <i class="icon-Repost"></i>
+    <a
+      href="#"
+      class="sh-section__btn-repost sh-btn-icon">
+      <i class="icon-Repost"/>
     </a>
-    <a href="#" class="sh-section__btn-like sh-btn-icon">
-      <i class="icon-Favorite_Full"></i><span>{{ post.favorite }}</span>
+    <a
+      href="#"
+      class="sh-section__btn-like sh-btn-icon">
+      <i class="icon-Favorite_Full"/><span>{{ post.favorite }}</span>
     </a>
-    <a href="#" class="sh-section__btn-comment sh-btn-icon">
-      <i class="icon-Comment_Full"></i><span>{{ post.comment }}</span>
+    <a
+      href="#"
+      class="sh-section__btn-comment sh-btn-icon">
+      <i class="icon-Comment_Full" /><span>{{ post.comment }}</span>
     </a>
-    <a href="#" class="sh-section__btn-share sh-btn-icon">
-      <i class="icon-Share"></i>
+    <a
+      href="#"
+      class="sh-section__btn-share sh-btn-icon">
+      <i class="icon-Share"/>
     </a>
   </div>
 </template>

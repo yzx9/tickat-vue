@@ -1,9 +1,11 @@
 <template>
-  <div class="center">
-    <p>404 Not Found</p>
-    <el-button @click="goHome">主页</el-button>
-    <el-button @click="goBack">返回</el-button>
-  </div>
+  <el-container>
+    <el-main class="center">
+      <p>404 Not Found</p>
+      <el-button @click="goHome">主页</el-button>
+      <el-button @click="goBack">返回</el-button>
+    </el-main>
+  </el-container>
 </template>
 
 <script lang="ts">

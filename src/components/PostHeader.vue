@@ -8,7 +8,7 @@
       <span class="passed">{{ passed }}</span>
     </div>
     <a href="#" class="link sh-btn-icon">
-      <i class="icon-Link"></i>
+      <i class="icon-Link"/>
     </a>
   </div>
 </template>

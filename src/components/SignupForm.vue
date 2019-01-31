@@ -17,8 +17,7 @@
             v-model="form.username"
             placeholder="用户名"
             prefix-icon="fa fa-user-o"
-            clearable>
-          </el-input>
+            clearable/>
         </el-form-item>
         <el-form-item prop="password">
           <el-input
@@ -26,8 +25,7 @@
             type="password"
             placeholder="密码"
             prefix-icon="fa fa-lock"
-            clearable>
-          </el-input>
+            clearable/>
         </el-form-item>
         <el-form-item prop="passwordReword">
           <el-input
@@ -35,8 +33,7 @@
             type="password"
             placeholder="再次输入"
             prefix-icon="fa fa-lock"
-            clearable>
-          </el-input>
+            clearable/>
         </el-form-item>
         <el-form-item prop="mobile">
           <el-input
@@ -44,8 +41,7 @@
             type="tel"
             placeholder="手机号"
             prefix-icon="el-icon-mobile-phone"
-            clearable>
-          </el-input>
+            clearable/>
         </el-form-item>
         <el-form-item prop="license">
           <el-checkbox class="license" v-model="form.license">

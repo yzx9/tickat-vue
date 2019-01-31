@@ -1,22 +1,24 @@
 <template>
-  <el-card class="todo-list-warpper"
-           :body-style="{ padding:'0px' }"
-           shadow="hover">
-    <div slot="header"
-         :body-style="{ padding:'0px' }">
-      <todo-input v-model="newTodoText"
-                  :placeholder="placeholder"
-                  @submit="handleAdd">
-      </todo-input>
+  <el-card
+    class="todo-list-warpper"
+    :body-style="{ padding:'0px' }"
+    shadow="hover">
+    <div
+      slot="header"
+      :body-style="{ padding:'0px' }">
+      <TodoInput
+        v-model="newTodoText"
+        :placeholder="placeholder"
+        @submit="handleAdd"/>
     </div>
-    <todo-list :todos="filter"
-               @delete="handleDelete"
-               @done="handleDone"
-               @edit="handleEdit">
-    </todo-list>
-    <todo-footer :todos="todos"
-                 v-model="mode">
-    </todo-footer>
+    <TodoList
+      :todos="filter"
+      @delete="handleDelete"
+      @done="handleDone"
+      @edit="handleEdit"/>
+    <TodoFooter
+      :todos="todos"
+      v-model="mode"/>
   </el-card>
 </template>
 
@@ -42,33 +44,7 @@ export default class AppTodoList extends Vue {
   public showAlert = false;
   public todos: Todo[] = [];
   public mode: Mode = Mode.todo;
-
-  private get filter() {
-    if (!this.todos.length) { return; }
-
-    let filter: Todo[] = [];
-    switch (this.mode) {
-      case Mode.all:
-        filter = this.todos;
-        break;
-      case Mode.todo:
-        this.todos.map((todo) => {
-          if (!todo.isDone) {
-            filter.push(todo);
-          }
-        });
-        break;
-      case Mode.completed:
-        this.todos.map((todo) => {
-          if (todo.isDone) {
-            filter.push(todo);
-          }
-        });
-        break;
-    }
-    return filter;
-  }
-
+  // hooks
   private created() {
     this.$http
       .get('/todolist')
@@ -105,6 +81,32 @@ export default class AppTodoList extends Vue {
         `Well, I am ${i + 4}th`,
       ));
     }
+  }
+  // methods
+  private get filter() {
+    if (!this.todos.length) { return; }
+
+    let filter: Todo[] = [];
+    switch (this.mode) {
+      case Mode.all:
+        filter = this.todos;
+        break;
+      case Mode.todo:
+        this.todos.map((todo) => {
+          if (!todo.isDone) {
+            filter.push(todo);
+          }
+        });
+        break;
+      case Mode.completed:
+        this.todos.map((todo) => {
+          if (todo.isDone) {
+            filter.push(todo);
+          }
+        });
+        break;
+    }
+    return filter;
   }
   private handleAdd() {
     const text = this.newTodoText.trim();

@@ -1,31 +1,31 @@
 <template>
   <div class="loadMore" @click="onClick">
     <div v-if="state===State.wait">
-      <i class="el-icon-arrow-down"></i>
+      <i class="el-icon-arrow-down"/>
       <p>下拉加载更多</p>
     </div>
     <div v-if="state===State.scrolling">
-      <i class="el-icon-arrow-down"></i>
+      <i class="el-icon-arrow-down"/>
       <p>继续下拉</p>
     </div>
     <div v-if="state===State.scrolled">
-      <i class="el-icon-minus"></i>
+      <i class="el-icon-minus"/>
       <p>松开加载更多</p>
     </div>
     <div v-if="state===State.loading">
-      <i class="el-icon-loading"></i>
+      <i class="el-icon-loading"/>
       <p>加载中</p>
     </div>
     <div v-if="state===State.loaded">
-      <i class="el-icon-check"></i>
+      <i class="el-icon-check"/>
       <p>加载完成</p>
     </div>
     <div v-if="state===State.loadError">
-      <i class="el-icon-close"></i>
+      <i class="el-icon-close"/>
       <p>加载失败</p>
     </div>
     <div v-if="state===State.noMore">
-      <i class="el-icon-close"></i>
+      <i class="el-icon-close"/>
       <p>暂无更多</p>
     </div>
   </div>

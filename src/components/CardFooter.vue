@@ -15,41 +15,35 @@ import Card from '@/assets/scripts/Card.ts';
 @Component
 export default class CardFooter extends Vue {
   @Prop({ type: Object, required: true })
-  card!: Card;
+  public card!: Card;
+  public currentDate = new Date();
 }
 </script>
 
 <style lang="less">
 .card-footer {
   padding: 14px;
-  .time {
-    font-size: 13px;
-    color: #999;
-  }
-
   .bottom {
     margin-top: 13px;
     line-height: 12px;
+    .time {
+      font-size: 13px;
+      color: #999;
+    }
+    .button {
+      padding: 0;
+      float: right;
+    }
   }
-
-  .button {
-    padding: 0;
-    float: right;
-  }
-
-  .image {
-    width: 100%;
-    display: block;
-  }
-
-  .clearfix:before,
-  .clearfix:after {
+  .clearfix {
+    &::before
+    &::after {
       display: table;
       content: "";
-  }
-
-  .clearfix:after {
-      clear: both
+    }
+    &::after {
+      clear: both;
+    }
   }
 }
 </style>

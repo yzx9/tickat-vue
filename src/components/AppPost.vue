@@ -1,10 +1,10 @@
 <template>
   <el-card class="post-warpper" shadow="hover">
     <div slot="header">
-      <post-header :post="post"></post-header>
+      <PostHeader :post="post" />
     </div>
-    <post-content :post="post"></post-content>
-    <post-footer :post="post"></post-footer>
+    <PostContent :post="post" />
+    <PostFooter :post="post" />
   </el-card>
 </template>
 

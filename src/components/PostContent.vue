@@ -3,8 +3,8 @@
     <div class="post-content">
       <p>{{ post.content }}</p>
       <div class="sh-section__image">
-        <a :href="href">
-          <img :src="src" alt="">
+        <a @click="clickHandle">
+          <img :src="src">
         </a>
       </div>
     </div>
@@ -28,8 +28,9 @@ export default class PostContent extends Vue {
   public get src() {
     return `${ this.publicPath }${ this.post.image }`;
   }
-  public get href() {
-    return `/post/${ this.post.id }`;
+
+  public clickHandle() {
+    this.$router.push({ name: 'post', params: { id: this.post.id }});
   }
 }
 </script>

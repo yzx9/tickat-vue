@@ -8,8 +8,8 @@
         :sm="{ span: 12, offset: 6 }"
         :xs="{ span: 20, offset: 2 }"
         class="signup-warpper">
-        <signup-form></signup-form>
-        <login-footer></login-footer>
+        <SignupForm/>
+        <LoginFooter/>
       </el-col>
     </el-row>
   </div>

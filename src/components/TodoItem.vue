@@ -1,36 +1,47 @@
 <template>
-  <el-collapse-item :name="todo.id"
-                    class="todo-item-warpper">
+  <el-collapse-item
+    :name="todo.id"
+    class="todo-item-warpper">
     <template slot="title">
-        <i :class="['todo-checkbox', { 'done': todo.isDone }]"
-           @click.stop="handleDone">
-        </i>
-        <input v-model="todo.title"
-               class="todo-item-title"
-               :readonly="!canEdit">
+      <i
+        :class="['todo-checkbox', { 'done': todo.isDone }]"
+        @click.stop="handleDone"/>
+      <input
+        v-model="todo.title"
+        class="todo-item-title"
+        :readonly="!canEdit">
     </template>
-    <edit-div :canEdit="canEdit"
-              v-model="todo.content"
-              class="todo-item-content">
-    </edit-div>
+    <EditDiv
+      :canEdit="canEdit"
+      v-model="todo.content"
+      class="todo-item-content"/>
     <div class="todo-item-btn">
-      <i v-if="todo.allowEdit"
-         @click="handleEdit"
-         :class="['fa fa-edit icon', { 'active': canEdit }]">
-      </i>
-      <el-popover placement="top"
-                  width="160"
-                  v-model="visible">
+      <i
+        v-if="todo.allowEdit"
+        :class="['fa fa-edit icon', { 'active': canEdit }]"
+        @click="handleEdit"/>
+      <el-popover
+        placement="top"
+        width="160"
+        v-model="visible">
         <p>确定删除吗？</p>
         <div style="text-align: right; margin: 0">
-          <el-button size="mini" type="text" @click="visible=false">
+          <el-button
+            size="mini"
+            type="text"
+            @click="visible=false">
             取消
           </el-button>
-          <el-button type="primary" size="mini" @click="handleDelete">
+          <el-button
+            type="primary"
+            size="mini"
+            @click="handleDelete">
             确定
           </el-button>
         </div>
-        <a slot="reference" class="fa fa-close todo-icon"></a>
+        <a
+          slot="reference"
+          class="fa fa-close todo-icon"/>
       </el-popover>
     </div>
   </el-collapse-item>
@@ -47,7 +58,8 @@ import EditDiv from '@/components/EditDiv.vue';
   },
 })
 export default class TodoItem extends Vue {
-  @Prop({ type: Object, required: true }) private todo!: Todo;
+  @Prop({ type: Object, required: true })
+  public todo!: Todo;
   private visible = false;
   private canEdit = false;
   

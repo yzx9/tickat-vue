@@ -8,7 +8,7 @@
         :src="src"
         class="image" >
     </div>
-    <card-footer :card="card" />
+    <CardFooter :card="card" />
   </el-card>
 </template>
 
