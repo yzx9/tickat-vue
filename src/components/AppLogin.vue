@@ -1,9 +1,13 @@
 <template>
   <div>
     <el-row>
-      <el-col :span="8"
-              :offset="8"
-              class="login-warpper">
+      <el-col
+        :xl="{ span: 8, offset: 8 }"
+        :lg="{ span: 8, offset: 8 }"
+        :md="{ span: 12, offset: 6 }"
+        :sm="{ span: 12, offset: 6 }"
+        :xs="{ span: 20, offset: 2 }"
+        class="login-warpper">
         <login-form></login-form>
         <login-footer></login-footer>
       </el-col>

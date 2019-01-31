@@ -2,14 +2,26 @@
   <div class="footer">
     <p class="title">第三方登录</p>
     <div class="social">
-      <a :href="qq" class="btnSocial__qq btnSocial">
-        <i class="fa fa-qq" aria-hidden="true"></i>
+      <a
+        @click="clickHandle('qq')"
+        class="btnSocial btnSocial-qq">
+        <i
+          class="fa fa-qq"
+          aria-hidden="true"/>
       </a>
-      <a :href="wechat" class="btnSocial__wechat btnSocial">
-        <i class="fa fa-weixin" aria-hidden="true"></i>
+      <a
+        @click="clickHandle('wechat')"
+        class="btnSocial btnSocial-wechat">
+        <i
+          class="fa fa-weixin"
+          aria-hidden="true"/>
       </a>
-      <a :href="github" class="btnSocial__github btnSocial">
-        <i class="fa fa-github" aria-hidden="true"></i>
+      <a
+        @click="clickHandle('github')"
+        class="btnSocial btnSocial-github">
+        <i
+          class="fa fa-github"
+          aria-hidden="true"/>
       </a>
     </div>
   </div>
@@ -21,9 +33,25 @@ import Component from 'vue-class-component';
 
 @Component
 export default class LoginFooter extends Vue {
-  private qq = '';
-  private wechat = '';
-  private github = '';
+  public href = {
+    qq: '',
+    wechat: '',
+    github: '',
+  };
+
+  public clickHandle(name: string) {
+    switch(name) {
+      case 'qq':
+        window.location.href = this.href.qq;
+        break;
+      case 'wechat':
+        window.location.href = this.href.wechat;
+        break;
+      case 'github':
+        window.location.href = this.href.github;
+        break;
+    }
+  }
 }
 </script>
 
@@ -54,37 +82,37 @@ export default class LoginFooter extends Vue {
         font-size: 16px;
         color: white;
       }
-      &__qq {
+      &-qq {
         background-color: #12b7f5;
       }
-      &__wechat {
+      &-wechat {
         background-color: #44b549;
       }
-      &__github {
+      &-github {
         background-color: #24292e;
       }
-      &__facebook {
+      &-facebook {
         background-color: #3b5998;
       }
-      &__twitter {
+      &-twitter {
         background-color: #55acee;
       }
-      &__google {
+      &-google {
         background-color: #dd4b39;
       }
-      &__pinterest {
+      &-pinterest {
         background-color: #cb2027;
       }
-      &__btc {
+      &-btc {
         background-color: #ff6600;
       }
-      &__tumblr {
+      &-tumblr {
         background-color: #32506d;
       }
-      &__vk {
+      &-vk {
         background-color: #45668e;
       }
-      &__reddit {
+      &-reddit {
         background-color: #5f99cf;
       }
     }

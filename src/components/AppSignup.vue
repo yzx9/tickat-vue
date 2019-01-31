@@ -1,9 +1,13 @@
 <template>
   <div>
     <el-row>
-      <el-col :span="8"
-              :offset="8"
-              class="signup-warpper">
+      <el-col
+        :xl="{ span: 8, offset: 8 }"
+        :lg="{ span: 8, offset: 8 }"
+        :md="{ span: 12, offset: 6 }"
+        :sm="{ span: 12, offset: 6 }"
+        :xs="{ span: 20, offset: 2 }"
+        class="signup-warpper">
         <signup-form></signup-form>
         <login-footer></login-footer>
       </el-col>
@@ -12,8 +16,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import Component from 'vue-class-component';
+import { Vue, Component } from 'vue-property-decorator';
 import SignupForm from '@/components/SignupForm.vue';
 import LoginFooter from '@/components/LoginFooter.vue';
 

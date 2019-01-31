@@ -1,34 +1,41 @@
 <template>
   <el-row>
-    <el-col :span="20"
-            :offset="2">
-      <el-form class="form"
-               :model="form"
-               :rules="rules"
-               ref="form"
-               v-loading="loading">
+    <el-col
+      :xl="{ span: 16, offset: 4 }"
+      :lg="{ span: 20, offset: 2 }"
+      :md="{ span: 20, offset: 2 }"
+      :sm="{ span: 24, offset: 0 }"
+      :xs="{ span: 24, offset: 0 }">
+      <el-form
+        class="form"
+        :model="form"
+        :rules="rules"
+        ref="form"
+        v-loading="loading">
         <el-form-item prop="username">
-          <el-input v-model="form.username"
-                    placeholder="用户名"
-                    prefix-icon="fa fa-user-o"
-                    clearable>
+          <el-input
+            v-model="form.username"
+            placeholder="用户名"
+            prefix-icon="fa fa-user-o"
+            clearable>
           </el-input>
         </el-form-item>
         <el-form-item prop="password">
-          <el-input v-model="form.password"
-                    type="password"
-                    placeholder="密码"
-                    prefix-icon="fa fa-lock"
-                    clearable>
+          <el-input
+            v-model="form.password"
+            type="password"
+            placeholder="密码"
+            prefix-icon="fa fa-lock"
+            clearable>
           </el-input>
         </el-form-item>
         <el-form-item prop="error" :error="formError"></el-form-item>
         <el-form-item>
           <el-row>
             <el-col :span="12">
-              <router-link to="/signup" class="link">
+              <el-button type="text" @click="clickHandle" class="link">
                 没有账号？
-              </router-link>
+              </el-button>
             </el-col>
             <el-col :span="12">
               <el-button @click="submit" class="btn" type="primary">
@@ -119,25 +126,17 @@ export default class LoginForm extends Vue {
       callback();
     }
   }
+  private clickHandle() {
+    this.$router.push('signup');
+  }
 }
 </script>
 
 <style lang="less" scoped>
-@linkColor: gray;
 .form {
   margin-top: 20px;
   .link {
     float: left;
-    text-align: left;
-    &:link {
-      color: @linkColor;
-    }
-    &:visited {
-      color: @linkColor;
-    }
-    &:hover {
-      color: @linkColor + #111;
-    }
   }
   .btn {
     float: right;
