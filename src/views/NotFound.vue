@@ -15,7 +15,7 @@ export default class NotFound extends Vue {
     this.$router.push('/');
   }
   public goBack() {
-    this.$router.go(-1);
+    this.$router.back();
   }
 }
 </script>

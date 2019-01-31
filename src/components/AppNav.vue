@@ -1,9 +1,10 @@
 <template>
-  <el-menu :default-active="activeIndex"
-           class="nav-wrapper"
-           mode="horizontal"
-           @select="handleSelect"
-           router>
+  <el-menu
+    :default-active="activeIndex"
+    class="nav-wrapper"
+    mode="horizontal"
+    @select="handleSelect"
+    router>
     <el-menu-item index="home" style="display: inline;">
       <app-logo :h="'36px'" :w="'36px'"></app-logo>
     </el-menu-item>
@@ -11,7 +12,7 @@
     <el-menu-item index="group">圈子</el-menu-item>
     <el-menu-item index="user" class="nav-account">
       <a href="#" class="sh-section__avatar avatar">
-        <img :src="avatar" alt="">
+        <img :src="avatar">
       </a>
     </el-menu-item>
     <el-menu-item index="message" class="nav-account">
@@ -21,7 +22,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Vue, Component } from 'vue-property-decorator';
 import AppLogo from '@/components/AppLogo.vue';
 
 @Component({

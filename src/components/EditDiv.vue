@@ -1,11 +1,11 @@
 <template>
-  <div class="edit-div"
-       v-html="innerText"
-       :contenteditable="canEdit"
-       @focus="isLocked = true"
-       @blur="isLocked = false"
-       @input="changeText">
-  </div>
+  <div
+    class="edit-div"
+    v-html="innerText"
+    :contenteditable="canEdit"
+    @focus="isLocked = true"
+    @blur="isLocked = false"
+    @input="changeText"/>
 </template>
 
 <script lang="ts">
@@ -14,13 +14,10 @@ import { Vue, Component, Prop, Watch, Model } from 'vue-property-decorator';
 @Component
 export default class EditDiv extends Vue {
   @Prop({ type: String, default: '' })
-  private value!: string;
-
+  public value!: string;
   @Prop({ type: Boolean, default: true })
-  private canEdit!: boolean;
-
+  public canEdit!: boolean;
   private innerText = this.value;
-
   private isLocked = false;
 
   @Watch('value')
@@ -48,9 +45,9 @@ export default class EditDiv extends Vue {
   &[contenteditable=true] {
     user-modify: read-write-plaintext-only;
     &:empty:before {
-        content: attr(placeholder);
-        display: block;
-        color: #ccc;
+      content: attr(placeholder);
+      display: block;
+      color: #ccc;
     }
   }
 }

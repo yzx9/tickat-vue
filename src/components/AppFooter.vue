@@ -1,5 +1,7 @@
 <template>
-  <p class="footerText">{{ text }}</p>
+  <p class="footerText">
+    {{ text }}
+  </p>
 </template>
 
 <script lang="ts">
