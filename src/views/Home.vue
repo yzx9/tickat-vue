@@ -104,7 +104,6 @@ export default class Home extends Vue {
 
 <style lang="less" module>
 .header {
-  padding: 0;
+  padding: 0px !important;
 }
 </style>
-
