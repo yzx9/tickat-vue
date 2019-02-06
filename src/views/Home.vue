@@ -1,5 +1,5 @@
 <template>
-  <el-container>
+  <el-container :class="$style.app">
     <el-header :class="$style.header">
       <TheNav/>
     </el-header>
@@ -103,7 +103,9 @@ export default class Home extends Vue {
 </script>
 
 <style lang="less" module>
-.header {
-  padding: 0px !important;
+.app {
+  .header {
+    padding: 0px;
+  }
 }
 </style>

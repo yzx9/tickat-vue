@@ -1,5 +1,5 @@
 <template>
-  <el-container>
+  <el-container :class="$style.app">
     <el-header :class="$style.header">
       <TheNav/>
     </el-header>
@@ -42,19 +42,21 @@ export default class NotFound extends Vue {
 </script>
 
 <style lang="less" module>
-.header {
-  padding: 0px !important;
-}
-.center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 500px;
-  width: 100%;
-  & > div {
-    display: block;
-    p {
-      margin: 10px 10px;
+.app {
+  .header {
+    padding: 0px;
+  }
+  .center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+    width: 100%;
+    & > div {
+      display: block;
+      p {
+        margin: 10px 10px;
+      }
     }
   }
 }
