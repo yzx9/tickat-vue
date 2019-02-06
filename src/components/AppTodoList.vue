@@ -1,24 +1,29 @@
 <template>
   <el-card
+    shadow="hover"
     :class="$style.warpper"
     :body-style="{ padding:'0px' }"
-    shadow="hover">
+  >
     <template
       slot="header"
-      :body-style="{ padding:'0px' }">
+      :body-style="{ padding:'0px' }"
+    >
       <TodoInput
         v-model="newTodoText"
-        @submit="handleAdd"/>
+        @submit="handleAdd"
+      />
     </template>
     <TodoList
       :todos="filter"
       :height="listHeight"
       @delete="handleDelete"
       @done="handleDone"
-      @edit="handleEdit"/>
+      @edit="handleEdit"
+    />
     <TodoFooter
+      v-model="mode"
       :todos="todos"
-      v-model="mode"/>
+    />
   </el-card>
 </template>
 
@@ -156,22 +161,22 @@ export default class AppTodoList extends Vue {
     this.$http
       .delete(`/todolist/${ id }`)
       .then((re) => {
-        let index = -1;
+        let i = -1;
         this.todos.map((todo) => {
           if (todo.id === id) {
-            index = this.todos.indexOf(todo);
+            i = this.todos.indexOf(todo);
             this.removeTodoIds.push(id);
           }
         });
-        if (index >= 0) {
-          this.todos.splice(index, 1);
+        if (i >= 0) {
+          this.todos.splice(i, 1);
         }
       })
       .catch((e) => {
-        // TODO
+        // TODO: catch error
       });
     
-    // demo数据
+    // TODO: DELETE demo data
     let index = -1;
     this.todos.map((todo) => {
       if (todo.id === id) {

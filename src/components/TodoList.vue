@@ -33,7 +33,7 @@ import TodoItem from '@/components/TodoItem.vue';
 export default class TodoList extends Vue {
   @Prop({ type: Array, required: true })
   public todos!: Todo[];
-  @Prop({ type: String, default:'auto' })
+  @Prop({ type: String, default: 'auto' })
   public height!: string;
   public activeName: string = '';
   
