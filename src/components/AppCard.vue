@@ -20,11 +20,11 @@ import CardFooter from '@/components/CardFooter.vue';
 @Component({
   components: {
     CardFooter,
-  }
+  },
 })
 export default class AppCard extends Vue {
   @Prop({ type: Object, required: true })
-  card!: Card;
+  public card!: Card;
   public publicPath = process.env.BASE_URL;
 
   public get src() {

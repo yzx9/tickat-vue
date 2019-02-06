@@ -47,14 +47,14 @@ export default class LoginFooter extends Vue {
         this.href.wechat = re.data.wechat;
         this.href.github = re.data.github;
       })
-      .then((e) => {
-        // 错误处理
-      })
+      .catch((e) => {
+        // TODO:错误处理
+      });
   }
 
   // methods
   public clickHandle(name: string) {
-    switch(name) {
+    switch (name) {
       case 'qq':
         window.location.href = this.href.qq;
         break;

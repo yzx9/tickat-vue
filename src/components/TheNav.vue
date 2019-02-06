@@ -49,7 +49,7 @@ export default class AppNav extends Vue {
   public activeIndex!: string;
 
   public handleSelect(active: string) {
-    
+    // TODO
   }
 }
 </script>

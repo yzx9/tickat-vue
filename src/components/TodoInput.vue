@@ -14,7 +14,7 @@ import { Vue, Component, Model, Prop } from 'vue-property-decorator';
 export default class TodoInput extends Vue {
   @Model('input', { type: String })
   public v!: string;
-  @Prop({ type: String, default:'' })
+  @Prop({ type: String, default: '' })
   public placeholder!: string;
   
   private get value() {

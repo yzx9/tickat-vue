@@ -54,7 +54,7 @@ export default class AppTodoList extends Vue {
         });
       });
 
-    // demo数据
+    // TODO:DELETE demo数据
     this.todos.push(new Todo(
       (this.nextTodoId++).toString(),
       '1',
@@ -160,7 +160,7 @@ export default class AppTodoList extends Vue {
         }
       })
       .catch((e) => {
-        
+        // TODO
       });
     
     // demo数据
@@ -178,10 +178,10 @@ export default class AppTodoList extends Vue {
     this.$http
       .put(`/todolist/${todo.id}`, todo)
       .then((re) => {
-
+        // TODO
       })
       .catch((e) => {
-        
+        // TODO
       });
 
     let index = -1;

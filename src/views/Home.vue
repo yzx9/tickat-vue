@@ -93,7 +93,7 @@ export default class Home extends Vue {
       new Date('2019/1/27 12:38:32'),
       '123',
       'images/hamburger.png',
-    )
-  ]
+    ),
+  ];
 }
 </script>
