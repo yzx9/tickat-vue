@@ -1,26 +1,29 @@
 <template>
-  <div class="todo-footer">
-    <span class="todo-count">
+  <div :class="$style.footer">
+    <span :class="$style.count">
       {{ count }} items left
     </span>
-    <ul class="todo-filter">
+    <ul :class="$style.filter">
       <li>
         <a
-          :class="{ 'active': m === 'all' }"
-          @click="handleChange('all')">全部</a>
+          :class="{ [$style.active]: isAll }"
+          @click="handleChange('all')"
+        >全部</a>
       </li>
       <li>
         <a
-          :class="{ 'active': m === 'todo' }"
-          @click="handleChange('todo')">待办</a>
+          :class="{ [$style.active]: isTodo }"
+          @click="handleChange('todo')"
+        >待办</a>
       </li>
       <li>
         <a
-          :class="{ 'active': m === 'completed' }"
-          @click="handleChange('completed')">完成</a>
+          :class="{ [$style.active]: isCompleted }"
+          @click="handleChange('completed')"
+        >完成</a>
       </li>
     </ul>
-    <span class="todo-flex-helper">
+    <span :class="$style['flex-helper']">
       {{ count }} items left
     </span>
   </div>
@@ -42,12 +45,14 @@ export default class TodoFooter extends Vue {
     });
     return c;
   }
-  private get m() {
-    if (this.mode) {
-      return this.mode;
-    } else {
-      return Mode.todo;
-    }
+  public get isAll() {
+    return this.mode === Mode.all;
+  }
+  public get isTodo() {
+    return this.mode === Mode.todo;
+  }
+  public get isCompleted() {
+    return this.mode === Mode.completed;
   }
 
   public handleChange(mode: Mode) {
@@ -62,8 +67,8 @@ export enum Mode {
 }
 </script>
 
-<style lang="less">
-.todo-footer {
+<style lang="less" module>
+.footer {
   color: #777;
   padding: 10px 15px;
   height: 40px;
@@ -72,10 +77,10 @@ export enum Mode {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  .todo-count {
+  .count {
     text-align: left;
   }
-  .todo-filter {
+  .filter {
     list-style: none;
     li {
       display: inline;
@@ -93,7 +98,7 @@ export enum Mode {
       }
     }
   }
-  .todo-flex-helper {
+  .flex-helper {
     // 帮助类，用于居中对齐
     visibility: hidden;
   }

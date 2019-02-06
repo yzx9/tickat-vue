@@ -7,10 +7,10 @@
       :sm="{ span: 24, offset: 0 }"
       :xs="{ span: 24, offset: 0 }">
       <el-form
-        class="form"
+        ref="form"
+        :class="$style.form"
         :model="form"
         :rules="rules"
-        ref="form"
         v-loading="loading">
         <el-form-item prop="username">
           <el-input
@@ -44,20 +44,31 @@
             clearable/>
         </el-form-item>
         <el-form-item prop="license">
-          <el-checkbox class="license" v-model="form.license">
+          <el-checkbox
+            :class="$style.license"
+            v-model="form.license">
             我已阅读并同意<router-link to="/userLicense">《用户使用协议》</router-link>
           </el-checkbox>
         </el-form-item>
-        <el-form-item prop="error" class="formError" :error="formError"></el-form-item>
+        <el-form-item
+          prop="error"
+          :class="$style.formError"
+          :error="formError"></el-form-item>
         <el-form-item>
           <el-row>
             <el-col :span="12">
-              <el-button type="text" @click="clickHandle" class="link">
+              <el-button
+                type="text"
+                :class="$style.link"
+                @click="clickHandle">
                 已有账号？
               </el-button>
             </el-col>
             <el-col :span="12">
-              <el-button @click="submit" class="btn" type="primary">
+              <el-button
+                type="primary"
+                :class="$style.btn"
+                @click="submit">
                 注册
               </el-button>
             </el-col>
@@ -192,15 +203,14 @@ export default class SignupForm extends Vue {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="less" module>
 .form {
   margin-top: 20px;
   .link {
     float: left;
   }
   .btn {
-    float: right;
-    width: 100%
+    width: 100%;
   }
   .license {
     float: left;

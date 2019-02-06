@@ -1,5 +1,5 @@
 <template>
-  <p class="footerText">
+  <p :class="$style.footer">
     {{ text }}
   </p>
 </template>
@@ -20,8 +20,8 @@ export default class AppFooter extends Vue {
 }
 </script>
 
-<style lang="less">
-.footerText {
+<style lang="less" module>
+.footer {
   color: gray;
   margin: 20px 10px;
 }

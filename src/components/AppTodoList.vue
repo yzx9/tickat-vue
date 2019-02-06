@@ -1,16 +1,15 @@
 <template>
   <el-card
-    class="todo-list-warpper"
+    :class="$style.warpper"
     :body-style="{ padding:'0px' }"
     shadow="hover">
-    <div
+    <template
       slot="header"
       :body-style="{ padding:'0px' }">
       <TodoInput
         v-model="newTodoText"
-        :placeholder="placeholder"
         @submit="handleAdd"/>
-    </div>
+    </template>
     <TodoList
       :todos="filter"
       @delete="handleDelete"
@@ -39,7 +38,6 @@ import TodoFooter, { Mode } from '@/components/TodoFooter.vue';
 export default class AppTodoList extends Vue {
   public nextTodoId = 1;
   public newTodoText = '';
-  public placeholder = 'Todo List';
   public removeTodoIds: string[] = [];
   public showAlert = false;
   public todos: Todo[] = [];
@@ -199,8 +197,8 @@ export default class AppTodoList extends Vue {
 }
 </script>
 
-<style lang="less">
-.todo-list-warpper {
+<style lang="less" module>
+.warpper {
   margin: 20px 10px;
 }
 </style>

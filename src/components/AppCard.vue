@@ -1,14 +1,12 @@
 <template>
   <el-card
-    class="card-warpper"
+    :class="$style.warpper"
     :body-style="{ padding: '0px' }"
     shadow="hover">
-    <div class="card-content">
-      <img
-        :src="src"
-        class="image" >
+    <div :class="$style.content">
+      <img :src="src">
     </div>
-    <CardFooter :card="card" />
+    <CardFooter :card="card"/>
   </el-card>
 </template>
 
@@ -33,11 +31,11 @@ export default class AppCard extends Vue {
 }
 </script>
 
-<style lang="less">
-.card-warpper {
+<style lang="less" module>
+.warpper {
   margin: 20px 10px;
-  .card-content {
-    .image {
+  .content {
+    img {
       width: 100%;
       display: block;
     }

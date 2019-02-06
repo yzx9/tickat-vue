@@ -1,10 +1,12 @@
 <template>
-  <el-card class="post-warpper" shadow="hover">
-    <div slot="header">
-      <PostHeader :post="post" />
-    </div>
-    <PostContent :post="post" />
-    <PostFooter :post="post" />
+  <el-card
+    :class="$style.warpper"
+    shadow="hover">
+    <template slot="header">
+      <PostHeader :post="post"/>
+    </template>
+    <PostContent :post="post"/>
+    <PostFooter :post="post"/>
   </el-card>
 </template>
 
@@ -28,8 +30,8 @@ export default class AppPost extends Vue {
 }
 </script>
 
-<style lang="less">
-.post-warpper {
+<style lang="less" module>
+.warpper {
   margin: 20px 10px;
 }
 </style>

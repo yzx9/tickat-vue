@@ -1,6 +1,6 @@
 <template>
   <div
-    class="edit-div"
+    :class="$style.edit"
     v-html="innerText"
     :contenteditable="canEdit"
     @focus="isLocked = true"
@@ -33,8 +33,8 @@ export default class EditDiv extends Vue {
 }
 </script>
 
-<style lang="less">
-.edit-div {
+<style lang="less" module>
+.edit {
   width: 100%;
   height: 100%;
   word-break: break-all;

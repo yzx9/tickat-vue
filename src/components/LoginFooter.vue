@@ -1,24 +1,24 @@
 <template>
-  <div class="footer">
-    <p class="title">第三方登录</p>
-    <div class="social">
+  <div :class="$style.footer">
+    <p>第三方登录</p>
+    <div>
       <a
         @click="clickHandle('qq')"
-        class="btnSocial btnSocial-qq">
+        :class="$style.qq">
         <i
           class="fa fa-qq"
           aria-hidden="true"/>
       </a>
       <a
         @click="clickHandle('wechat')"
-        class="btnSocial btnSocial-wechat">
+        :class="$style.wechat">
         <i
           class="fa fa-weixin"
           aria-hidden="true"/>
       </a>
       <a
         @click="clickHandle('github')"
-        class="btnSocial btnSocial-github">
+        :class="$style.github">
         <i
           class="fa fa-github"
           aria-hidden="true"/>
@@ -69,15 +69,15 @@ export default class LoginFooter extends Vue {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="less" module>
 .footer {
   padding-top: 40px;
   border-top: solid 1px #e6e9f1;
-  .title {
+  p {
     margin-bottom: 20px;
   }
-  .social {
-    .btnSocial {
+  div {
+    a {
       margin: 7.5px;
       border-radius: 50%;
       backface-visibility: hidden;
@@ -96,37 +96,37 @@ export default class LoginFooter extends Vue {
         font-size: 16px;
         color: white;
       }
-      &-qq {
+      &.qq {
         background-color: #12b7f5;
       }
-      &-wechat {
+      &.wechat {
         background-color: #44b549;
       }
-      &-github {
+      &.github {
         background-color: #24292e;
       }
-      &-facebook {
+      &.facebook {
         background-color: #3b5998;
       }
-      &-twitter {
+      &.twitter {
         background-color: #55acee;
       }
-      &-google {
+      &.google {
         background-color: #dd4b39;
       }
-      &-pinterest {
+      &.pinterest {
         background-color: #cb2027;
       }
-      &-btc {
+      &.btc {
         background-color: #ff6600;
       }
-      &-tumblr {
+      &.tumblr {
         background-color: #32506d;
       }
-      &-vk {
+      &.vk {
         background-color: #45668e;
       }
-      &-reddit {
+      &.reddit {
         background-color: #5f99cf;
       }
     }

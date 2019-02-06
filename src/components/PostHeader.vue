@@ -1,14 +1,18 @@
 <template>
-  <div class="post-header">
-    <a href="#" class="sh-section__avatar avatar">
-      <img :src="src" alt="">
+  <div :class="$style.header">
+    <a :class="$style.avatar">
+      <img :src="src">
     </a>
     <div>
-      <a href="#" class="name">{{ post.author }}</a>
-      <span class="passed">{{ passed }}</span>
+      <a :class="$style.name">
+        {{ post.author }}
+      </a>
+      <span :class="$style.passed">
+        {{ passed }}
+      </span>
     </div>
-    <a href="#" class="link sh-btn-icon">
-      <i class="icon-Link"/>
+    <a :class="$style.link">
+      <i/>
     </a>
   </div>
 </template>
@@ -58,8 +62,8 @@ export default class PostHeader extends Vue {
 }
 </script>
 
-<style lang="less">
-.post-header {
+<style lang="less" module>
+.header {
   align-items: center;
   display: flex;
   a {
@@ -91,9 +95,9 @@ export default class PostHeader extends Vue {
   }
   .link {
     margin-left: auto;
-  }
-  .link i {
-    font-size: 18px;
+    i {
+      font-size: 18px;
+    }
   }
 }
 </style>

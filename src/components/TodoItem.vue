@@ -1,48 +1,34 @@
 <template>
   <el-collapse-item
     :name="todo.id"
-    class="todo-item-warpper">
+    :class="$style.warpper"
+  >
     <template slot="title">
       <i
-        :class="['todo-checkbox', { 'done': todo.isDone }]"
-        @click.stop="handleDone"/>
+        :class="[$style.checkbox, { [$style.done]: todo.isDone }]"
+        @click.stop="handleDone"
+      />
       <input
         v-model="todo.title"
-        class="todo-item-title"
-        :readonly="!canEdit">
+        :class="$style.title"
+        :readonly="!canEdit"
+      >
     </template>
     <EditDiv
-      :canEdit="canEdit"
       v-model="todo.content"
-      class="todo-item-content"/>
-    <div class="todo-item-btn">
+      :canEdit="canEdit"
+      :class="$style.content"
+    />
+    <div :class="$style.btn">
       <i
         v-if="todo.allowEdit"
-        :class="['fa fa-edit icon', { 'active': canEdit }]"
-        @click="handleEdit"/>
-      <el-popover
-        placement="top"
-        width="160"
-        v-model="visible">
-        <p>确定删除吗？</p>
-        <div style="text-align: right; margin: 0">
-          <el-button
-            size="mini"
-            type="text"
-            @click="visible=false">
-            取消
-          </el-button>
-          <el-button
-            type="primary"
-            size="mini"
-            @click="handleDelete">
-            确定
-          </el-button>
-        </div>
-        <a
-          slot="reference"
-          class="fa fa-close todo-icon"/>
-      </el-popover>
+        :class="['fa fa-edit', $style.icon, { [$style.active]: canEdit }]"
+        @click="handleEdit"
+      />
+      <TodoItemPopover
+        :class="$style.icon"
+        @ok="handleDelete"
+      />
     </div>
   </el-collapse-item>
 </template>
@@ -51,10 +37,12 @@
 import { Vue, Component, Prop } from 'vue-property-decorator';
 import Todo from '@/assets/scripts/Todo';
 import EditDiv from '@/components/EditDiv.vue';
+import TodoItemPopover from '@/components/TodoItemPopover.vue';
 
 @Component({
   components: {
     EditDiv,
+    TodoItemPopover,
   },
 })
 export default class TodoItem extends Vue {
@@ -76,26 +64,26 @@ export default class TodoItem extends Vue {
 }
 </script>
 
-<style lang="less">
-.todo-item-warpper {
-  .todo-item-content {
+<style lang="less" module>
+.warpper {
+  .content {
     margin: 10px 45px 10px 30px;
     text-align: left;
     word-wrap: break-word;
     width: calc(100% - 75px);
   }
-  .todo-item-title {
+  .title {
     border: none;
     outline: none;
     width: 100%;
     font-size: 120%;
   }
-  .todo-item-btn {
+  .btn {
     padding-right: 30px;
     text-align: right;
     font-size: 130%;
     line-height: 50%;
-    .todo-icon {
+    .icon {
       margin-left: 15px;
       margin-right: 15px;
       opacity:0.8;
@@ -109,7 +97,7 @@ export default class TodoItem extends Vue {
       }
     }
   }
-  .todo-checkbox {
+  .checkbox {
     margin-right: 5px;
     &::after {
       display: block;

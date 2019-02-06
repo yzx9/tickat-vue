@@ -1,21 +1,21 @@
 <template>
   <div>
-    <TheNav />
+    <TheNav/>
     <el-row>
       <el-col :span="8">
-        <AppTodoList />
+        <AppTodoList/>
       </el-col>
       <el-col
         v-for="post in posts"
         :key="post.id"
         :span="8">
-        <AppPost :post="post" />
+        <AppPost :post="post"/>
       </el-col>
       <el-col
         v-for="card in cards"
         :key="card.id"
         :span="8">
-        <AppCard :card="card" />
+        <AppCard :card="card"/>
       </el-col>
     </el-row>
   </div>
@@ -41,7 +41,7 @@ import AppCard from '@/components/AppCard.vue';
 export default class Home extends Vue {
   public posts: Post[] = [
     new Post(
-      '1',
+      'post-1',
       Type.image,
       'Yuan',
       'images/avatars/avatar-11.png',
@@ -52,7 +52,7 @@ export default class Home extends Vue {
       1234,
     ),
     new Post(
-      '2',
+      'post-2',
       Type.image,
       'Yuan',
       'images/avatars/avatar-12.png',
@@ -63,7 +63,7 @@ export default class Home extends Vue {
       123,
     ),
     new Post(
-      '3',
+      'post-3',
       Type.image,
       'Yuan',
       'images/avatars/avatar-13.png',
@@ -74,7 +74,7 @@ export default class Home extends Vue {
       12,
     ),
     new Post(
-      '4',
+      'post-4',
       Type.image,
       'Yuan',
       'images/avatars/avatar-14.png',
@@ -87,7 +87,7 @@ export default class Home extends Vue {
   ];
   public cards: Card[] = [
     new Card (
-      '1',
+      'card-1',
       'Yuan',
       'images/avatars/avatar-11.png',
       new Date('2019/1/27 12:38:32'),

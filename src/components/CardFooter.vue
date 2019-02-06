@@ -1,9 +1,15 @@
 <template>
-  <div class="card-footer">
+  <div :class="$style.footer">
     <span>好吃的汉堡</span>
-    <div class="bottom clearfix">
-      <time class="time">{{ currentDate }}</time>
-      <el-button type="text" class="button">操作按钮</el-button>
+    <div :class="[$style.bottom, $style.clearfix]">
+      <time>
+        {{ currentDate }}
+      </time>
+      <el-button
+        type="text"
+        :class="$style.button">
+        操作按钮
+      </el-button>
     </div>
   </div>
 </template>
@@ -16,17 +22,17 @@ import Card from '@/assets/scripts/Card.ts';
 export default class CardFooter extends Vue {
   @Prop({ type: Object, required: true })
   public card!: Card;
-  public currentDate = new Date();
+  public currentDate = new Date().toLocaleString();
 }
 </script>
 
-<style lang="less">
-.card-footer {
+<style lang="less" module>
+.footer {
   padding: 14px;
   .bottom {
     margin-top: 13px;
     line-height: 12px;
-    .time {
+    time {
       font-size: 13px;
       color: #999;
     }

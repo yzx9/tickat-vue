@@ -1,5 +1,7 @@
 <template>
-  <div class="loadMore" @click="onClick">
+  <div
+    :class="$style.loadMore"
+    @click="onClick">
     <div v-if="state===State.wait">
       <i class="el-icon-arrow-down"/>
       <p>下拉加载更多</p>
@@ -61,7 +63,7 @@ export enum State {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="less" module>
 .loadMore {
   padding: 40px 15px 70px;
   display: flex;

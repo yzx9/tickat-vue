@@ -1,10 +1,10 @@
 <template>
   <el-menu
-    :default-active="activeIndex"
-    class="nav-wrapper"
     mode="horizontal"
-    @select="handleSelect"
-    router>
+    router
+    :default-active="defaultActive"
+    :class="$style.wrapper"
+    @select="handleSelect">
     <el-menu-item
       index="home"
       style="display: inline;">
@@ -20,16 +20,16 @@
     </el-menu-item>
     <el-menu-item
       index="user"
-      class="nav-account">
+      :class="$style.right">
       <a
         href="#"
-        class="sh-section__avatar avatar">
+        :class="$style.avatar">
         <img :src="avatar">
       </a>
     </el-menu-item>
     <el-menu-item
       index="message"
-      class="nav-account">
+      :class="$style.right">
       <i class="el-icon-bell"/>
     </el-menu-item>
   </el-menu>
@@ -44,9 +44,9 @@ import AppLogo from '@/components/AppLogo.vue';
     AppLogo,
   },
 })
-export default class AppNav extends Vue {
+export default class TheNav extends Vue {
   public avatar = 'images/avatars/avatar-11.png';
-  public activeIndex!: string;
+  public defaultActive = '/home';
 
   public handleSelect(active: string) {
     // TODO
@@ -54,10 +54,10 @@ export default class AppNav extends Vue {
 }
 </script>
 
-<style lang="less">
-.nav-wrapper {
+<style lang="less" module>
+.wrapper {
   box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.1);
-  .nav-account {
+  .right {
     float: right !important;
   }
 }

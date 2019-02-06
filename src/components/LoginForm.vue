@@ -7,10 +7,10 @@
       :sm="{ span: 24, offset: 0 }"
       :xs="{ span: 24, offset: 0 }">
       <el-form
-        class="form"
+        ref="form"
+        :class="$style.form"
         :model="form"
         :rules="rules"
-        ref="form"
         v-loading="loading">
         <el-form-item prop="username">
           <el-input
@@ -27,16 +27,25 @@
             prefix-icon="fa fa-lock"
             clearable/>
         </el-form-item>
-        <el-form-item prop="error" :error="formError"></el-form-item>
+        <el-form-item
+          prop="error"
+          :error="formError">
+        </el-form-item>
         <el-form-item>
           <el-row>
             <el-col :span="12">
-              <el-button type="text" @click="clickHandle" class="link">
+              <el-button
+                type="text"
+                :class="$style.link"
+                @click="clickHandle">
                 没有账号？
               </el-button>
             </el-col>
             <el-col :span="12">
-              <el-button @click="submit" class="btn" type="primary">
+              <el-button
+                type="primary"
+                :class="$style.btn"
+                @click="submit">
                 登录
               </el-button>
             </el-col>
@@ -130,7 +139,7 @@ export default class LoginForm extends Vue {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="less" module>
 .form {
   margin-top: 20px;
   .link {

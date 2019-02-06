@@ -1,16 +1,18 @@
 <template>
   <div>
-    <div class="post-content">
+    <div :class="$style.content">
       <p>{{ post.content }}</p>
-      <div class="sh-section__image">
+      <div :class="$style.image">
         <a @click="clickHandle">
           <img :src="src">
         </a>
       </div>
     </div>
-    <!--<div class="post-options">
+    <!--<div :class="$style.options">
       <span>Add your answer</span>
-      <a href="#" class="sh-section__options-btn sh-btn-icon"><i class="icon-Submit_Tick"></i></a>
+      <a href="#" :class="[$style.options-btn, btn-icon]">
+        <i class="icon-Submit_Tick"></i>
+      </a>
     </div>-->
   </div>
 </template>
@@ -35,13 +37,13 @@ export default class PostContent extends Vue {
 }
 </script>
 
-<style lang="less">
-.post-content {
+<style lang="less" module>
+.content {
   border-bottom: solid 1px #f3f3f3;
   p {
     text-align: left;
   }
-  .sh-section__image {
+  .image {
     position: relative;
     margin-top: 24px;
     width: 100%;
@@ -49,21 +51,23 @@ export default class PostContent extends Vue {
       width: 100%;
       border-radius: 6px;
     }
-    &-gif a::after {
-      position: absolute;
-      content: 'gif';
-      display: block;
-      padding: 0 4px;
-      border-radius: 3px;
-      background-color: rgba(0, 0, 0, 0.6);
-      font-weight: 700;
-      font-size: 14px;
-      color: #ffffff;
-      text-transform: uppercase;
-      right: 16px;
-      top: 16px;
+    .gif {
+      a::after {
+        position: absolute;
+        content: 'gif';
+        display: block;
+        padding: 0 4px;
+        border-radius: 3px;
+        background-color: rgba(0, 0, 0, 0.6);
+        font-weight: 700;
+        font-size: 14px;
+        color: #ffffff;
+        text-transform: uppercase;
+        right: 16px;
+        top: 16px;
+      }
     }
-    &-info {
+    .info {
       position: absolute;
       width: 100%;
       padding: 28px 24px;
@@ -84,7 +88,13 @@ export default class PostContent extends Vue {
         color: #9fa3ac;
       }
     }
-    &-curtain {
+    @media only screen and (max-width: 1024px) {
+      .info {
+        position: relative;
+        top: -10px;
+      }
+    }
+    .curtain {
       position: absolute;
       top: 0;
       bottom: 0;
@@ -94,7 +104,7 @@ export default class PostContent extends Vue {
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
-      &-text {
+      .text {
         margin-bottom: 24px;
         margin-left: 30px;
         p {
@@ -106,43 +116,37 @@ export default class PostContent extends Vue {
           font-size: 18px;
           font-weight: 600;
         }
-        .sh-btn {
+        .btn {
           margin-bottom: 24px;
           margin-right: 30px;
           border-width: 1px;
         }
       }
     }
-  }
-  @media only screen and (max-width: 1024px) {
-    .sh-section__image-info {
-      position: relative;
-      top: -10px;
+    @media only screen and (max-width: 479px) {
+      .curtain {
+        position: relative;
+        padding-top: 16px;
+        flex-wrap: wrap;
+        background-image: none;
+        .btn {
+          margin: 0;
+          margin-bottom: 15px;
+        }
+        .text {
+          margin: 0;
+          margin-bottom: 15px;
+          p {
+            color: #1e1633;
+          }
+          span {
+            color: #1e1633;
+          }
+        }
+      }
     }
   }
-  @media only screen and (max-width: 479px) {
-    .sh-section__image-curtain {
-      position: relative;
-      padding-top: 16px;
-      flex-wrap: wrap;
-      background-image: none;
-    }
-    .sh-section__image-curtain-text {
-      margin: 0;
-      margin-bottom: 15px;
-    }
-    .sh-section__image-curtain-text p {
-      color: #1e1633;
-    }
-    .sh-section__image-curtain-text span {
-      color: #1e1633;
-    }
-    .sh-section__image-curtain .sh-btn {
-      margin: 0;
-      margin-bottom: 15px;
-    }
-  }
-  .sh-section__images {
+  .images {
     margin: 0 -5px;
     margin-top: 14px;
     flex-wrap: wrap;

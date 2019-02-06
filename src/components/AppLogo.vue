@@ -1,8 +1,7 @@
 <template>
-  <div class="logo">
+  <div :class="$style.logo">
     <img
       alt="logo"
-      class="pic"
       src="@/assets/icons/logo.png"
       :style="{ height: height, width: width }">
   </div>
@@ -20,14 +19,14 @@ export default class AppLogo extends Vue {
 }
 </script>
 
-<style lang="less">
+<style lang="less" module>
 .logo {
   line-height: 100px;
   margin: 10px 20px 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  .pic {
+  img {
     max-width: 100%;
     max-height: 100%;
   }

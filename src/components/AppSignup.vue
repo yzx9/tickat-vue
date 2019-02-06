@@ -7,7 +7,7 @@
         :md="{ span: 12, offset: 6 }"
         :sm="{ span: 12, offset: 6 }"
         :xs="{ span: 20, offset: 2 }"
-        class="signup-warpper">
+        :class="$style.warpper">
         <SignupForm/>
         <LoginFooter/>
       </el-col>
@@ -31,8 +31,8 @@ export default class AppSignup extends Vue {
 }
 </script>
 
-<style lang="less" scoped>
-.signup-warpper {
+<style lang="less" module>
+.warpper {
   padding: 36px 30px;
   background-color: white;
   border-radius: 6px;

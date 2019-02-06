@@ -1,16 +1,18 @@
 <template>
   <el-collapse
-    class="todo-items"
     v-model="activeName"
+    accordion
+    :class="$style.items"
     @change="handleChange"
-    accordion>
+  >
     <TodoItem
       v-for="todo in todos"
       :key="todo.id"
       :todo="todo"
       @done="handleDone"
       @edit="handleEdit"
-      @delete="handleDelete" />
+      @delete="handleDelete"
+    />
   </el-collapse>
 </template>
 
@@ -43,8 +45,8 @@ export default class TodoList extends Vue {
 }
 </script>
 
-<style lang="less">
-.todo-items {
+<style lang="less" module>
+.items {
   overflow-y: none;
   /*滚动条样式*/
   &::-webkit-scrollbar {
