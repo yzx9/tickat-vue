@@ -1,24 +1,28 @@
 <template>
-  <div>
-    <TheNav/>
-    <el-row>
-      <el-col :span="8">
-        <AppTodoList/>
-      </el-col>
-      <el-col
-        v-for="post in posts"
-        :key="post.id"
-        :span="8">
-        <AppPost :post="post"/>
-      </el-col>
-      <el-col
-        v-for="card in cards"
-        :key="card.id"
-        :span="8">
-        <AppCard :card="card"/>
-      </el-col>
-    </el-row>
-  </div>
+  <el-container>
+    <el-header :class="$style.header">
+      <TheNav/>
+    </el-header>
+    <el-main>
+      <el-row>
+        <el-col :span="8">
+          <AppTodoList :height="'auto'"/>
+        </el-col>
+        <el-col
+          v-for="post in posts"
+          :key="post.id"
+          :span="8">
+          <AppPost :post="post"/>
+        </el-col>
+        <el-col
+          v-for="card in cards"
+          :key="card.id"
+          :span="8">
+          <AppCard :card="card"/>
+        </el-col>
+      </el-row>
+    </el-main>
+  </el-container>
 </template>
 
 <script lang="ts">
@@ -97,3 +101,10 @@ export default class Home extends Vue {
   ];
 }
 </script>
+
+<style lang="less" module>
+.header {
+  padding: 0;
+}
+</style>
+

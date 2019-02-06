@@ -12,6 +12,7 @@
     </template>
     <TodoList
       :todos="filter"
+      :height="listHeight"
       @delete="handleDelete"
       @done="handleDone"
       @edit="handleEdit"/>
@@ -36,12 +37,21 @@ import TodoFooter, { Mode } from '@/components/TodoFooter.vue';
   },
 })
 export default class AppTodoList extends Vue {
+  @Prop({ type: String, default: 'auto' })
+  public height!: string;
   public nextTodoId = 1;
   public newTodoText = '';
   public removeTodoIds: string[] = [];
   public showAlert = false;
   public todos: Todo[] = [];
   public mode: Mode = Mode.todo;
+  public get listHeight() {
+    if (this.height && this.height.toLowerCase() !== 'auto') {
+      return `calc(${this.height} - 61px)`;
+    } else {
+      return 'auto';
+    }
+  }
   // hooks
   private created() {
     this.$http

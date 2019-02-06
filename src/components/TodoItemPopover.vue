@@ -32,6 +32,7 @@ import { Vue, Component } from 'vue-property-decorator';
 @Component
 export default class TodoItemPopover extends Vue {
   public visible = false;
+  
   public handleCancel() {
     this.visible = false;
   }
@@ -60,4 +61,3 @@ export default class TodoItemPopover extends Vue {
   }
 }
 </style>
-

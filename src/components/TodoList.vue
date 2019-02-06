@@ -1,23 +1,27 @@
 <template>
-  <el-collapse
-    v-model="activeName"
-    accordion
-    :class="$style.items"
-    @change="handleChange"
+  <div
+    :style="{ height: height }"
+    :class="$style.warpper"
   >
-    <TodoItem
-      v-for="todo in todos"
-      :key="todo.id"
-      :todo="todo"
-      @done="handleDone"
-      @edit="handleEdit"
-      @delete="handleDelete"
-    />
-  </el-collapse>
+    <el-collapse
+      v-model="activeName"
+      accordion
+      @change="handleChange"
+    >
+      <TodoItem
+        v-for="todo in todos"
+        :key="todo.id"
+        :todo="todo"
+        @done="handleDone"
+        @edit="handleEdit"
+        @delete="handleDelete"
+      />
+    </el-collapse>
+  </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from 'vue-property-decorator';
+import { Vue, Component, Prop, Watch } from 'vue-property-decorator';
 import Todo from '@/assets/scripts/Todo';
 import TodoItem from '@/components/TodoItem.vue';
 
@@ -27,8 +31,11 @@ import TodoItem from '@/components/TodoItem.vue';
   },
 })
 export default class TodoList extends Vue {
-  @Prop({ type: Array, required: true }) private todos!: Todo[];
-  private activeName: string = '';
+  @Prop({ type: Array, required: true })
+  public todos!: Todo[];
+  @Prop({ type: String, default:'auto' })
+  public height!: string;
+  public activeName: string = '';
   
   private handleChange(id: string) {
     // do something
@@ -46,8 +53,8 @@ export default class TodoList extends Vue {
 </script>
 
 <style lang="less" module>
-.items {
-  overflow-y: none;
+.warpper {
+  overflow-y: auto;
   /*滚动条样式*/
   &::-webkit-scrollbar {
     /*滚动条整体样式*/
