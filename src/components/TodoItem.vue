@@ -1,36 +1,36 @@
 <template>
-  <el-collapse-item
-    :name="todo.id"
-    :class="$style.warpper"
-  >
-    <template slot="title">
-      <i
-        :class="[$style.checkbox, { [$style.done]: todo.isDone }]"
-        @click.stop="handleDone"
-      />
-      <input
-        v-model="todo.title"
-        :class="$style.title"
-        :readonly="!canEdit"
-      >
-    </template>
-    <EditDiv
-      v-model="todo.content"
-      :canEdit="canEdit"
-      :class="$style.content"
-    />
-    <div :class="$style.btn">
-      <i
-        v-if="todo.allowEdit"
-        :class="['fa fa-edit', $style.icon, { [$style.active]: canEdit }]"
-        @click="handleEdit"
-      />
-      <TodoItemPopover
-        :class="$style.icon"
-        @ok="handleDelete"
-      />
-    </div>
-  </el-collapse-item>
+    <el-collapse-item
+        :name="todo.id"
+        :class="$style.warpper"
+    >
+        <template slot="title">
+            <i
+                :class="[$style.checkbox, { [$style.done]: todo.isDone }]"
+                @click.stop="handleDone"
+            />
+            <input
+                v-model="todo.title"
+                :class="$style.title"
+                :readonly="!canEdit"
+            >
+        </template>
+        <EditDiv
+            v-model="todo.content"
+            :canEdit="canEdit"
+            :class="$style.content"
+        />
+        <div :class="$style.btn">
+            <i
+                v-if="todo.allowEdit"
+                :class="['fa fa-edit', $style.icon, { [$style.active]: canEdit }]"
+                @click="handleEdit"
+            />
+            <TodoItemPopover
+                :class="$style.icon"
+                @ok="handleDelete"
+            />
+        </div>
+    </el-collapse-item>
 </template>
 
 <script lang="ts">
@@ -40,75 +40,75 @@ import EditDiv from '@/components/EditDiv.vue';
 import TodoItemPopover from '@/components/TodoItemPopover.vue';
 
 @Component({
-  components: {
-    EditDiv,
-    TodoItemPopover,
-  },
+    components: {
+        EditDiv,
+        TodoItemPopover,
+    },
 })
 export default class TodoItem extends Vue {
-  @Prop({ type: Object, required: true })
-  public todo!: Todo;
-  private visible = false;
-  private canEdit = false;
-  
-  private handleDone() {
-    this.$emit('done', this.todo.id);
-  }
-  private handleDelete() {
-    this.visible = false;
-    this.$emit('delete', this.todo.id);
-  }
-  private handleEdit() {
-    this.canEdit = !this.canEdit;
-  }
+    @Prop({ type: Object, required: true })
+    public todo!: Todo;
+    private visible = false;
+    private canEdit = false;
+
+    private handleDone() {
+        this.$emit('done', this.todo.id);
+    }
+    private handleDelete() {
+        this.visible = false;
+        this.$emit('delete', this.todo.id);
+    }
+    private handleEdit() {
+        this.canEdit = !this.canEdit;
+    }
 }
 </script>
 
 <style lang="less" module>
 .warpper {
-  .content {
-    margin: 10px 45px 10px 30px;
-    text-align: left;
-    word-wrap: break-word;
-    width: calc(100% - 75px);
-  }
-  .title {
-    border: none;
-    outline: none;
-    width: 100%;
-    font-size: 120%;
-  }
-  .btn {
-    padding-right: 30px;
-    text-align: right;
-    font-size: 130%;
-    line-height: 50%;
-    .icon {
-      margin-left: 15px;
-      margin-right: 15px;
-      opacity:0.8;
-      filter:alpha(opacity=100);
-      &:hover {
-        opacity:1;
-        filter:alpha(opacity=70);
-      }
-      &.active {
-        color: #409EFF;
-      }
+    .content {
+        margin: 10px 45px 10px 30px;
+        text-align: left;
+        word-wrap: break-word;
+        width: calc(100% - 75px);
     }
-  }
-  .checkbox {
-    margin-right: 5px;
-    &::after {
-      display: block;
-      height: 40px;
+    .title {
+        border: none;
+        outline: none;
+        width: 100%;
+        font-size: 120%;
     }
-    &:not(.done)::after {
-      content: url('../assets/icons/todo-checkbox.svg');
+    .btn {
+        padding-right: 30px;
+        text-align: right;
+        font-size: 130%;
+        line-height: 50%;
+        .icon {
+            margin-left: 15px;
+            margin-right: 15px;
+            opacity: 0.8;
+            filter: alpha(opacity=100);
+            &:hover {
+                opacity: 1;
+                filter: alpha(opacity=70);
+            }
+            &.active {
+                color: #409eff;
+            }
+        }
     }
-    &.done::after {
-      content: url('../assets/icons/todo-checkbox-done.svg');
+    .checkbox {
+        margin-right: 5px;
+        &::after {
+            display: block;
+            height: 40px;
+        }
+        &:not(.done)::after {
+            content: url('../assets/icons/todo-checkbox.svg');
+        }
+        &.done::after {
+            content: url('../assets/icons/todo-checkbox-done.svg');
+        }
     }
-  }
 }
 </style>
