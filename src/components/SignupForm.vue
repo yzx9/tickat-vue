@@ -140,11 +140,11 @@ export default class SignupForm extends Vue {
                         password: this.form.password,
                         mobile: this.form.mobile,
                     })
-                    .then(data => {
+                    .then((data) => {
                         this.loading = false;
                         this.$router.push('/login');
                     })
-                    .catch(error => {
+                    .catch((error) => {
                         this.loading = false;
                         this.setError('服务器开小差了，请稍后再试');
                     });
@@ -170,7 +170,7 @@ export default class SignupForm extends Vue {
             .post('/signup/validate', {
                 username: this.form.username,
             })
-            .then(re => {
+            .then((re) => {
                 if (re.data.type === 0) {
                     callback();
                 } else if (re.data.type === 1) {

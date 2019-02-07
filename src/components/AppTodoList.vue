@@ -59,7 +59,7 @@ export default class AppTodoList extends Vue {
     }
     // hooks
     private created() {
-        this.$http.get('/todolist').then(re => {
+        this.$http.get('/todolist').then((re) => {
             re.data.map((todo: Todo) => {
                 this.todos.push(todo);
             });
@@ -79,7 +79,7 @@ export default class AppTodoList extends Vue {
                 (this.nextTodoId++).toString(),
                 '2',
                 new Date(),
-                "OMG, I can't what is it happend that i am not first",
+                'OMG, what happened to cause I am not the first',
             ),
         );
         this.todos.push(
@@ -113,14 +113,14 @@ export default class AppTodoList extends Vue {
                 filter = this.todos;
                 break;
             case Mode.todo:
-                this.todos.map(todo => {
+                this.todos.map((todo) => {
                     if (!todo.isDone) {
                         filter.push(todo);
                     }
                 });
                 break;
             case Mode.completed:
-                this.todos.map(todo => {
+                this.todos.map((todo) => {
                     if (todo.isDone) {
                         filter.push(todo);
                     }
@@ -135,14 +135,14 @@ export default class AppTodoList extends Vue {
 
         this.$http
             .post('/todolist', todo)
-            .then(re => {
+            .then((re) => {
                 if (re.data.type === 0) {
                     todo = re.data.data as Todo;
                 } else {
                     // 新建失败
                 }
             })
-            .catch(e => {
+            .catch((e) => {
                 // 错误
             });
         if (text) {
@@ -153,7 +153,7 @@ export default class AppTodoList extends Vue {
         }
     }
     private handleDone(id: string) {
-        this.todos.map(todo => {
+        this.todos.map((todo) => {
             if (todo.id === id) {
                 todo.isDone = !todo.isDone;
             }
@@ -162,9 +162,9 @@ export default class AppTodoList extends Vue {
     private handleDelete(id: string) {
         this.$http
             .delete(`/todolist/${id}`)
-            .then(re => {
+            .then((re) => {
                 let i = -1;
-                this.todos.map(todo => {
+                this.todos.map((todo) => {
                     if (todo.id === id) {
                         i = this.todos.indexOf(todo);
                         this.removeTodoIds.push(id);
@@ -174,13 +174,13 @@ export default class AppTodoList extends Vue {
                     this.todos.splice(i, 1);
                 }
             })
-            .catch(e => {
+            .catch((e) => {
                 // TODO: catch error
             });
 
         // TODO: DELETE demo data
         let index = -1;
-        this.todos.map(todo => {
+        this.todos.map((todo) => {
             if (todo.id === id) {
                 index = this.todos.indexOf(todo);
             }
@@ -192,15 +192,15 @@ export default class AppTodoList extends Vue {
     private handleEdit(todo: Todo) {
         this.$http
             .put(`/todolist/${todo.id}`, todo)
-            .then(re => {
+            .then((re) => {
                 // TODO
             })
-            .catch(e => {
+            .catch((e) => {
                 // TODO
             });
 
         let index = -1;
-        this.todos.map(t => {
+        this.todos.map((t) => {
             if (t.id === todo.id) {
                 index = this.todos.indexOf(t);
             }

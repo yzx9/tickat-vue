@@ -99,7 +99,7 @@ export default class LoginForm extends Vue {
                         username: this.form.username,
                         password: this.form.password,
                     })
-                    .then(re => {
+                    .then((re) => {
                         this.loading = false;
                         if (re.data.type === 0) {
                             this.$router.push('/');
@@ -108,7 +108,7 @@ export default class LoginForm extends Vue {
                             this.setError(re.data.message);
                         }
                     })
-                    .catch(error => {
+                    .catch((error) => {
                         this.loading = false;
                         this.setError('服务器开小差了，请稍后再试');
                     });
