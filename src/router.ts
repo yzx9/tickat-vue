@@ -1,15 +1,16 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 // 首页
-import Home from './views/Home.vue';
+import Home from './views/home/Home.vue';
 // 关于
-import About from '@/views/About.vue';
+import About from '@/views/home/About.vue';
 // 登录注册
-import Login from '@/views/Login.vue';
-import Signup from '@/views/Signup.vue';
-import UserLicense from '@/views/UserLicense.vue';
-// 404
-import NotFound from '@/views/NotFound.vue';
+import Login from '@/views/user/Login.vue';
+import Signup from '@/views/user/Signup.vue';
+import UserLicense from '@/views/user/UserLicense.vue';
+// Error
+import NotFound from '@/views/error/404.vue';
+import NotAuth from '@/views/error/401.vue';
 
 Vue.use(Router);
 
@@ -44,6 +45,12 @@ export default new Router({
             path: '/userLicense',
             name: 'userLicense',
             component: UserLicense,
+        },
+        {
+            path: '/401',
+            alias: '/notauth',
+            name: 'notauth',
+            component: NotAuth,
         },
         {
             path: '/404',
