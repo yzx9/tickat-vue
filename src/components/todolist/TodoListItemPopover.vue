@@ -20,15 +20,17 @@
         </div>
         <i
             slot="reference"
-            class="fa fa-close"
+            :class="icon"
         />
     </el-popover>
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator';
+import { Vue, Component, Prop } from 'vue-property-decorator';
 @Component
 export default class TodoItemPopover extends Vue {
+    @Prop({ type: String, required: true })
+    public icon!: string;
     public visible = false;
 
     public handleCancel() {

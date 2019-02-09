@@ -26,6 +26,7 @@
                 @click="handleEdit"
             />
             <TodoListItemPopover
+                :icon="'fa fa-close'"
                 :class="$style.icon"
                 @ok="handleDelete"
             />
@@ -36,7 +37,7 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
 import Todo from '@/models/Todo';
-import EditDiv from '@/components/tools/EditDiv.vue';
+import EditDiv from '@/components/widgets/EditDiv.vue';
 import TodoListItemPopover from '@/components/todolist/TodoListItemPopover.vue';
 
 @Component({
