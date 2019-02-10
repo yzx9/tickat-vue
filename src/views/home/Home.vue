@@ -2,51 +2,42 @@
  * @Author: Celeste
  * @Date: 2019-01-23 23:13:05
  * @LastEditors: Celeste
- * @LastEditTime: 2019-02-09 19:56:58
+ * @LastEditTime: 2019-02-10 14:17:06
  * @Description: 主页
  -->
 
 <template>
-    <el-container :class="$style.warp">
-        <el-header :class="$style.header">
-            <TheNav/>
-        </el-header>
-        <el-main>
-            <el-row>
-                <el-col :span="8">
-                    <AppTodoList :height="'auto'"/>
-                </el-col>
-                <el-col
-                    v-for="post in posts"
-                    :key="post.id"
-                    :span="8"
-                >
-                    <AppPost :post="post"/>
-                </el-col>
-                <el-col
-                    v-for="card in cards"
-                    :key="card.id"
-                    :span="8"
-                >
-                    <AppCard :card="card"/>
-                </el-col>
-            </el-row>
-        </el-main>
-    </el-container>
+    <el-row>
+        <el-col :span="8">
+            <AppTodoList :height="'auto'"/>
+        </el-col>
+        <el-col
+            v-for="post in posts"
+            :key="post.id"
+            :span="8"
+        >
+            <AppPost :post="post"/>
+        </el-col>
+        <el-col
+            v-for="card in cards"
+            :key="card.id"
+            :span="8"
+        >
+            <AppCard :card="card"/>
+        </el-col>
+    </el-row>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { Post, Type } from '@/models/Post';
 import Card from '@/models/Card';
-import TheNav from '@/components/layout/TheNav.vue';
 import AppTodoList from '@/components/todolist/AppTodoList.vue';
 import AppPost from '@/components/post/AppPost.vue';
 import AppCard from '@/components/card/AppCard.vue';
 
 @Component({
     components: {
-        TheNav,
         AppTodoList,
         AppPost,
         AppCard,

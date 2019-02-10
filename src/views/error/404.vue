@@ -1,22 +1,14 @@
 <template>
-    <el-container :class="$style.wrapper">
-        <el-header :class="$style.header">
-            <TheNav/>
-        </el-header>
-        <el-main :class="$style.center">
-            <h1 :class="$style.title">
-                <span>404</span> Page Not Found
-            </h1>
-            <div :class="$style.sub">We couldn't find what you were looking for.</div>
-            <div :class="$style.sub">
-                <el-button @click="goHome">主页</el-button>
-                <el-button @click="goBack">返回</el-button>
-            </div>
-        </el-main>
-        <el-footer>
-            <TheFooter/>
-        </el-footer>
-    </el-container>
+    <div :class="$style.wrapper">
+        <h1 :class="$style.title">
+            <span>404</span> Page Not Found
+        </h1>
+        <div :class="$style.sub">We couldn't find what you were looking for.</div>
+        <div :class="$style.sub">
+            <el-button @click="goHome">主页</el-button>
+            <el-button @click="goBack">返回</el-button>
+        </div>
+    </div>
 </template>
 
 <script lang="ts">
@@ -42,11 +34,6 @@ export default class NotFound extends Vue {
 
 <style lang="less" module>
 .wrapper {
-    .header {
-        padding: 0px;
-    }
-}
-.center {
     display: block;
     margin-top: 200px;
     margin-bottom: 130px;

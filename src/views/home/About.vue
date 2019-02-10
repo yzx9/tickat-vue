@@ -1,9 +1,5 @@
 <template>
-    <el-container>
-        <el-main class="about">
-            <h1>This is an about page</h1>
-        </el-main>
-    </el-container>
+    <h1>This is an about page</h1>
 </template>
 
 <script lang="ts">

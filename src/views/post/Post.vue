@@ -2,30 +2,23 @@
  * @Author: Celeste
  * @Date: 2019-02-08 15:16:31
  * @LastEditors: Celeste
- * @LastEditTime: 2019-02-09 20:03:16
+ * @LastEditTime: 2019-02-10 14:50:43
  * @Description: Post详情页
  -->
  
 <template>
-    <el-container>
-        <el-header :class="$style.header">
-            <TheNav/>
-        </el-header>
-        <el-main>
-            <el-row :class="$style.wrapper">
-                <el-col :span="16">
-                    <AppPost :post="main"/>
-                </el-col>
-                <el-col :span="8">
-                    <AppPost
-                        v-for="post in posts"
-                        :key="post.id"
-                        :post="post"
-                    />
-                </el-col>
-            </el-row>
-        </el-main>
-    </el-container>
+    <el-row :class="$style.wrapper">
+        <el-col :span="16">
+            <AppPost :post="main"/>
+        </el-col>
+        <el-col :span="8">
+            <AppPost
+                v-for="post in posts"
+                :key="post.id"
+                :post="post"
+            />
+        </el-col>
+    </el-row>
 </template>
 
 <script lang="ts">

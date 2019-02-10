@@ -1,14 +1,11 @@
 <template>
-    <el-container>
-        <el-main>
-            <AppLogo
-                :height="logo.height"
-                :width="logo.width"
-            />
-            <AppSignup/>
-            <TheFooter/>
-        </el-main>
-    </el-container>
+    <div>
+        <AppLogo
+            :height="logo.height"
+            :width="logo.width"
+        />
+        <AppSignup/>
+    </div>
 </template>
 
 <script lang="ts">
