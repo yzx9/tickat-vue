@@ -2,7 +2,7 @@
  * @Author: Celeste
  * @Date: 2019-01-24 22:05:41
  * @LastEditors: Celeste
- * @LastEditTime: 2019-02-09 22:17:52
+ * @LastEditTime: 2019-02-18 23:52:40
  * @Description: 
  -->
  
@@ -32,6 +32,10 @@
 import { Vue, Component } from 'vue-property-decorator';
 import LoginForm from '@/components/user/LoginForm.vue';
 import LoginFooter from '@/components/user/LoginFooter.vue';
+import { State, Getter, Action, Mutation, namespace } from 'vuex-class';
+import { AxiosPromise } from 'axios';
+
+const Auth = namespace('Auth');
 
 @Component({
     components: {
@@ -40,17 +44,17 @@ import LoginFooter from '@/components/user/LoginFooter.vue';
     },
 })
 export default class AppLogin extends Vue {
+    @Auth.Action('Login')
+    public Login!: ({}) => AxiosPromise;
     public loading = false;
     public formError = '';
     public submitHandle(form: any) {
         this.loading = true;
-        this.$http
-            .post('/api/signup', form)
+        this.Login(form)
             .then(re => {
                 this.loading = false;
                 if (re.data.type === 0) {
                     this.$router.push('/');
-                    // TODO: commit state
                 } else if (re.data.type === 1) {
                     this.formError = re.data.message;
                 }

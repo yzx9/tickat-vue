@@ -13,15 +13,8 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import TheNav from '@/components/layout/TheNav.vue';
-import TheFooter from '@/components/layout/TheFooter.vue';
 
-@Component({
-    components: {
-        TheNav,
-        TheFooter,
-    },
-})
+@Component
 export default class NotFound extends Vue {
     public goHome() {
         this.$router.push('/');

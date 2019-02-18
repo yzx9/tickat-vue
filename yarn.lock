@@ -7189,6 +7189,11 @@ vuex-class@^0.3.1:
   resolved "http://registry.npm.taobao.org/vuex-class/download/vuex-class-0.3.1.tgz#3c0b946bcff4cf2be1904de5b0cab1a3dd5c41d5"
   integrity sha1-PAuUa8/0zyvhkE3lsMqxo91cQdU=
 
+vuex-smart-module@^0.1.0:
+  version "0.1.0"
+  resolved "http://registry.npm.taobao.org/vuex-smart-module/download/vuex-smart-module-0.1.0.tgz#34d9c155d39954154f8608b480c753087de90148"
+  integrity sha1-NNnBVdOZVBVPhgi0gMdTCH3pAUg=
+
 vuex@^3.0.1:
   version "3.1.0"
   resolved "http://registry.npm.taobao.org/vuex/download/vuex-3.1.0.tgz#634b81515cf0cfe976bd1ffe9601755e51f843b9"

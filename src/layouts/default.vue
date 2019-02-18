@@ -23,7 +23,7 @@ import TheFooter from '@/components/layout/TheFooter.vue';
         TheFooter,
     },
 })
-export default class LayoutDefault extends Vue {}
+export default class DefaultLayout extends Vue {}
 </script>
 
 <style lang="less" module>

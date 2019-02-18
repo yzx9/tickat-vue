@@ -13,14 +13,9 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import TheNav from '@/components/layout/TheNav.vue';
-import TheFooter from '@/components/layout/TheFooter.vue';
 
 @Component({
-    components: {
-        TheNav,
-        TheFooter,
-    },
+    components: {},
 })
 export default class NotAuth extends Vue {
     public goHome() {
