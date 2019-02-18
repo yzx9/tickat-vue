@@ -29,19 +29,19 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import { Post, Type } from '@/models/Post';
-import Card from '@/models/Card';
-import AppTodoList from '@/components/todolist/AppTodoList.vue';
-import AppPost from '@/components/post/AppPost.vue';
-import AppCard from '@/components/card/AppCard.vue';
+import { Component, Vue } from 'vue-property-decorator'
+import { Post, Type } from '@/models/Post'
+import Card from '@/models/Card'
+import AppTodoList from '@/components/todolist/AppTodoList.vue'
+import AppPost from '@/components/post/AppPost.vue'
+import AppCard from '@/components/card/AppCard.vue'
 
 @Component({
     components: {
         AppTodoList,
         AppPost,
-        AppCard,
-    },
+        AppCard
+    }
 })
 export default class Home extends Vue {
     // TODO: Delete Demo Data, Post True Data
@@ -55,7 +55,7 @@ export default class Home extends Vue {
             '1',
             'images/microphone-1209816_1920.jpg',
             1,
-            1234,
+            1234
         ),
         new Post(
             'post-2',
@@ -66,7 +66,7 @@ export default class Home extends Vue {
             '2',
             'images/microphone-1209816_1920.jpg',
             12,
-            123,
+            123
         ),
         new Post(
             'post-3',
@@ -77,7 +77,7 @@ export default class Home extends Vue {
             '3',
             'images/microphone-1209816_1920.jpg',
             123,
-            12,
+            12
         ),
         new Post(
             'post-4',
@@ -88,9 +88,9 @@ export default class Home extends Vue {
             '4',
             'images/microphone-1209816_1920.jpg',
             1234,
-            1,
-        ),
-    ];
+            1
+        )
+    ]
     public cards: Card[] = [
         new Card(
             'card-1',
@@ -98,9 +98,9 @@ export default class Home extends Vue {
             'images/avatars/avatar-11.png',
             new Date('2019/1/27 12:38:32'),
             '123',
-            'images/hamburger.png',
-        ),
-    ];
+            'images/hamburger.png'
+        )
+    ]
 }
 </script>
 

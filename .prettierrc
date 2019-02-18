@@ -1,9 +1,4 @@
 {
-    "tabWidth": 4,
-    "arrowParens": "avoid",
-    "trailingComma": "all",
-    "semi": true,
-    "singleQuote": true,
-    "printWidth": 80,
-    "tslintIntegration": true
+  "semi": false,
+  "singleQuote": true
 }
