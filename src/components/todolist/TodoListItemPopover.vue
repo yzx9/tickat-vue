@@ -42,7 +42,7 @@ export default class TodoItemPopover extends Vue {
 }
 </script>
 
-<style lang="less" module>
+<style lang="scss" module>
 .popover {
     & > div {
         text-align: right;

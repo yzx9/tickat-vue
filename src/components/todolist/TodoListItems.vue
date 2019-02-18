@@ -52,7 +52,7 @@ export default class TodoList extends Vue {
 }
 </script>
 
-<style lang="less" module>
+<style lang="scss" module>
 .wrapper {
     overflow-y: auto;
     /*滚动条样式*/

@@ -213,7 +213,7 @@ export default class AppTodoList extends Vue {
 }
 </script>
 
-<style lang="less" module>
+<style lang="scss" module>
 .wrapper {
     margin: 20px 10px;
 }

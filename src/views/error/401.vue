@@ -27,7 +27,7 @@ export default class NotAuth extends Vue {
 }
 </script>
 
-<style lang="less" module>
+<style lang="scss" module>
 .wrapper {
     display: block;
     margin-top: 200px;

@@ -30,7 +30,7 @@ export default class TodoInput extends Vue {
 }
 </script>
 
-<style lang="less" module>
+<style lang="scss" module>
 .input {
     border: none;
     outline: none;

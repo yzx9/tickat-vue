@@ -2,7 +2,7 @@
  * @Author: Celeste
  * @Date: 2019-01-24 22:05:41
  * @LastEditors: Celeste
- * @LastEditTime: 2019-02-18 23:52:40
+ * @LastEditTime: 2019-02-18 23:58:13
  * @Description: 
  -->
  
@@ -67,7 +67,7 @@ export default class AppLogin extends Vue {
 }
 </script>
 
-<style lang="less" module>
+<style lang="scss" module>
 .warpper {
     padding: 36px 30px;
     background-color: white;

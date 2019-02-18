@@ -2,7 +2,7 @@
     <router-view class="app"/>
 </template>
 
-<style lang="less">
+<style lang="scss">
 * {
     margin: 0;
     padding: 0;

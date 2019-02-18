@@ -2,7 +2,7 @@
  * @Author: Celeste
  * @Date: 2019-01-23 23:13:05
  * @LastEditors: Celeste
- * @LastEditTime: 2019-02-10 14:17:06
+ * @LastEditTime: 2019-02-19 00:14:51
  * @Description: 主页
  -->
 
@@ -104,7 +104,7 @@ export default class Home extends Vue {
 }
 </script>
 
-<style lang="less" module>
+<style lang="scss" module>
 .warp {
     .header {
         padding: 0px;

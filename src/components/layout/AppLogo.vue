@@ -20,7 +20,7 @@ export default class AppLogo extends Vue {
 }
 </script>
 
-<style lang="less" module>
+<style lang="scss" module>
 .logo {
     line-height: 100px;
     margin: 10px 20px 20px;

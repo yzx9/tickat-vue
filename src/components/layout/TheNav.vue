@@ -68,7 +68,7 @@ export default class TheNav extends Vue {
 }
 </script>
 
-<style lang="less" module>
+<style lang="scss" module>
 .wrapper {
     box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.1);
     .right {

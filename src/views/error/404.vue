@@ -25,7 +25,7 @@ export default class NotFound extends Vue {
 }
 </script>
 
-<style lang="less" module>
+<style lang="scss" module>
 .wrapper {
     display: block;
     margin-top: 200px;

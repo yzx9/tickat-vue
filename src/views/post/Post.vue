@@ -2,7 +2,7 @@
  * @Author: Celeste
  * @Date: 2019-02-08 15:16:31
  * @LastEditors: Celeste
- * @LastEditTime: 2019-02-10 14:50:43
+ * @LastEditTime: 2019-02-19 00:15:02
  * @Description: Post详情页
  -->
  
@@ -95,7 +95,7 @@ export default class Post extends Vue {
 }
 </script>
 
-<style lang="less" module>
+<style lang="scss" module>
 .header {
     padding: 0px;
 }

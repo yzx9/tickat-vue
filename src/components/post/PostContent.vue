@@ -44,7 +44,7 @@ export default class PostContent extends Vue {
 }
 </script>
 
-<style lang="less" module>
+<style lang="scss" module>
 .content {
     border-bottom: solid 1px #f3f3f3;
     p {

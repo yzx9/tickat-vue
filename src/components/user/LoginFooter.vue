@@ -49,12 +49,12 @@ export default class LoginFooter extends Vue {
     public created() {
         this.$http
             .post('/api/login/oauth')
-            .then((re) => {
+            .then(re => {
                 this.href.qq = re.data.qq;
                 this.href.wechat = re.data.wechat;
                 this.href.github = re.data.github;
             })
-            .catch((e) => {
+            .catch(e => {
                 // TODO:错误处理
             });
     }
@@ -76,7 +76,7 @@ export default class LoginFooter extends Vue {
 }
 </script>
 
-<style lang="less" module>
+<style lang="scss" module>
 .footer {
     padding-top: 40px;
     border-top: solid 1px #e6e9f1;

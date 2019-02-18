@@ -26,7 +26,7 @@ import TheFooter from '@/components/layout/TheFooter.vue';
 export default class DefaultLayout extends Vue {}
 </script>
 
-<style lang="less" module>
+<style lang="scss" module>
 .container {
     .header {
         padding: 0px;

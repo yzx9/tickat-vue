@@ -65,7 +65,7 @@ export default class TodoItem extends Vue {
 }
 </script>
 
-<style lang="less" module>
+<style lang="scss" module>
 .wrapper {
     .content {
         margin: 10px 45px 10px 30px;

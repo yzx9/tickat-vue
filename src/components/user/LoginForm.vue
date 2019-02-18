@@ -2,7 +2,7 @@
  * @Author: Celeste
  * @Date: 2019-01-24 22:49:50
  * @LastEditors: Celeste
- * @LastEditTime: 2019-02-09 22:05:19
+ * @LastEditTime: 2019-02-18 23:58:50
  * @Description: V-model: 表单错误信息 :loading @submit
  -->
 
@@ -145,7 +145,7 @@ export default class LoginForm extends Vue {
 }
 </script>
 
-<style lang="less" module>
+<style lang="scss" module>
 .form {
     margin-top: 20px;
     .option {

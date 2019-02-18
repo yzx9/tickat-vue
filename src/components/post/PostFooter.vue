@@ -53,7 +53,7 @@ export default class PostFooter extends Vue {
 }
 </script>
 
-<style lang="less" module>
+<style lang="scss" module>
 .footer {
     a {
         margin-top: 10px;

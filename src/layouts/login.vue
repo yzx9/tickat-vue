@@ -21,5 +21,5 @@ import TheFooter from '@/components/layout/TheFooter.vue';
 export default class LoginLayout extends Vue {}
 </script>
 
-<style lang="less" module>
+<style lang="scss" module>
 </style>

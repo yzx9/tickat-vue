@@ -58,7 +58,7 @@ export default class PostHeader extends Vue {
 }
 </script>
 
-<style lang="less" module>
+<style lang="scss" module>
 .header {
     align-items: center;
     display: flex;

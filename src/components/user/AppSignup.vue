@@ -2,7 +2,7 @@
  * @Author: Celeste
  * @Date: 2019-01-26 14:37:06
  * @LastEditors: Celeste
- * @LastEditTime: 2019-02-09 22:18:10
+ * @LastEditTime: 2019-02-18 23:58:19
  * @Description: 
  -->
  
@@ -79,7 +79,7 @@ export default class AppSignup extends Vue {
 }
 </script>
 
-<style lang="less" module>
+<style lang="scss" module>
 .warpper {
     padding: 36px 30px;
     background-color: white;

@@ -65,7 +65,7 @@ export enum Mode {
 }
 </script>
 
-<style lang="less" module>
+<style lang="scss" module>
 .footer {
     color: #777;
     padding: 10px 15px;

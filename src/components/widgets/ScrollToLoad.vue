@@ -64,7 +64,7 @@ export enum State {
 }
 </script>
 
-<style lang="less" module>
+<style lang="scss" module>
 .loadMore {
     padding: 40px 15px 70px;
     display: flex;

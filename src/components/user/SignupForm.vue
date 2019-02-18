@@ -2,7 +2,7 @@
  * @Author: Celeste
  * @Date: 2019-01-26 14:36:02
  * @LastEditors: Celeste
- * @LastEditTime: 2019-02-09 22:05:40
+ * @LastEditTime: 2019-02-18 23:58:58
  * @Description: V-model=表单错误信息 :loading @submit @validate
  -->
 
@@ -212,7 +212,7 @@ export default class SignupForm extends Vue {
 }
 </script>
 
-<style lang="less" module>
+<style lang="scss" module>
 .form {
     margin-top: 20px;
     .option {

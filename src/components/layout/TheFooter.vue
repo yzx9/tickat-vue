@@ -18,7 +18,7 @@ export default class AppFooter extends Vue {
 }
 </script>
 
-<style lang="less" module>
+<style lang="scss" module>
 .footer {
     color: gray;
     margin: 20px 10px;

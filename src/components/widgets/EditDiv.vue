@@ -34,7 +34,7 @@ export default class EditDiv extends Vue {
 }
 </script>
 
-<style lang="less" module>
+<style lang="scss" module>
 .wrapper {
     width: 100%;
     height: 100%;
