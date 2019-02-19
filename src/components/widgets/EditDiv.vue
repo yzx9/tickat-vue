@@ -14,15 +14,13 @@ import { Vue, Component, Prop, Watch, Model } from 'vue-property-decorator'
 
 @Component
 export default class EditDiv extends Vue {
-  @Prop({ type: String, default: '' })
-  public value!: string
-  @Prop({ type: Boolean, default: true })
-  public canEdit!: boolean
-  private innerText = this.value
-  private isLocked = false
+  @Prop({ type: String, default: '' }) value!: string
+  @Prop({ type: Boolean, default: true }) canEdit!: boolean
+  innerText = this.value
+  isLocked = false
 
   @Watch('value')
-  private onValueChange() {
+  onValueChange() {
     if (!this.isLocked || !this.innerText) {
       this.innerText = this.value
     }

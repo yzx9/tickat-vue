@@ -31,29 +31,27 @@ import Todo from '@/models/Todo'
 
 @Component
 export default class TodoFooter extends Vue {
-  @Prop({ type: Array, required: true })
-  public todos!: Todo[]
-  @Model('change', { type: String, required: true })
-  public mode!: Mode
+  @Prop({ type: Array, required: true }) todos!: Todo[]
+  @Model('change', { type: String, required: true }) mode!: Mode
 
-  public get count() {
+  get count() {
     let c = 0
     this.todos.map(todo => {
       c += todo.isDone ? 0 : 1
     })
     return c
   }
-  public get isAll() {
+  get isAll() {
     return this.mode === Mode.all
   }
-  public get isTodo() {
+  get isTodo() {
     return this.mode === Mode.todo
   }
-  public get isCompleted() {
+  get isCompleted() {
     return this.mode === Mode.completed
   }
 
-  public handleChange(mode: Mode) {
+  handleChange(mode: Mode) {
     this.$emit('change', mode)
   }
 }

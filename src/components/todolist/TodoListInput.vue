@@ -13,18 +13,17 @@ import { Vue, Component, Model, Prop } from 'vue-property-decorator'
 
 @Component
 export default class TodoInput extends Vue {
-  @Model('input', { type: String })
-  public v!: string
-  public placeholder = 'Todo List'
+  @Model('input', { type: String }) v!: string
+  placeholder = 'Todo List'
 
-  private get value() {
+  get value() {
     return this.v
   }
-  private set value(value: string) {
+  set value(value: string) {
     this.$emit('input', value)
   }
 
-  private submit() {
+  submit() {
     this.$emit('submit')
   }
 }

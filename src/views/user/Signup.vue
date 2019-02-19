@@ -22,7 +22,7 @@ import TheFooter from '@/components/layout/TheFooter.vue'
   }
 })
 export default class Signup extends Vue {
-  private logo = {
+  logo = {
     height: '100px',
     width: '100px'
   }

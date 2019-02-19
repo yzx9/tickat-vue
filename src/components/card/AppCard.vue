@@ -31,11 +31,10 @@ import Card from '@/models/Card.ts'
   components: {}
 })
 export default class AppCard extends Vue {
-  @Prop({ type: Object, required: true })
-  public card!: Card
-  public publicPath = process.env.BASE_URL
+  @Prop({ type: Object, required: true }) card!: Card
+  publicPath = process.env.BASE_URL
 
-  public get src() {
+  get src() {
     return `${this.publicPath}${this.card.image}`
   }
 }

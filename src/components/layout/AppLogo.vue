@@ -13,10 +13,8 @@ import { Vue, Component, Prop } from 'vue-property-decorator'
 
 @Component
 export default class AppLogo extends Vue {
-  @Prop({ type: String, default: '100px' })
-  public height!: string
-  @Prop({ type: String, default: '100px' })
-  public width!: string
+  @Prop({ type: String, default: '100px' }) height!: string
+  @Prop({ type: String, default: '100px' }) width!: string
 }
 </script>
 

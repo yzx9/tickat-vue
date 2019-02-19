@@ -30,13 +30,13 @@ import { Vue, Component, Prop } from 'vue-property-decorator'
 @Component
 export default class TodoItemPopover extends Vue {
   @Prop({ type: String, required: true })
-  public icon!: string
-  public visible = false
+  icon!: string
+  visible = false
 
-  public handleCancel() {
+  handleCancel() {
     this.visible = false
   }
-  public handleOk() {
+  handleOk() {
     this.$emit('ok')
   }
 }

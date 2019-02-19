@@ -36,11 +36,10 @@ const Auth = namespace('Auth')
   }
 })
 export default class AppLogin extends Vue {
-  @Auth.Action('Login')
-  public Login!: ({}) => AxiosPromise
-  public loading = false
-  public formError = ''
-  public submitHandle(form: any) {
+  @Auth.Action('Login') Login!: ({}) => AxiosPromise
+  loading = false
+  formError = ''
+  submitHandle(form: any) {
     this.loading = true
     this.Login(form)
       .then(re => {

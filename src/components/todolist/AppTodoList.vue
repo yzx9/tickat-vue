@@ -42,22 +42,21 @@ import TodoListFooter, { Mode } from '@/components/todolist/TodoListFooter.vue'
   }
 })
 export default class AppTodoList extends Vue {
-  @Prop({ type: String, default: 'auto' })
-  public height!: string
-  public nextTodoId = 1
-  public newTodoText = ''
-  public removeTodoIds: string[] = []
-  public showAlert = false
-  public todos: Todo[] = []
-  public mode: Mode = Mode.todo
-  public get listHeight() {
+  @Prop({ type: String, default: 'auto' }) height!: string
+  nextTodoId = 1
+  newTodoText = ''
+  removeTodoIds: string[] = []
+  showAlert = false
+  todos: Todo[] = []
+  mode: Mode = Mode.todo
+  get listHeight() {
     if (this.height && this.height.toLowerCase() !== 'auto') {
       return `calc(${this.height} - 61px)`
     } else {
       return 'auto'
     }
   }
-  private get filter() {
+  get filter() {
     if (!this.todos.length) {
       return null
     }
@@ -88,7 +87,7 @@ export default class AppTodoList extends Vue {
     return filter
   }
   // hooks
-  private created() {
+  created() {
     this.$http.get('/todolist').then(re => {
       re.data.map((todo: Todo) => {
         this.todos.push(todo)
@@ -127,7 +126,7 @@ export default class AppTodoList extends Vue {
     }
   }
   // methods
-  private handleAdd() {
+  handleAdd() {
     const text = this.newTodoText.trim()
     let todo = new Todo((this.nextTodoId++).toString(), text, new Date())
     this.$http
@@ -149,14 +148,14 @@ export default class AppTodoList extends Vue {
       this.newTodoText = ''
     }
   }
-  private handleDone(id: string) {
+  handleDone(id: string) {
     this.todos.map(todo => {
       if (todo.id === id) {
         todo.isDone = !todo.isDone
       }
     })
   }
-  private handleDelete(id: string) {
+  handleDelete(id: string) {
     this.$http
       .delete(`/todolist/${id}`)
       .then(re => {
@@ -186,7 +185,7 @@ export default class AppTodoList extends Vue {
       this.todos.splice(index, 1)
     }
   }
-  private handleEdit(todo: Todo) {
+  handleEdit(todo: Todo) {
     this.$http
       .put(`/todolist/${todo.id}`, todo)
       .then(re => {

@@ -47,19 +47,18 @@ import TodoListItemPopover from '@/components/todolist/TodoListItemPopover.vue'
   }
 })
 export default class TodoItem extends Vue {
-  @Prop({ type: Object, required: true })
-  public todo!: Todo
-  private visible = false
-  private canEdit = false
+  @Prop({ type: Object, required: true }) todo!: Todo
+  visible = false
+  canEdit = false
 
-  private handleDone() {
+  handleDone() {
     this.$emit('done', this.todo.id)
   }
-  private handleDelete() {
+  handleDelete() {
     this.visible = false
     this.$emit('delete', this.todo.id)
   }
-  private handleEdit() {
+  handleEdit() {
     this.canEdit = !this.canEdit
   }
 }

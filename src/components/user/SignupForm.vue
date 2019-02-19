@@ -95,17 +95,17 @@ import { Model, Prop } from 'vue-property-decorator'
 @Component
 export default class SignupForm extends Vue {
   @Model('change')
-  public formError!: string
+  formError!: string
   @Prop({ type: Boolean, default: false })
-  public loading!: boolean
-  private form = {
+  loading!: boolean
+  form = {
     username: '',
     password: '',
     passwordReword: '',
     mobile: '',
     license: false
   }
-  private rules = {
+  rules = {
     username: [
       { max: 20, message: '长度不大于 20 个字符', trigger: 'blur' },
       { validator: this.validateUsername, trigger: 'blur' }
@@ -126,12 +126,12 @@ export default class SignupForm extends Vue {
     ]
   }
 
-  public setError(e?: string) {
+  setError(e?: string) {
     this.$emit('change', e)
   }
-  private submit(): void {
-    const form = 'form';
-    (this.$refs[form] as any).validate((valid: boolean) => {
+  submit(): void {
+    const form = 'form'
+    ;(this.$refs[form] as any).validate((valid: boolean) => {
       if (valid) {
         if (!this.form.license) {
           this.setError('请同意用户使用协议')
@@ -141,15 +141,11 @@ export default class SignupForm extends Vue {
       }
     })
   }
-  private reset(): void {
-    const form = 'form';
-    (this.$refs[form] as any).resetFields()
+  reset(): void {
+    const form = 'form'
+    ;(this.$refs[form] as any).resetFields()
   }
-  private validateUsername(
-    rule: object,
-    value: string,
-    callback: (e?: Error) => void
-  ) {
+  validateUsername(rule: object, value: string, callback: (e?: Error) => void) {
     this.setError()
     if (value === '') {
       return callback(new Error('请输入用户名'))
@@ -157,7 +153,7 @@ export default class SignupForm extends Vue {
     // return callback(); // test
     this.$emit('validate', this.form.username, callback)
   }
-  private validatePasswordReword(
+  validatePasswordReword(
     rule: object,
     value: string,
     callback: (e?: Error) => void
@@ -171,7 +167,7 @@ export default class SignupForm extends Vue {
       callback()
     }
   }
-  private validateMobile(
+  validateMobile(
     rule: object,
     value: string,
     callback: (e?: Error) => void
@@ -186,11 +182,7 @@ export default class SignupForm extends Vue {
       callback()
     }
   }
-  private validateError(
-    rule: object,
-    value: string,
-    callback: (e?: Error) => void
-  ) {
+  validateError(rule: object, value: string, callback: (e?: Error) => void) {
     this.setError()
     if (this.formError) {
       callback(new Error(this.formError))
@@ -198,7 +190,7 @@ export default class SignupForm extends Vue {
       callback()
     }
   }
-  private redirectHandle() {
+  redirectHandle() {
     this.$router.push('login')
   }
 }

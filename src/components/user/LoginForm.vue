@@ -66,15 +66,13 @@ import { Vue, Component, Prop, Model } from 'vue-property-decorator'
 
 @Component
 export default class LoginForm extends Vue {
-  @Model('change')
-  public error!: string
-  @Prop({ type: Boolean, default: false })
-  public loading!: boolean
-  private form = {
+  @Model('change') error!: string
+  @Prop({ type: Boolean, default: false }) loading!: boolean
+  form = {
     username: '',
     password: ''
   }
-  private rules = {
+  rules = {
     username: [
       { required: true, message: '请输入用户名', trigger: 'blur' },
       { max: 20, message: '长度不大于 20 个字符', trigger: 'blur' },
@@ -89,10 +87,10 @@ export default class LoginForm extends Vue {
     error: [{ validator: this.validateError }]
   }
 
-  public setError(e: string = '') {
+  setError(e: string = '') {
     this.$emit('change', e)
   }
-  private submit() {
+  submit() {
     const form = 'form'
     ;(this.$refs[form] as any).validate((valid: boolean) => {
       if (valid) {
@@ -100,38 +98,26 @@ export default class LoginForm extends Vue {
       }
     })
   }
-  private reset(): void {
+  reset(): void {
     const form = 'form'
     ;(this.$refs[form] as any).resetFields()
   }
-  private validateUsername(
-    rule: object,
-    value: string,
-    callback: (e?: Error) => void
-  ) {
+  validateUsername(rule: object, value: string, callback: (e?: Error) => void) {
     this.setError()
     callback()
   }
-  private validatePassword(
-    rule: object,
-    value: string,
-    callback: (e?: Error) => void
-  ) {
+  validatePassword(rule: object, value: string, callback: (e?: Error) => void) {
     this.setError()
     callback()
   }
-  private validateError(
-    rule: object,
-    value: string,
-    callback: (e?: Error) => void
-  ) {
+  validateError(rule: object, value: string, callback: (e?: Error) => void) {
     if (this.error) {
       callback(new Error(this.error))
     } else {
       callback()
     }
   }
-  private redirectHandle() {
+  redirectHandle() {
     this.$router.push('signup')
   }
 }

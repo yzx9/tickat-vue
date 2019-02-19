@@ -26,8 +26,7 @@ import PostFooter from '@/components/post/PostFooter.vue'
   }
 })
 export default class AppPost extends Vue {
-  @Prop({ type: Object, required: true })
-  public post!: Post
+  @Prop({ type: Object, required: true }) post!: Post
 }
 </script>
 

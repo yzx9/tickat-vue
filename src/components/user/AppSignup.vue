@@ -33,9 +33,9 @@ import LoginFooter from '@/components/user/LoginFooter.vue'
   }
 })
 export default class AppSignup extends Vue {
-  public loading = false
-  public formError = ''
-  public submitHandle(form: any) {
+  loading = false
+  formError = ''
+  submitHandle(form: any) {
     this.loading = true
     this.$http
       .post('/api/signup', form)
@@ -48,7 +48,7 @@ export default class AppSignup extends Vue {
         this.formError = '服务器开小差了，请稍后再试'
       })
   }
-  public validateHandle(username: string, callback: (e?: Error) => void) {
+  validateHandle(username: string, callback: (e?: Error) => void) {
     this.$http
       .post('/api/signup/validate', username)
       .then(re => {

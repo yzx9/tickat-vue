@@ -40,14 +40,14 @@ import { Pager, Order } from '@/models/Pager'
 
 @Component
 export default class ScrollToLoad extends Vue {
-  @Prop({ type: Object }) private pager!: object
-  @Prop({ type: String, required: true }) private url!: string
-  private state: State = State.wait
+  @Prop({ type: Object }) pager!: object
+  @Prop({ type: String, required: true }) url!: string
+  state: State = State.wait
 
-  private onClick() {
+  onClick() {
     this.Load()
   }
-  private Load() {
+  Load() {
     // hey, do something here.
     this.$emit('onLoad')
   }

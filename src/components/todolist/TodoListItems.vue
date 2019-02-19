@@ -31,22 +31,20 @@ import TodoItem from '@/components/todolist/TodoListItem.vue'
   }
 })
 export default class TodoList extends Vue {
-  @Prop({ type: Array, required: true })
-  public todos!: Todo[]
-  @Prop({ type: String, default: 'auto' })
-  public height!: string
-  public activeName: string = ''
+  @Prop({ type: Array, required: true }) todos!: Todo[]
+  @Prop({ type: String, default: 'auto' }) height!: string
+  activeName: string = ''
 
-  private handleChange(id: string) {
+  handleChange(id: string) {
     // do something
   }
-  private handleDone(id: string) {
+  handleDone(id: string) {
     this.$emit('done', id)
   }
-  private handleDelete(id: string) {
+  handleDelete(id: string) {
     this.$emit('delete', id)
   }
-  private handleEdit(todo: Todo) {
+  handleEdit(todo: Todo) {
     this.$emit('edit', todo)
   }
 }

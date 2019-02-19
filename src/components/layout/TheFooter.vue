@@ -8,11 +8,11 @@ import Component from 'vue-class-component'
 
 @Component
 export default class AppFooter extends Vue {
-  private get year(): number {
+  get year(): number {
     const date = new Date()
     return date.getFullYear()
   }
-  private get text(): string {
+  get text(): string {
     return `Tickat © ${this.year}`
   }
 }

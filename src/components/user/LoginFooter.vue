@@ -46,7 +46,7 @@ export default class LoginFooter extends Vue {
   }
 
   // hooks
-  public created() {
+  created() {
     this.$http
       .post('/api/login/oauth')
       .then(re => {
@@ -60,7 +60,7 @@ export default class LoginFooter extends Vue {
   }
 
   // methods
-  public clickHandle(name: string) {
+  clickHandle(name: string) {
     switch (name) {
       case 'qq':
         window.location.href = this.href.qq

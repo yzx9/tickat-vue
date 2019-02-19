@@ -19,9 +19,8 @@ import { Post, Type } from '@/models/Post'
 
 @Component
 export default class PostHeader extends Vue {
-  @Prop({ type: Object, required: true })
-  public post!: Post
-  public publicPath = process.env.BASE_URL
+  @Prop({ type: Object, required: true }) post!: Post
+  publicPath = process.env.BASE_URL
 
   public get src() {
     return `${this.publicPath}${this.post.avatar}`
