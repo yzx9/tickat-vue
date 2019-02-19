@@ -93,16 +93,16 @@ export default class LoginForm extends Vue {
     this.$emit('change', e)
   }
   private submit() {
-    const form = 'form';
-    (this.$refs[form] as any).validate((valid: boolean) => {
+    const form = 'form'
+    ;(this.$refs[form] as any).validate((valid: boolean) => {
       if (valid) {
         this.$emit('submit', this.form)
       }
     })
   }
   private reset(): void {
-    const form = 'form';
-    (this.$refs[form] as any).resetFields()
+    const form = 'form'
+    ;(this.$refs[form] as any).resetFields()
   }
   private validateUsername(
     rule: object,
