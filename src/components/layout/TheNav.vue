@@ -28,7 +28,7 @@
       :class="$style.right"
     >
       <img
-        :src="account.avatar"
+        :src="avatar"
         @click="avatarHandle"
       >
     </el-menu-item>
@@ -59,6 +59,10 @@ export default class TheNav extends Vue {
   @Auth.State('account') account!: Account
   @Auth.Getter('isAuth') isAuth!: boolean
   defaultActive = '/home'
+
+  get avatar() {
+    return `${process.env.BASE_URL}${this.account.avatar}`
+  }
 
   handleSelect(active: string) {
     // ???

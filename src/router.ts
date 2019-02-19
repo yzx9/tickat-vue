@@ -6,17 +6,16 @@ import LoginLayout from '@/layouts/login.vue'
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
   routes: [
     {
       path: '',
       component: DefaultLayout,
       children: [
         {
-          path: '/',
-          alias: '/index',
+          path: '/index',
+          alias: '',
           name: 'Index',
-          component: () => import('@/views/home/Home.vue')
+          component: () => import('@/views/home/Index.vue')
         },
         {
           path: '/about',

@@ -24,10 +24,9 @@ import { Post, Type } from '@/models/Post'
 @Component
 export default class PostContent extends Vue {
   @Prop({ type: Object, required: true }) post!: Post
-  publicPath = process.env.BASE_URL
 
   get src() {
-    return `${this.publicPath}${this.post.image}`
+    return `${process.env.BASE_URL}${this.post.image}`
   }
   clickHandle() {
     this.$router.push({ name: 'Post', params: { id: this.post.id } })
