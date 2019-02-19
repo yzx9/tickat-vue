@@ -42,10 +42,10 @@ export default class Home extends Vue {
       'post-1',
       Type.image,
       'Yuan',
-      '/images/avatars/avatar-11.png',
+      'images/avatars/avatar-11.png',
       new Date('2019/1/27 12:38:32'),
       '1',
-      '/images/microphone-1209816_1920.jpg',
+      'images/microphone-1209816_1920.jpg',
       1,
       1234
     ),
@@ -53,10 +53,10 @@ export default class Home extends Vue {
       'post-2',
       Type.image,
       'Yuan',
-      '/images/avatars/avatar-12.png',
+      'images/avatars/avatar-12.png',
       new Date('2019/1/28 12:38:32'),
       '2',
-      '/images/microphone-1209816_1920.jpg',
+      'images/microphone-1209816_1920.jpg',
       12,
       123
     ),
@@ -64,10 +64,10 @@ export default class Home extends Vue {
       'post-3',
       Type.image,
       'Yuan',
-      '/images/avatars/avatar-13.png',
+      'images/avatars/avatar-13.png',
       new Date('2019/1/29 12:38:32'),
       '3',
-      '/images/microphone-1209816_1920.jpg',
+      'images/microphone-1209816_1920.jpg',
       123,
       12
     ),
@@ -75,10 +75,10 @@ export default class Home extends Vue {
       'post-4',
       Type.image,
       'Yuan',
-      '/images/avatars/avatar-14.png',
+      'images/avatars/avatar-14.png',
       new Date('2019/1/30 12:38:32'),
       '4',
-      '/images/microphone-1209816_1920.jpg',
+      'images/microphone-1209816_1920.jpg',
       1234,
       1
     )
@@ -87,10 +87,10 @@ export default class Home extends Vue {
     new Card(
       'card-1',
       'Yuan',
-      '/images/avatars/avatar-11.png',
+      'images/avatars/avatar-11.png',
       new Date('2019/1/27 12:38:32'),
       '123',
-      '/images/hamburger.png'
+      'images/hamburger.png'
     )
   ]
 }

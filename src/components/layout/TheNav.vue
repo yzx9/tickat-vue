@@ -4,11 +4,12 @@
     :default-active="defaultActive"
     :class="$style.wrapper"
     @select="handleSelect"
+    router
   >
     <el-menu-item
       index="index"
       style="display: inline;"
-      :route="{ name: 'index' }"
+      :route="{ name: 'Index' }"
     >
       <AppLogo
         :height="'36px'"
@@ -17,25 +18,23 @@
     </el-menu-item>
     <el-menu-item
       index="square"
-      :route="{ name: 'square'}"
+      :route="{ name: 'Square'}"
     >广场</el-menu-item>
     <el-menu-item
       index="group"
-      :route="{ name: 'group'}"
+      :route="{ name: 'Group'}"
     >圈子</el-menu-item>
     <el-menu-item
       index="user"
       :class="$style.right"
+      :route="authRouter"
     >
-      <img
-        :src="avatar"
-        @click="avatarHandle"
-      >
+      <img :src="avatar">
     </el-menu-item>
     <el-menu-item
       index="message"
       :class="$style.right"
-      :route="{ name: 'message'}"
+      :route="{ name: 'Message'}"
     >
       <i class="el-icon-bell"/>
     </el-menu-item>
@@ -60,19 +59,15 @@ export default class TheNav extends Vue {
   @Auth.Getter('isAuth') isAuth!: boolean
   defaultActive = '/home'
 
+  get authRouter() {
+    return { name: this.isAuth ? 'User' : 'Login' }
+  }
   get avatar() {
     return `${process.env.BASE_URL}${this.account.avatar}`
   }
 
   handleSelect(active: string) {
     // ???
-  }
-  avatarHandle() {
-    if (this.isAuth) {
-      this.$router.push({ name: 'User' })
-    } else {
-      this.$router.push({ name: 'Login' })
-    }
   }
 }
 </script>

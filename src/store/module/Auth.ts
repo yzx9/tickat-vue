@@ -6,7 +6,7 @@ class AuthState {
   public account: AccountModel = new AccountModel(
     '0',
     'null',
-    '/images/defaltUserIcon.jpg'
+    'images/defaltUserIcon.jpg'
   )
 }
 
