@@ -32,10 +32,9 @@ import Card from '@/models/Card.ts'
 })
 export default class AppCard extends Vue {
   @Prop({ type: Object, required: true }) card!: Card
-  publicPath = process.env.BASE_URL
 
   get src() {
-    return `${this.publicPath}${this.card.image}`
+    return `${process.env.BASE_URL}${this.card.image}`
   }
 }
 </script>

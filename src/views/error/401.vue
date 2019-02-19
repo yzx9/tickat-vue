@@ -19,7 +19,7 @@ import { Component, Vue } from 'vue-property-decorator'
 })
 export default class NotAuth extends Vue {
   goHome() {
-    this.$router.push('/')
+    this.$router.push({ name: 'Index' })
   }
   goBack() {
     this.$router.back()

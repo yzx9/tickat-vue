@@ -30,7 +30,7 @@ export default class PostContent extends Vue {
     return `${this.publicPath}${this.post.image}`
   }
   clickHandle() {
-    this.$router.push({ name: 'post', params: { id: this.post.id } })
+    this.$router.push({ name: 'Post', params: { id: this.post.id } })
   }
 }
 </script>

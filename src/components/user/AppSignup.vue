@@ -41,7 +41,7 @@ export default class AppSignup extends Vue {
       .post('/api/signup', form)
       .then(data => {
         this.loading = false
-        this.$router.push('/login')
+        this.$router.push({ name: 'Signup' })
       })
       .catch(error => {
         this.loading = false

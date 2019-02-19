@@ -45,7 +45,7 @@ export default class AppLogin extends Vue {
       .then(re => {
         this.loading = false
         if (re.data.type === 0) {
-          this.$router.push('/')
+          this.$router.push({ name: 'Index' })
         } else if (re.data.type === 1) {
           this.formError = re.data.message
         }

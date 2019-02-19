@@ -17,7 +17,7 @@ import { Component, Vue } from 'vue-property-decorator'
 @Component
 export default class NotFound extends Vue {
   public goHome() {
-    this.$router.push('/')
+    this.$router.push({ name: 'Index' })
   }
   public goBack() {
     this.$router.back()

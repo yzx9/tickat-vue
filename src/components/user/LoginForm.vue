@@ -118,7 +118,7 @@ export default class LoginForm extends Vue {
     }
   }
   redirectHandle() {
-    this.$router.push('signup')
+    this.$router.push({ name: 'Signup' })
   }
 }
 </script>

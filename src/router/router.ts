@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import LayoutDefault from '@/layouts/default.vue'
-import LayoutLogin from '@/layouts/login.vue'
+import DefaultLayout from '@/layouts/default.vue'
+import LoginLayout from '@/layouts/login.vue'
 
 Vue.use(Router)
 
@@ -10,58 +10,56 @@ export default new Router({
   routes: [
     {
       path: '',
-      component: LayoutDefault,
+      component: DefaultLayout,
       children: [
         {
           path: '/',
-          alias: '/home',
-          name: 'home',
+          alias: '/index',
+          name: 'Index',
           component: () => import('@/views/home/Home.vue')
         },
         {
           path: '/about',
-          name: 'about',
+          name: 'About',
           component: () => import('@/views/home/About.vue')
         },
         // errorPage
         {
           path: '/401',
-          alias: '/notauth',
-          name: 'notauth',
+          name: 'NotAuth',
           component: () => import('@/views/error/401.vue')
         },
         {
           path: '/404',
-          alias: '/notfound',
-          name: 'notfound',
+          name: 'NotFound',
           component: () => import('@/views/error/404.vue')
         }
       ]
     },
     {
       path: '',
-      component: LayoutLogin,
+      component: LoginLayout,
       children: [
         {
           path: '/login',
-          name: 'login',
+          name: 'Login',
           component: () => import('@/views/user/Login.vue')
         },
         {
           path: '/signup',
-          name: 'signup',
+          name: 'Signup',
           component: () => import('@/views/user/Signup.vue')
         },
         {
-          path: '/userLicense',
-          name: 'userLicense',
+          path: '/UserLicense',
+          name: 'UserLicense',
           component: () => import('@/views/user/UserLicense.vue')
         }
       ]
     },
     {
       path: '*',
-      redirect: '/404'
+      redirect: { name: 'NotFound' }
     }
   ]
 })
