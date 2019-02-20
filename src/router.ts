@@ -15,14 +15,24 @@ export default new Router({
           path: '/index',
           alias: '',
           name: 'Index',
-          component: () => import('@/views/home/Index.vue')
+          component: () => import('@/views/home/index.vue')
         },
         {
           path: '/about',
           name: 'About',
-          component: () => import('@/views/home/About.vue')
+          component: () => import('@/views/home/about.vue')
         },
-        // errorPage
+        {
+          path: '/group',
+          name: 'Group',
+          component: () => import('@/views/group/index.vue')
+        },
+        {
+          path: '/square',
+          name: 'Square',
+          component: () => import('@/views/square/index.vue')
+        },
+        // Error Page
         {
           path: '/401',
           name: 'NotAuth',
@@ -42,17 +52,17 @@ export default new Router({
         {
           path: '/login',
           name: 'Login',
-          component: () => import('@/views/user/Login.vue')
+          component: () => import('@/views/user/login.vue')
         },
         {
           path: '/signup',
           name: 'Signup',
-          component: () => import('@/views/user/Signup.vue')
+          component: () => import('@/views/user/signup.vue')
         },
         {
           path: '/UserLicense',
           name: 'UserLicense',
-          component: () => import('@/views/user/UserLicense.vue')
+          component: () => import('@/views/user/license.vue')
         }
       ]
     },
