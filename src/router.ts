@@ -12,8 +12,8 @@ export default new Router({
       component: DefaultLayout,
       children: [
         {
-          path: '/index',
-          alias: '',
+          path: '',
+          alias: '/index',
           name: 'Index',
           component: () => import('@/views/home/index.vue')
         },
@@ -31,6 +31,13 @@ export default new Router({
           path: '/square',
           name: 'Square',
           component: () => import('@/views/square/index.vue')
+        },
+        // user
+        {
+          path: '/user',
+          alias: '/user/index',
+          name: 'User',
+          component: () => import('@/views/user/index.vue')
         },
         // Error Page
         {
