@@ -39,6 +39,12 @@ export default class AppLogin extends Vue {
   @Auth.Action('Login') Login!: ({}) => AxiosPromise
   loading = false
   formError = ''
+  // hooks
+  mounted() {
+    // 模拟登录操作在vuex树中
+    this.$message('账号：admin，密码任意')
+  }
+  // methods
   submitHandle(form: any) {
     this.loading = true
     this.Login(form)
@@ -48,6 +54,14 @@ export default class AppLogin extends Vue {
           this.$router.push({ name: 'Index' })
         } else if (re.data.type === 1) {
           this.formError = re.data.message
+        }
+      })
+      .catch(error => {
+        // 模拟登录后跳转
+        if (form.username === 'admin') {
+          this.$router.push({ name: 'Index' })
+        } else {
+          throw error
         }
       })
       .catch(error => {
