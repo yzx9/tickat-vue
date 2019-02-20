@@ -104,10 +104,10 @@ export default class TodoItem extends Vue {
       height: 40px;
     }
     &:not(.done)::after {
-      content: url('../../assets/icons/todo-checkbox.svg');
+      content: url('@/assets/icons/todo-checkbox.svg');
     }
     &.done::after {
-      content: url('../../assets/icons/todo-checkbox-done.svg');
+      content: url('@/assets/icons/todo-checkbox-done.svg');
     }
   }
 }
