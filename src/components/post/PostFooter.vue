@@ -1,106 +1,99 @@
 <template>
   <div :class="$style.footer">
-    <a
-      href="#"
-      :class="$style.upvote"
-    >
-      <i class="icon-Upvote"/>
-    </a>
-    <a
-      href="#"
-      :class="$style.downvote"
-    >
-      <i class="icon-Downvote"/>
-    </a>
-    <a
-      href="#"
-      :class="$style.repost"
-    >
-      <i class="icon-Repost"/>
-    </a>
-    <a
-      href="#"
-      :class="$style.like"
-    >
-      <i class="icon-Favorite_Full"/>
-      <span>{{ post.favorite }}</span>
-    </a>
-    <a
-      href="#"
-      :class="$style.comment"
-    >
-      <i class="icon-Comment_Full"/>
-      <span>{{ post.comment }}</span>
-    </a>
-    <a
-      href="#"
-      :class="$style.share"
-    >
-      <i class="icon-Share"/>
-    </a>
+    <div :class="$style.left">
+      <VoteIcon
+        v-for="icon in voteIconsLeft"
+        :key="icon.id"
+        :type="icon"
+        @click="handleClick"
+      />
+    </div>
+    <div :class="$style.right">
+      <VoteIcon
+        v-for="icon in voteIconsRight"
+        :key="icon.id"
+        :type="icon"
+        @click="handleClick"
+      />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
 import { Post, Type } from '@/models/Post'
-import '@/assets/fonts/sharehub/style.css'
+import VoteIcon, { VoteIconType } from '@/components/widgets/VoteIcon.vue'
 
-@Component
+@Component({
+  components: {
+    VoteIcon
+  }
+})
 export default class PostFooter extends Vue {
   @Prop({ type: Object, required: true }) post!: Post
+  get voteIconsLeft(): VoteIconType[] {
+    return [
+      {
+        id: 'upvote',
+        icon: 'icon-Upvote'
+      },
+      {
+        id: 'downvote',
+        icon: 'icon-Downvote'
+      },
+      // {
+      //   id: 'repost',
+      //   icon: 'icon-Repost'
+      // },
+      {
+        id: 'favorite',
+        icon: 'icon-Favorite_Full',
+        text: this.post.favorite
+      },
+      {
+        id: 'comment',
+        icon: 'icon-Comment_Full',
+        text: this.post.comment
+      }
+    ]
+  }
+  get voteIconsRight(): VoteIconType[] {
+    return [
+      {
+        id: 'share',
+        icon: 'icon-Share'
+      }
+    ]
+  }
+  get voteIcons(): VoteIconType[] {
+    return this.voteIconsLeft.concat(this.voteIconsRight)
+  }
+
+  handleClick(id: string) {
+    this.$emit(id)
+  }
 }
 </script>
 
 <style lang="scss" module>
 .footer {
-  a {
-    margin-top: 10px;
-    align-items: center;
-    display: inline-flex;
-    text-decoration: none;
-    &.upvote,
-    &.downvote,
-    &.repost,
-    &.like,
-    &.comment,
-    &.stat,
-    &.options {
-      margin-right: 30px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  .left,
+  .options {
+    margin-left: 5px;
+    div {
+      margin-right: 15px;
     }
-    &.like,
-    &.comment {
-      span {
-        margin-left: 15px;
-      }
-    }
-    &.stat {
-      position: relative;
-    }
-    &.repost {
-      i {
-        font-size: 23px;
-      }
-    }
-    &.share {
-      margin-left: auto;
-    }
-    & > i {
-      font-size: 20px;
-      cursor: pointer;
-    }
-    & > i,
-    & > span {
-      color: #a1a5ae;
-      transition: 0.4s;
-    }
-    &.active > i,
-    &:hover > i,
-    &.active > span,
-    &:hover > span {
-      color: #1e1633;
+  }
+  .right {
+    margin-right: 5px;
+    div {
+      margin-left: 15px;
     }
   }
 }
 </style>
-

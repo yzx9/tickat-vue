@@ -7,7 +7,14 @@
       <PostHeader :post="post"/>
     </template>
     <PostContent :post="post"/>
-    <PostFooter :post="post"/>
+    <PostFooter
+      :post="post"
+      @upvote="handleUpvote"
+      @downvote="handleDownvote"
+      @favorite="handleFavorite"
+      @comment="handleComment"
+      @share="handleShare"
+    />
   </el-card>
 </template>
 
@@ -27,6 +34,21 @@ import PostFooter from '@/components/post/PostFooter.vue'
 })
 export default class AppPost extends Vue {
   @Prop({ type: Object, required: true }) post!: Post
+  handleUpvote() {
+    console.log('handleUpvote')
+  }
+  handleDownvote() {
+    console.log('handleDownvote')
+  }
+  handleFavorite() {
+    console.log('handleFavorite')
+  }
+  handleComment() {
+    console.log('handleComment')
+  }
+  handleShare() {
+    console.log('handleShare')
+  }
 }
 </script>
 

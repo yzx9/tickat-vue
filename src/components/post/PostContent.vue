@@ -8,12 +8,6 @@
         </a>
       </div>
     </div>
-    <!--<div :class="$style.options">
-      <span>Add your answer</span>
-      <a href="#" :class="[$style.options-btn, btn-icon]">
-        <i class="icon-Submit_Tick"/>
-      </a>
-    </div>-->
   </div>
 </template>
 
@@ -75,6 +69,10 @@ export default class PostContent extends Vue {
       border-bottom: solid 1px #f3f3f3;
       border-left: solid 1px #f3f3f3;
       border-right: solid 1px #f3f3f3;
+      @media only screen and (max-width: 1024px) {
+        position: relative;
+        top: -10px;
+      }
       div {
         font-weight: 600;
       }
@@ -83,12 +81,6 @@ export default class PostContent extends Vue {
       }
       span {
         color: #9fa3ac;
-      }
-    }
-    @media only screen and (max-width: 1024px) {
-      .info {
-        position: relative;
-        top: -10px;
       }
     }
     .curtain {

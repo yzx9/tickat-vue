@@ -22,7 +22,7 @@ export default class VoteIcon extends Vue {
   get filter() {
     let text = this.type.text
     let seeDetail = this.type.seeDetail
-    if (seeDetail) {
+    if (!seeDetail) {
       if (typeof text === 'number') {
         if (text >= 1e5) {
           return '10w+'
@@ -33,7 +33,7 @@ export default class VoteIcon extends Vue {
         } else {
           return text
         }
-      } else if (typeof text == 'string') {
+      } else if (typeof text === 'string') {
         return text
       } else {
         return text
