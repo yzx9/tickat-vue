@@ -1,4 +1,4 @@
-import router from '@/router'
+import router from '@/router/router'
 import Vuex, { Store as VuexStore } from 'vuex'
 import { store } from '@/store'
 
