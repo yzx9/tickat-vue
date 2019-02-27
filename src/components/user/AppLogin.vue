@@ -36,22 +36,36 @@ const Auth = namespace('Auth')
   }
 })
 export default class AppLogin extends Vue {
-  @Auth.Action('Login') Login!: ({}) => AxiosPromise
   loading = false
   formError = ''
+  redirect: string | undefined = undefined
+  @Auth.Action('Login') Login!: (payload: {
+    username: string
+    password: string
+  }) => AxiosPromise
+
   // hooks
   mounted() {
+    const redirect = this.$route.query['redirect']
+    if (redirect && typeof redirect === 'string') {
+      this.redirect = redirect
+    }
+
     // 模拟登录操作在vuex树中
     this.$message('账号：admin，密码任意')
   }
   // methods
-  submitHandle(form: any) {
+  submitHandle(form: { username: string; password: string }) {
     this.loading = true
     this.Login(form)
       .then(re => {
         this.loading = false
         if (re.data.type === 0) {
-          this.$router.push({ name: 'Index' })
+          if (this.redirect) {
+            this.$router.push(this.redirect)
+          } else {
+            this.$router.push({ name: 'Index' })
+          }
         } else if (re.data.type === 1) {
           this.formError = re.data.message
         }
@@ -59,7 +73,11 @@ export default class AppLogin extends Vue {
       .catch(error => {
         // 模拟登录后跳转
         if (form.username === 'admin') {
-          this.$router.push({ name: 'Index' })
+          if (this.redirect) {
+            this.$router.push(this.redirect)
+          } else {
+            this.$router.push({ name: 'Index' })
+          }
         } else {
           throw error
         }

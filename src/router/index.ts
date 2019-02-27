@@ -34,8 +34,8 @@ export default new Router({
         },
         // user
         {
-          path: '/user',
-          alias: '/user/index',
+          path: '/user/profile',
+          alias: '/user',
           name: 'User',
           component: () => import('@/views/user/index.vue')
         },
