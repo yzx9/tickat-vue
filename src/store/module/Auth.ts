@@ -11,7 +11,7 @@ class AuthState {
 }
 
 class AuthGetters extends Getters<AuthState> {
-  get isAuth() {
+  public get isAuth() {
     return this.state.account.id !== '0'
   }
 }
@@ -29,21 +29,11 @@ class AuthActions extends Actions<
   AuthActions
 > {
   public Login(payload: { username: string; password: string }) {
-    return Axios.post('/api/login', payload)
-      .then(re => {
-        if (re.data.type === 0) {
-          this.commit('SET_AUTH', re.data.data as AccountModel)
-        }
-      })
-      .catch(e => {
-        // 模拟登录
-        if (payload.username === 'admin') {
-          this.commit(
-            'SET_AUTH',
-            new AccountModel('admin', 'admin', 'images/avatars/default.jpg')
-          )
-        }
-      })
+    return Axios.post('/api/login', payload).then(re => {
+      if (re.data.type === 0) {
+        this.commit('SET_AUTH', re.data.data as AccountModel)
+      }
+    })
   }
 }
 

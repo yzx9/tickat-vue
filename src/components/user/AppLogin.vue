@@ -12,7 +12,7 @@
         <LoginForm
           v-model="formError"
           :loading="loading"
-          @submit="submitHandle"
+          @submit="handleSubmit"
         />
         <LoginFooter/>
       </el-col>
@@ -26,6 +26,8 @@ import LoginForm from '@/components/user/LoginForm.vue'
 import LoginFooter from '@/components/user/LoginFooter.vue'
 import { State, Getter, Action, Mutation, namespace } from 'vuex-class'
 import { AxiosPromise } from 'axios'
+import Account from '@/models/Account'
+import StorageOperator from '@/utils/storage'
 
 const Auth = namespace('Auth')
 
@@ -39,53 +41,79 @@ export default class AppLogin extends Vue {
   loading = false
   formError = ''
   redirect: string | undefined = undefined
+  storage = new StorageOperator()
+
   @Auth.Action('Login') Login!: (payload: {
     username: string
     password: string
   }) => AxiosPromise
 
-  // hooks
+  // 假登录
+  @Auth.Mutation('SET_AUTH') SET_AUTH!: (account: Account) => void
+
+  // Hooks
+  created() {
+    let account: Account = this.storage.get('Auth') as Account
+    if (account) {
+      this.SET_AUTH(account)
+      this.Success(false)
+    }
+  }
   mounted() {
     const redirect = this.$route.query['redirect']
     if (redirect && typeof redirect === 'string') {
       this.redirect = redirect
     }
-
-    // 模拟登录操作在vuex树中
+    // 假登录
     this.$message('账号：admin，密码任意')
   }
-  // methods
-  submitHandle(form: { username: string; password: string }) {
+
+  // Methods
+  handleSubmit(form: {
+    username: string
+    password: string
+    isStorage: boolean
+  }) {
     this.loading = true
-    this.Login(form)
+    this.Login({ username: form.username, password: form.password })
       .then(re => {
         this.loading = false
         if (re.data.type === 0) {
-          if (this.redirect) {
-            this.$router.push(this.redirect)
-          } else {
-            this.$router.push({ name: 'Index' })
-          }
+          this.Success(form.isStorage, re.data.data as Account)
         } else if (re.data.type === 1) {
           this.formError = re.data.message
         }
       })
-      .catch(error => {
-        // 模拟登录后跳转
+      .catch(e => {
+        // 假登录
+        console.log(form)
         if (form.username === 'admin') {
-          if (this.redirect) {
-            this.$router.push(this.redirect)
-          } else {
-            this.$router.push({ name: 'Index' })
-          }
+          const account = new Account(
+            'admin',
+            'admin',
+            'images/avatars/default.jpg'
+          )
+          this.SET_AUTH(account)
+          this.Success(form.isStorage, account)
         } else {
-          throw error
+          throw e
         }
       })
       .catch(error => {
         this.loading = false
         this.formError = '服务器开小差了，请稍后再试'
       })
+  }
+  Success(isStorage: boolean, account?: Account) {
+    if (isStorage && account) {
+      this.storage.set('Auth', account)
+    }
+
+    if (this.redirect) {
+      this.$router.push(this.redirect)
+    } else {
+      this.$router.push({ name: 'Index' })
+    }
   }
 }
 </script>

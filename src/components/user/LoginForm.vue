@@ -31,6 +31,12 @@
             clearable
           />
         </el-form-item>
+        <el-form-item prop="isStorage">
+          <el-checkbox
+            v-model="form.isStorage"
+            :class="$style.isStorage"
+          >记住我</el-checkbox>
+        </el-form-item>
         <el-form-item
           prop="error"
           :class="$style.formError"
@@ -70,7 +76,8 @@ export default class LoginForm extends Vue {
   @Prop({ type: Boolean, default: false }) loading!: boolean
   form = {
     username: '',
-    password: ''
+    password: '',
+    isStorage: false
   }
   rules = {
     username: [
@@ -132,6 +139,10 @@ export default class LoginForm extends Vue {
     .btn {
       width: 100%;
     }
+  }
+  .isStorage {
+    display: flex;
+    justify-content: flex-start;
   }
   .formError {
     margin-top: -22px;
