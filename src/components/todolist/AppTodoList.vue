@@ -100,11 +100,16 @@ export default class AppTodoList extends Vue {
   }
   // hooks
   created() {
-    this.$http.get('/todolist').then(re => {
-      re.data.map((todo: Todo) => {
-        this.todos.push(todo)
+    this.$http
+      .get('/todolist')
+      .then(re => {
+        re.data.map((todo: Todo) => {
+          this.todos.push(todo)
+        })
       })
-    })
+      .catch(e => {
+        // TODO: catch error
+      })
 
     // TODO: 假数据
     this.todos.push(
