@@ -53,17 +53,19 @@ export default class AppLogin extends Vue {
 
   // Hooks
   created() {
-    let account: Account = this.storage.get('Auth') as Account
+    // 修改重定向页面
+    const redirect = this.$route.query['redirect']
+    if (redirect && typeof redirect === 'string') {
+      this.redirect = redirect
+    }
+    // 检查storage中是否记住用户信息
+    const account: Account = this.storage.get('Auth') as Account
     if (account) {
       this.SET_AUTH(account)
       this.Success(false)
     }
   }
   mounted() {
-    const redirect = this.$route.query['redirect']
-    if (redirect && typeof redirect === 'string') {
-      this.redirect = redirect
-    }
     // 假登录
     this.$message('账号：admin，密码任意')
   }
@@ -103,7 +105,7 @@ export default class AppLogin extends Vue {
         this.formError = '服务器开小差了，请稍后再试'
       })
   }
-  Success(isStorage: boolean, account?: Account) {
+  Success(isStorage?: boolean, account?: Account) {
     if (isStorage && account) {
       this.storage.set('Auth', account)
     }
