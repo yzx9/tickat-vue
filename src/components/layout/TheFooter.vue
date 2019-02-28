@@ -20,6 +20,8 @@ export default class AppFooter extends Vue {
 
 <style lang="scss" module>
 .footer {
+  display: flex;
+  justify-content: center;
   color: gray;
   margin: 20px 10px;
 }
