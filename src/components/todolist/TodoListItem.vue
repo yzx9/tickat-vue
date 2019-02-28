@@ -6,29 +6,21 @@
     <template slot="title">
       <i
         :class="[$style.checkbox, { [$style.done]: todo.isDone }]"
-        @click.stop="handleDone"
+        @click.stop="onDone"
       />
-      <input
-        v-model="todo.title"
-        :class="$style.title"
-        :readonly="!canEdit"
-      >
+      <p :class="$style.title">{{ todo.title }}</p>
     </template>
-    <EditDiv
-      v-model="todo.content"
-      :canEdit="canEdit"
-      :class="$style.content"
-    />
+    <p :class="[$style.content, { [$style.placeholder]: isPlaceholder}]">{{ content }}</p>
     <div :class="$style.btn">
       <i
         v-if="todo.allowEdit"
-        :class="['fa fa-edit', $style.icon, { [$style.active]: canEdit }]"
-        @click="handleEdit"
+        :class="['fa fa-edit', $style.icon]"
+        @click="onEdit"
       />
       <TodoListItemPopover
         :icon="'fa fa-close'"
         :class="$style.icon"
-        @ok="handleDelete"
+        @ok="onDelete"
       />
     </div>
   </el-collapse-item>
@@ -37,29 +29,37 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
 import Todo from '@/models/Todo'
-import EditDiv from '@/components/widgets/EditDiv.vue'
 import TodoListItemPopover from '@/components/todolist/TodoListItemPopover.vue'
 
 @Component({
   components: {
-    EditDiv,
     TodoListItemPopover
   }
 })
 export default class TodoItem extends Vue {
   @Prop({ type: Object, required: true }) todo!: Todo
-  visible = false
-  canEdit = false
+  popoverVisible = false
 
-  handleDone() {
+  get content() {
+    if (this.todo.content) {
+      return this.todo.content
+    } else {
+      return '添加备注'
+    }
+  }
+  get isPlaceholder() {
+    return this.todo.content.trim() === ''
+  }
+
+  onDone() {
     this.$emit('done', this.todo.id)
   }
-  handleDelete() {
-    this.visible = false
+  onDelete() {
+    this.popoverVisible = false
     this.$emit('delete', this.todo.id)
   }
-  handleEdit() {
-    this.canEdit = !this.canEdit
+  onEdit() {
+    this.$emit('edit', this.todo.id)
   }
 }
 </script>
@@ -71,12 +71,17 @@ export default class TodoItem extends Vue {
     text-align: left;
     word-wrap: break-word;
     width: calc(100% - 75px);
+    &.placeholder {
+      color: darkgrey;
+    }
   }
   .title {
     border: none;
     outline: none;
     width: 100%;
     font-size: 120%;
+    text-align: left;
+    padding-left: 10px;
   }
   .btn {
     padding-right: 30px;

@@ -15,6 +15,7 @@
         @done="handleDone"
         @edit="handleEdit"
         @delete="handleDelete"
+        @change="handleChange"
       />
     </el-collapse>
   </div>
@@ -35,8 +36,8 @@ export default class TodoList extends Vue {
   @Prop({ type: String, default: 'auto' }) height!: string
   activeName: string = ''
 
-  handleChange(id: string) {
-    // do something
+  handleChange(newTodo: { id: string; title: string; content: string }) {
+    this.$emit('change', newTodo)
   }
   handleDone(id: string) {
     this.$emit('done', id)
@@ -44,8 +45,8 @@ export default class TodoList extends Vue {
   handleDelete(id: string) {
     this.$emit('delete', id)
   }
-  handleEdit(todo: Todo) {
-    this.$emit('edit', todo)
+  handleEdit(id: string) {
+    this.$emit('edit', id)
   }
 }
 </script>

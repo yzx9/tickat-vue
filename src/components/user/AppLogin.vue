@@ -86,7 +86,6 @@ export default class AppLogin extends Vue {
       })
       .catch(e => {
         // 假登录
-        console.log(form)
         if (form.username === 'admin') {
           const account = new Account(
             'admin',

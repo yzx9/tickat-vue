@@ -3,8 +3,8 @@
     :class="$style.wrapper"
     v-html="innerText"
     :contenteditable="canEdit"
-    @focus="isLocked = true"
-    @blur="isLocked = false"
+    @focus="onFocus"
+    @blur="onBlur"
     @input="changeText"
   />
 </template>
@@ -14,7 +14,7 @@ import { Vue, Component, Prop, Watch, Model } from 'vue-property-decorator'
 
 @Component
 export default class EditDiv extends Vue {
-  @Prop({ type: String, default: '' }) value!: string
+  @Model('change') value!: string
   @Prop({ type: Boolean, default: true }) canEdit!: boolean
   innerText = this.value
   isLocked = false
@@ -25,9 +25,14 @@ export default class EditDiv extends Vue {
       this.innerText = this.value
     }
   }
-
-  private changeText() {
-    this.$emit('input', this.$el.innerHTML)
+  onFocus() {
+    this.isLocked = true
+  }
+  onBlur() {
+    this.isLocked = false
+  }
+  changeText() {
+    this.$emit('change', this.$el.innerHTML)
   }
 }
 </script>
@@ -36,11 +41,12 @@ export default class EditDiv extends Vue {
 .wrapper {
   width: 100%;
   height: 100%;
+  min-height: 23px;
   word-break: break-all;
-  outline: none;
   user-select: text;
   white-space: pre-wrap;
   text-align: left;
+  padding-left: 5px;
   &[contenteditable='true'] {
     user-modify: read-write-plaintext-only;
     &:empty:before {

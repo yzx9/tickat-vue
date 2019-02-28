@@ -1,30 +1,39 @@
 <template>
-  <el-card
-    shadow="hover"
-    :class="$style.wrapper"
-    :body-style="{ padding:'0px' }"
-  >
-    <template
-      slot="header"
+  <div>
+    <el-card
+      shadow="hover"
+      :class="$style.wrapper"
       :body-style="{ padding:'0px' }"
     >
-      <TodoListInput
-        v-model="newTodoText"
-        @submit="handleAdd"
+      <template
+        slot="header"
+        :body-style="{ padding:'0px' }"
+      >
+        <TodoListInput
+          v-model="newTodoText"
+          @submit="onCreate"
+        />
+      </template>
+      <TodoListItems
+        :todos="filter"
+        :height="listHeight"
+        @delete="onDelete"
+        @done="onDone"
+        @edit="onEdit"
       />
-    </template>
-    <TodoListItems
-      :todos="filter"
-      :height="listHeight"
-      @delete="handleDelete"
-      @done="handleDone"
-      @edit="handleEdit"
+      <TodoListFooter
+        v-model="mode"
+        :todos="todos"
+      />
+    </el-card>
+    <TodoListDialog
+      v-if="dialogVisible"
+      :todo="dialogTodo"
+      :visible="dialogVisible"
+      @submit="handleEdit"
+      @close="onEditClose"
     />
-    <TodoListFooter
-      v-model="mode"
-      :todos="todos"
-    />
-  </el-card>
+  </div>
 </template>
 
 <script lang="ts">
@@ -33,22 +42,25 @@ import Todo from '@/models/Todo'
 import TodoListInput from '@/components/todolist/TodoListInput.vue'
 import TodoListItems from '@/components/todolist/TodoListItems.vue'
 import TodoListFooter, { Mode } from '@/components/todolist/TodoListFooter.vue'
+import TodoListDialog from '@/components/todolist/TodoListDialog.vue'
 
 @Component({
   components: {
     TodoListInput,
     TodoListItems,
-    TodoListFooter
+    TodoListFooter,
+    TodoListDialog
   }
 })
 export default class AppTodoList extends Vue {
   @Prop({ type: String, default: 'auto' }) height!: string
+  todos: Todo[] = []
+  removeTodoIds: string[] = []
+  mode: Mode = Mode.todo
   nextTodoId = 1
   newTodoText = ''
-  removeTodoIds: string[] = []
-  showAlert = false
-  todos: Todo[] = []
-  mode: Mode = Mode.todo
+  dialogTodo: Todo | null | undefined = null
+  dialogVisible = false
   get listHeight() {
     if (this.height && this.height.toLowerCase() !== 'auto') {
       return `calc(${this.height} - 61px)`
@@ -94,7 +106,7 @@ export default class AppTodoList extends Vue {
       })
     })
 
-    // TODO: DELETE demo data
+    // TODO: 假数据
     this.todos.push(
       new Todo((this.nextTodoId++).toString(), '1', new Date(), 'This is first')
     )
@@ -126,7 +138,7 @@ export default class AppTodoList extends Vue {
     }
   }
   // methods
-  handleAdd() {
+  onCreate() {
     const text = this.newTodoText.trim()
     let todo = new Todo((this.nextTodoId++).toString(), text, new Date())
     this.$http
@@ -148,14 +160,21 @@ export default class AppTodoList extends Vue {
       this.newTodoText = ''
     }
   }
-  handleDone(id: string) {
+  onEdit(id: string) {
+    this.dialogTodo = this.todos.find(todo => todo.id === id)
+    this.dialogVisible = true
+  }
+  onEditClose() {
+    this.dialogVisible = false
+  }
+  onDone(id: string) {
     this.todos.map(todo => {
       if (todo.id === id) {
         todo.isDone = !todo.isDone
       }
     })
   }
-  handleDelete(id: string) {
+  onDelete(id: string) {
     this.$http
       .delete(`/todolist/${id}`)
       .then(re => {
@@ -186,6 +205,7 @@ export default class AppTodoList extends Vue {
     }
   }
   handleEdit(todo: Todo) {
+    this.dialogVisible = false
     this.$http
       .put(`/todolist/${todo.id}`, todo)
       .then(re => {
@@ -195,14 +215,15 @@ export default class AppTodoList extends Vue {
         // TODO
       })
 
-    let index = -1
+    let i = -1
     this.todos.map(t => {
       if (t.id === todo.id) {
-        index = this.todos.indexOf(t)
+        i = this.todos.indexOf(t)
       }
     })
-    if (index >= 0) {
-      this.todos[index] = todo
+    if (i >= 0) {
+      this.todos[i].title = todo.title
+      this.todos[i].content = todo.content
     } else {
       this.todos.push(todo)
     }
