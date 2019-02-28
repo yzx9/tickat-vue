@@ -34,7 +34,7 @@
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 import { State, Getter, Action, Mutation, namespace } from 'vuex-class'
 import Todo from '@/models/Todo'
-import ObjectHelper from '@/utils/objectHelper'
+import ObjectHelper from '@/utils/ObjectHelper'
 
 @Component({
   components: {}
