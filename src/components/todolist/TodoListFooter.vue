@@ -5,19 +5,19 @@
       <li>
         <a
           :class="{ [$style.active]: isAll }"
-          @click="handleChange('all')"
+          @click="onChange('all')"
         >全部</a>
       </li>
       <li>
         <a
           :class="{ [$style.active]: isTodo }"
-          @click="handleChange('todo')"
+          @click="onChange('todo')"
         >待办</a>
       </li>
       <li>
         <a
           :class="{ [$style.active]: isCompleted }"
-          @click="handleChange('completed')"
+          @click="onChange('completed')"
         >完成</a>
       </li>
     </ul>
@@ -51,7 +51,7 @@ export default class TodoFooter extends Vue {
     return this.mode === Mode.completed
   }
 
-  handleChange(mode: Mode) {
+  onChange(mode: Mode) {
     this.$emit('change', mode)
   }
 }

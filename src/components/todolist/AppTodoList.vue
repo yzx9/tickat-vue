@@ -1,26 +1,36 @@
 <template>
-  <div>
+  <div :class="$style.wrapper">
     <el-card
       shadow="hover"
-      :class="$style.wrapper"
-      :body-style="{ padding:'0px' }"
+      :body-style="bodyStyle"
     >
       <template
         slot="header"
-        :body-style="{ padding:'0px' }"
+        :body-style="bodyStyle"
       >
-        <TodoListInput
+        <input
           v-model="newTodoText"
-          @submit="onCreate"
-        />
+          title="Add New Todo"
+          placeholder="Add New Todo"
+          :class="$style.input"
+          @keydown.enter="onCreate"
+        >
       </template>
-      <TodoListItems
-        :todos="filter"
-        :height="listHeight"
-        @delete="onDelete"
-        @done="onDone"
-        @edit="onEdit"
-      />
+      <div
+        :style="{ height: itemsHeight }"
+        :class="$style.items"
+      >
+        <el-collapse accordion>
+          <TodoListItem
+            v-for="todo in filter"
+            :key="todo.id"
+            :todo="todo"
+            @delete="onDelete"
+            @done="onDone"
+            @edit="onEdit"
+          />
+        </el-collapse>
+      </div>
       <TodoListFooter
         v-model="mode"
         :todos="todos"
@@ -39,15 +49,13 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
 import Todo from '@/models/Todo'
-import TodoListInput from '@/components/todolist/TodoListInput.vue'
-import TodoListItems from '@/components/todolist/TodoListItems.vue'
+import TodoListItem from '@/components/todolist/TodoListItem.vue'
 import TodoListFooter, { Mode } from '@/components/todolist/TodoListFooter.vue'
 import TodoListDialog from '@/components/todolist/TodoListDialog.vue'
 
 @Component({
   components: {
-    TodoListInput,
-    TodoListItems,
+    TodoListItem,
     TodoListFooter,
     TodoListDialog
   }
@@ -57,11 +65,16 @@ export default class AppTodoList extends Vue {
   todos: Todo[] = []
   removeTodoIds: string[] = []
   mode: Mode = Mode.todo
+  bodyStyle = {
+    padding: '0px'
+  }
+  // new Todo
   nextTodoId = 1
   newTodoText = ''
+  // dialog
   dialogTodo: Todo | null | undefined = null
   dialogVisible = false
-  get listHeight() {
+  get itemsHeight() {
     if (this.height && this.height.toLowerCase() !== 'auto') {
       return `calc(${this.height} - 61px)`
     } else {
@@ -239,5 +252,41 @@ export default class AppTodoList extends Vue {
 <style lang="scss" module>
 .wrapper {
   margin: 20px 10px;
+  .input {
+    border: none;
+    outline: none;
+    width: calc(100% - 40px);
+    height: 100%;
+    font-size: 130%;
+    border-bottom-style: solid;
+    border-bottom-width: thin;
+    border-bottom-color: gray;
+    border-bottom: 1px solid #e6e6e6;
+    box-shadow: inset 0 -2px 1px rgba(0, 0, 0, 0.03);
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  .items {
+    overflow-y: auto;
+    // 滚动条样式
+    &::-webkit-scrollbar {
+      // 滚动条整体样式
+      // 高宽分别对应横竖滚动条的尺寸
+      width: 4px;
+      height: 4px;
+    }
+    &::-webkit-scrollbar-thumb {
+      // 滚动条里面小方块
+      border-radius: 5px;
+      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+      background: rgba(0, 0, 0, 0.2);
+    }
+    &::-webkit-scrollbar-track {
+      // 滚动条里面轨道
+      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+      border-radius: 0;
+      background: rgba(0, 0, 0, 0.1);
+    }
+  }
 }
 </style>

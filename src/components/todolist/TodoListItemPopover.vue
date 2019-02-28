@@ -10,12 +10,12 @@
       <el-button
         size="mini"
         type="text"
-        @click="handleCancel"
+        @click="onClose"
       >取消</el-button>
       <el-button
         size="mini"
         type="primary"
-        @click="handleOk"
+        @click="submit"
       >确定</el-button>
     </div>
     <i
@@ -29,15 +29,14 @@
 import { Vue, Component, Prop } from 'vue-property-decorator'
 @Component
 export default class TodoItemPopover extends Vue {
-  @Prop({ type: String, required: true })
-  icon!: string
+  @Prop({ type: String, required: true }) icon!: string
   visible = false
 
-  handleCancel() {
-    this.visible = false
+  submit() {
+    this.$emit('submit')
   }
-  handleOk() {
-    this.$emit('ok')
+  onClose() {
+    this.visible = false
   }
 }
 </script>

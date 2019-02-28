@@ -20,7 +20,7 @@
       <TodoListItemPopover
         :icon="'fa fa-close'"
         :class="$style.icon"
-        @ok="onDelete"
+        @submit="onDelete"
       />
     </div>
   </el-collapse-item>
