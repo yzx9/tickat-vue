@@ -60,7 +60,8 @@ export default class AppCard extends Vue {
     }
   }
   .clearfix {
-    &::before &::after {
+    &::before,
+    &::after {
       display: table;
       content: '';
     }
