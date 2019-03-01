@@ -2,12 +2,16 @@
 <template>
   <el-row :class="$style.wrapper">
     <el-col :span="16">
-      <AppPost :post="main"/>
+      <AppPost
+        :post="main"
+        :class="$style.item"
+      />
     </el-col>
     <el-col :span="8">
       <AppPost
         v-for="post in posts"
         :key="post.id"
+        :class="$style.item"
         :post="post"
       />
     </el-col>
@@ -89,6 +93,9 @@ export default class Post extends Vue {
 </script>
 
 <style lang="scss" module>
+.item {
+  margin: 20px 10px;
+}
 .header {
   padding: 0px;
 }

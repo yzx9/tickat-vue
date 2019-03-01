@@ -1,14 +1,20 @@
 <template>
   <el-row :class="$style.wrapper">
     <el-col :span="8">
-      <TodoList :height="'auto'"/>
+      <TodoList
+        :class="$style.item"
+        :height="'auto'"
+      />
     </el-col>
     <el-col
       v-for="card in cards"
       :key="card.id"
       :span="8"
     >
-      <Card :card="card"/>
+      <Card
+        :class="$style.item"
+        :card="card"
+      />
     </el-col>
   </el-row>
 </template>
@@ -43,5 +49,8 @@ export default class Home extends Vue {
 <style lang="scss" module>
 .wrapper {
   margin: 0 30px;
+  .item {
+    margin: 20px 10px;
+  }
 }
 </style>

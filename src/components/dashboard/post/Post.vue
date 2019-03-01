@@ -1,8 +1,5 @@
 <template>
-  <el-card
-    :class="$style.wrapper"
-    shadow="hover"
-  >
+  <el-card shadow="hover">
     <template slot="header">
       <PostHeader :post="post"/>
     </template>
@@ -53,7 +50,4 @@ export default class AppPost extends Vue {
 </script>
 
 <style lang="scss" module>
-.wrapper {
-  margin: 20px 10px;
-}
 </style>

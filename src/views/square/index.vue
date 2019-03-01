@@ -5,7 +5,10 @@
       :key="post.id"
       :span="8"
     >
-      <AppPost :post="post"/>
+      <AppPost
+        :post="post"
+        :class="$style.item"
+      />
     </el-col>
   </el-row>
 </template>
@@ -73,4 +76,7 @@ export default class Index extends Vue {
 </script>
 
 <style lang="scss" module>
+.item {
+  margin: 20px 10px;
+}
 </style>

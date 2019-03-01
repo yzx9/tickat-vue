@@ -1,6 +1,5 @@
 <template>
   <el-card
-    :class="$style.wrapper"
     :body-style="{ padding: '0px' }"
     shadow="hover"
   >
@@ -40,9 +39,6 @@ export default class AppCard extends Vue {
 </script>
 
 <style lang="scss" module>
-.wrapper {
-  margin: 20px 10px;
-}
 .content {
   img {
     width: 100%;
