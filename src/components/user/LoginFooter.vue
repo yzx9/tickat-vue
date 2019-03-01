@@ -80,10 +80,13 @@ export default class LoginFooter extends Vue {
 
 <style lang="scss" module>
 .footer {
-  padding-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 30px;
   border-top: solid 1px #e6e9f1;
   p {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
   }
   div {
     a {

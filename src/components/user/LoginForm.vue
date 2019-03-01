@@ -134,6 +134,7 @@ export default class LoginForm extends Vue {
     display: flex;
     justify-content: space-between;
     .btn {
+      float: right;
     }
   }
   .isStorage {
