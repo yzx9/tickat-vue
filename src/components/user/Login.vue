@@ -37,7 +37,7 @@ const Auth = namespace('Auth')
     LoginFooter
   }
 })
-export default class AppLogin extends Vue {
+export default class Login extends Vue {
   loading = false
   formError = ''
   redirect: string | undefined = undefined

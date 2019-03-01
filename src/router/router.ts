@@ -15,29 +15,29 @@ export default new Router({
           path: '',
           alias: '/index',
           name: 'Index',
-          component: () => import('@/views/home/index.vue')
+          component: () => import('@/views/home/Index.vue')
         },
         {
           path: '/about',
           name: 'About',
-          component: () => import('@/views/home/about.vue')
+          component: () => import('@/views/home/About.vue')
         },
         {
           path: '/group',
           name: 'Group',
-          component: () => import('@/views/group/index.vue')
+          component: () => import('@/views/group/Index.vue')
         },
         {
           path: '/square',
           name: 'Square',
-          component: () => import('@/views/square/index.vue')
+          component: () => import('@/views/square/Index.vue')
         },
         // user
         {
           path: '/user/profile',
           alias: '/user',
           name: 'User',
-          component: () => import('@/views/user/index.vue')
+          component: () => import('@/views/user/Index.vue')
         },
         // Error Page
         {
@@ -59,17 +59,17 @@ export default new Router({
         {
           path: '/login',
           name: 'Login',
-          component: () => import('@/views/user/login.vue')
+          component: () => import('@/views/user/Login.vue')
         },
         {
           path: '/signup',
           name: 'Signup',
-          component: () => import('@/views/user/signup.vue')
+          component: () => import('@/views/user/Signup.vue')
         },
         {
           path: '/UserLicense',
           name: 'UserLicense',
-          component: () => import('@/views/user/license.vue')
+          component: () => import('@/views/user/License.vue')
         }
       ]
     },

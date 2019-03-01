@@ -32,7 +32,7 @@ import LoginFooter from '@/components/user/LoginFooter.vue'
     LoginFooter
   }
 })
-export default class AppSignup extends Vue {
+export default class Signup extends Vue {
   loading = false
   formError = ''
   submitHandle(form: any) {

@@ -49,9 +49,11 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
 import Todo from '@/models/Todo'
-import TodoListItem from '@/components/todolist/TodoListItem.vue'
-import TodoListFooter, { Mode } from '@/components/todolist/TodoListFooter.vue'
-import TodoListDialog from '@/components/todolist/TodoListDialog.vue'
+import TodoListItem from '@/components/dashboard/todolist/TodoListItem.vue'
+import TodoListFooter, {
+  Mode
+} from '@/components/dashboard/todolist/TodoListFooter.vue'
+import TodoListDialog from '@/components/dashboard/todolist/TodoListDialog.vue'
 
 @Component({
   components: {

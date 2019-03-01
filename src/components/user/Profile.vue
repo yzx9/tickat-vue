@@ -53,7 +53,7 @@ import VoteIcon, { VoteIconType } from '@/components/widgets/VoteIcon.vue'
     VoteIcon
   }
 })
-export default class AppUserInfo extends Vue {
+export default class Profile extends Vue {
   options: VoteIconType = { id: 'options', icon: 'icon-Options' }
   user = {
     avatar: 'images/avatars/user.jpg',

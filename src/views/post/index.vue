@@ -17,7 +17,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { Post as PostClass, Type } from '@/models/Post'
-import AppPost from '@/components/post/AppPost.vue'
+import AppPost from '@/components/dashboard/post/Post.vue'
 
 @Component({
   components: {

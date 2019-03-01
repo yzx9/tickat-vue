@@ -29,7 +29,7 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
 import Todo from '@/models/Todo'
-import TodoListItemPopover from '@/components/todolist/TodoListItemPopover.vue'
+import TodoListItemPopover from '@/components/dashboard/todolist/TodoListItemPopover.vue'
 
 @Component({
   components: {

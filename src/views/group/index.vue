@@ -13,7 +13,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { State, Getter, Action, Mutation, namespace } from 'vuex-class'
-import AppPost from '@/components/post/AppPost.vue'
+import AppPost from '@/components/dashboard/post/Post.vue'
 import { Post, Type } from '@/models/Post'
 
 @Component({

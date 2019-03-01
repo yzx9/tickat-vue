@@ -48,7 +48,7 @@ export default class EditDiv extends Vue {
   text-align: left;
   padding-left: 5px;
   &[contenteditable='true'] {
-    user-modify: read-write-plaintext-only;
+    // user-modify: read-write-plaintext-only;
     &:empty:before {
       content: attr(placeholder);
       display: block;

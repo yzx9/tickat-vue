@@ -1,27 +1,27 @@
 <template>
   <div>
-    <AppLogo
+    <BaseLogo
       :height="logo.height"
       :width="logo.width"
     />
-    <AppLogin/>
+    <Login/>
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-import AppLogo from '@/components/layout/AppLogo.vue'
-import AppLogin from '@/components/user/AppLogin.vue'
+import BaseLogo from '@/components/layout/BaseLogo.vue'
+import Login from '@/components/user/Login.vue'
 import TheFooter from '@/components/layout/TheFooter.vue'
 
 @Component({
   components: {
-    AppLogo,
-    AppLogin,
+    BaseLogo,
+    Login,
     TheFooter
   }
 })
-export default class Login extends Vue {
+export default class LoginView extends Vue {
   private logo = {
     height: '100px',
     width: '100px'

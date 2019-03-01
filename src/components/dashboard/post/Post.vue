@@ -21,9 +21,9 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
 import { Post, Type } from '@/models/Post'
-import PostHeader from '@/components/post/PostHeader.vue'
-import PostContent from '@/components/post/PostContent.vue'
-import PostFooter from '@/components/post/PostFooter.vue'
+import PostHeader from '@/components/dashboard/post/PostHeader.vue'
+import PostContent from '@/components/dashboard/post/PostContent.vue'
+import PostFooter from '@/components/dashboard/post/PostFooter.vue'
 
 @Component({
   components: {

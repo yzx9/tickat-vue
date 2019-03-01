@@ -11,7 +11,7 @@
       style="display: inline;"
       :route="{ name: 'Index' }"
     >
-      <AppLogo
+      <BaseLogo
         :height="'36px'"
         :width="'36px'"
       />
@@ -62,14 +62,14 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 import { State, Getter, Action, Mutation, namespace } from 'vuex-class'
-import AppLogo from '@/components/layout/AppLogo.vue'
+import BaseLogo from '@/components/layout/BaseLogo.vue'
 import Account from '@/models/Account'
 
 const Auth = namespace('Auth')
 
 @Component({
   components: {
-    AppLogo
+    BaseLogo
   }
 })
 export default class TheNav extends Vue {
@@ -86,12 +86,11 @@ export default class TheNav extends Vue {
   }
 
   onLogout() {
-    this.$confirm('确定注销？', '提示', { type: 'warning' })
-      .then(() => {
-        this.logout()
-        this.$message({ type: 'success', message: '注销成功' })
-        this.$router.push({ name: 'Login' })
-      })
+    this.$confirm('确定注销？', '提示', { type: 'warning' }).then(() => {
+      this.logout()
+      this.$message({ type: 'success', message: '注销成功' })
+      this.$router.push({ name: 'Login' })
+    })
   }
   onSelect(active: string) {
     // TODO

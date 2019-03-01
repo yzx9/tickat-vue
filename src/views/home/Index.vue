@@ -1,34 +1,34 @@
 <template>
-  <el-row>
+  <el-row :class="$style.wrapper">
     <el-col :span="8">
-      <AppTodoList :height="'auto'"/>
+      <TodoList :height="'auto'"/>
     </el-col>
     <el-col
       v-for="card in cards"
       :key="card.id"
       :span="8"
     >
-      <AppCard :card="card"/>
+      <Card :card="card"/>
     </el-col>
   </el-row>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import Card from '@/models/Card'
-import AppTodoList from '@/components/todolist/AppTodoList.vue'
-import AppCard from '@/components/card/AppCard.vue'
+import CardClass from '@/models/Card'
+import TodoList from '@/components/dashboard/todolist/TodoList.vue'
+import Card from '@/components/dashboard/card/Card.vue'
 
 @Component({
   components: {
-    AppTodoList,
-    AppCard
+    TodoList,
+    Card
   }
 })
 export default class Home extends Vue {
   // TODO: Delete Demo Data, Post True Data
-  public cards: Card[] = [
-    new Card(
+  public cards: CardClass[] = [
+    new CardClass(
       'card-1',
       'Yuan',
       'images/avatars/avatar-11.png',
@@ -41,9 +41,7 @@ export default class Home extends Vue {
 </script>
 
 <style lang="scss" module>
-.warp {
-  .header {
-    padding: 0px;
-  }
+.wrapper {
+  margin: 0 30px;
 }
 </style>

@@ -1,17 +1,17 @@
 <template>
   <div>
-    <AppUserInfo/>
+    <Profile/>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { State, Getter, Action, Mutation, namespace } from 'vuex-class'
-import AppUserInfo from '@/components/user/AppUserInfo.vue'
+import Profile from '@/components/user/Profile.vue'
 
 @Component({
   components: {
-    AppUserInfo
+    Profile
   }
 })
 export default class Index extends Vue {}

@@ -1,27 +1,27 @@
 <template>
   <div>
-    <AppLogo
+    <BaseLogo
       :height="logo.height"
       :width="logo.width"
     />
-    <AppSignup/>
+    <Signup/>
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-import AppLogo from '@/components/layout/AppLogo.vue'
-import AppSignup from '@/components/user/AppSignup.vue'
+import BaseLogo from '@/components/layout/BaseLogo.vue'
+import Signup from '@/components/user/Signup.vue'
 import TheFooter from '@/components/layout/TheFooter.vue'
 
 @Component({
   components: {
-    AppLogo,
-    AppSignup,
+    BaseLogo,
+    Signup,
     TheFooter
   }
 })
-export default class Signup extends Vue {
+export default class SignupView extends Vue {
   logo = {
     height: '100px',
     width: '100px'
