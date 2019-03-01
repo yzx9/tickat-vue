@@ -41,7 +41,6 @@ export default class AppLogin extends Vue {
   loading = false
   formError = ''
   redirect: string | undefined = undefined
-  storage = new StorageOperator()
 
   @Auth.Action('Login') Login!: (payload: {
     username: string
@@ -58,16 +57,10 @@ export default class AppLogin extends Vue {
     if (redirect && typeof redirect === 'string') {
       this.redirect = redirect
     }
-    // 检查storage中是否记住用户信息
-    const account: Account = this.storage.get('Auth') as Account
-    if (account) {
-      this.SET_AUTH(account)
-      this.Success(false)
-    }
   }
   mounted() {
     // 假登录
-    this.$message('账号：admin，密码任意')
+    this.$message({ type: 'warning', message: '账号：admin，密码任意' })
   }
 
   // Methods
@@ -107,7 +100,7 @@ export default class AppLogin extends Vue {
   }
   Success(isStorage?: boolean, account?: Account) {
     if (isStorage && account) {
-      this.storage.set('Auth', account)
+      StorageOperator.set('Auth', account)
     }
 
     if (this.redirect) {

@@ -43,11 +43,8 @@
           :error="error"
         ></el-form-item>
         <el-form-item>
-          <el-row>
-            <el-col
-              :span="12"
-              :class="$style.option"
-            >
+          <el-row :class="$style.option">
+            <el-col :span="12">
               <el-button
                 type="text"
                 @click="redirectHandle"
@@ -137,7 +134,6 @@ export default class LoginForm extends Vue {
     display: flex;
     justify-content: space-between;
     .btn {
-      width: 100%;
     }
   }
   .isStorage {

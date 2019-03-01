@@ -1,17 +1,17 @@
 export default class StorageOperator {
-  localStorage = window.localStorage
+  static localStorage = window.localStorage
 
-  public get length() {
+  public static get len() {
     return this.localStorage.length
   }
 
-  public set(key: string, value: string | object) {
+  public static set(key: string, value: string | object) {
     if (typeof value === 'object') {
       value = JSON.stringify(value)
     }
     this.localStorage.setItem(key, value)
   }
-  public get(key: string) {
+  public static get(key: string) {
     const value = this.localStorage.getItem(key) || ''
 
     try {
@@ -20,13 +20,13 @@ export default class StorageOperator {
       return value
     }
   }
-  public key(index: number) {
+  public static key(index: number) {
     return this.localStorage.key(index)
   }
-  public remove(key: string) {
+  public static remove(key: string) {
     this.localStorage.removeItem(key)
   }
-  public clear() {
+  public static clear() {
     this.localStorage.clear()
   }
 }

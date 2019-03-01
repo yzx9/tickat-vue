@@ -1,4 +1,4 @@
 import router from '@/router/router'
-import '@/router/navigationGuards'
+import '@/router/guards'
 
 export default router

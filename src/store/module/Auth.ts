@@ -1,6 +1,7 @@
 import AccountModel from '@/models/Account'
 import { Getters, Mutations, Actions, Module } from 'vuex-smart-module'
 import Axios from 'axios'
+import StorageOperator from '@/utils/Storage'
 
 class AuthState {
   public account: AccountModel = new AccountModel(
@@ -34,6 +35,13 @@ class AuthActions extends Actions<
         this.commit('SET_AUTH', re.data.data as AccountModel)
       }
     })
+  }
+  public Logout() {
+    this.commit(
+      'SET_AUTH',
+      new AccountModel('0', 'null', 'images/avatars/default.jpg')
+    )
+    StorageOperator.remove('Auth')
   }
 }
 

@@ -3,7 +3,7 @@
     mode="horizontal"
     :default-active="defaultActive"
     :class="$style.wrapper"
-    @select="handleSelect"
+    @select="onSelect"
     router
   >
     <el-menu-item
@@ -24,13 +24,31 @@
       index="group"
       :route="{ name: 'Group'}"
     >圈子</el-menu-item>
-    <el-menu-item
+    <el-submenu
       index="user"
       :class="$style.right"
-      :route="authRouter"
+      popper-class="123"
     >
-      <img :src="avatar">
-    </el-menu-item>
+      <template slot="title">
+        <img :src="avatar">
+      </template>
+      <el-menu-item
+        v-if="!isAuth"
+        index="user/login"
+        :route="{ name: 'Login'}"
+      >登录</el-menu-item>
+      <el-menu-item
+        index="user/profile"
+        v-if="isAuth"
+        :route="{ name: 'User' }"
+      >我的</el-menu-item>
+      <el-menu-item
+        index="user/logout"
+        v-if="isAuth"
+        :route="{}"
+        @click="onLogout"
+      >注销</el-menu-item>
+    </el-submenu>
     <el-menu-item
       index="message"
       :class="$style.right"
@@ -57,6 +75,7 @@ const Auth = namespace('Auth')
 export default class TheNav extends Vue {
   @Auth.State('account') account!: Account
   @Auth.Getter('isAuth') isAuth!: boolean
+  @Auth.Action('Logout') logout!: () => void
   defaultActive = '/home'
 
   get authRouter() {
@@ -66,8 +85,17 @@ export default class TheNav extends Vue {
     return `${process.env.BASE_URL}${this.account.avatar}`
   }
 
-  handleSelect(active: string) {
-    // ???
+  onLogout() {
+    this.$confirm('确定注销？', '提示', { type: 'warning' })
+      .then(() => {
+        this.logout()
+        this.$message({ type: 'success', message: '注销成功' })
+        this.$router.push({ name: 'Login' })
+      })
+      .catch(() => {})
+  }
+  onSelect(active: string) {
+    // TODO
   }
 }
 </script>
