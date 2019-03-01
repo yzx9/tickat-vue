@@ -92,7 +92,6 @@ export default class TheNav extends Vue {
         this.$message({ type: 'success', message: '注销成功' })
         this.$router.push({ name: 'Login' })
       })
-      .catch(() => {})
   }
   onSelect(active: string) {
     // TODO

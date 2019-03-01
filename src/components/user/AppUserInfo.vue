@@ -79,22 +79,26 @@ export default class AppUserInfo extends Vue {
       {
         id: 'post',
         icon: 'icon-Post',
-        text: this.user.post
+        text: this.user.post,
+        seeDetail: true
       },
       {
         id: 'followers',
         icon: 'icon-Followers',
-        text: this.user.followers
+        text: this.user.followers,
+        seeDetail: true
       },
       {
         id: 'following',
         icon: 'icon-Following',
-        text: this.user.following
+        text: this.user.following,
+        seeDetail: true
       },
       {
         id: 'upvote',
         icon: 'icon-Upvote',
-        text: this.user.upvote
+        text: this.user.upvote,
+        seeDetail: true
       }
     ]
   }
