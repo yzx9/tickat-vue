@@ -1,11 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { Auth } from '@/store/module/Auth'
 import { createStore, Module } from 'vuex-smart-module'
 import State from '@/store/State'
 import Getters from '@/store/Getters'
 import Mutations from '@/store/Mutations'
 import Actions from '@/store/Actions'
+import { Auth } from '@/store/module/Auth'
+import { Pomodoro } from './module/Pomodoro'
 
 Vue.use(Vuex)
 
@@ -16,7 +17,8 @@ const store = createStore(
     mutations: Mutations,
     actions: Actions,
     modules: {
-      Auth
+      Auth,
+      Pomodoro
     }
   }),
   {

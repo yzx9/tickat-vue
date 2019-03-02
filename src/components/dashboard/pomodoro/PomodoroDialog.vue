@@ -31,19 +31,35 @@
 import { Component, Vue, Prop } from 'vue-property-decorator'
 import { State, Getter, Action, Mutation, namespace } from 'vuex-class'
 
+const Pomodoro = namespace('Pomodoro')
+
 @Component({
   components: {}
 })
 export default class PomodoroDialog extends Vue {
   @Prop({ type: Boolean, required: true }) visible!: boolean
+  @Prop({ type: Number, default: 50 }) interval!: number
+  @Prop({ type: Array, default: [] }) callback!: ((flag: boolean) => void)[]
+  @Pomodoro.Mutation('SHOW_DIALOG') showDialog!: (payload?: {
+    flag: boolean
+  }) => void
+  @Pomodoro.Action('SetPomodoro') setPomodoro!: (payload: {
+    totalMinutes: number
+    interval?: number
+    callback?: ((flag: boolean) => void)[]
+  }) => void
   form = {}
   time = 25
 
   onSubmit() {
-    this.$emit('submit', this.time)
+    this.setPomodoro({
+      totalMinutes: this.time,
+      interval: this.interval,
+      callback: this.callback
+    })
   }
   onClose() {
-    this.$emit('close')
+    this.showDialog({ flag: false })
   }
 }
 </script>

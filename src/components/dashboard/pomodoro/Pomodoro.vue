@@ -6,7 +6,7 @@
           :size="180"
           :color="color"
           :percentage="percentage"
-          :interval="interval"
+          :interval="50"
         />
       </template>
       <div :class="$style.footer">
@@ -33,11 +33,6 @@
         </div>
       </div>
     </el-card>
-    <PomodoroDialog
-      :visible="dialogVisible"
-      @close="onDialogClose"
-      @submit="onDialogSubmit"
-    />
   </div>
 </template>
 
@@ -48,6 +43,8 @@ import Clock from '@/components/widgets/Clock.vue'
 import PomodoroDialog from '@/components/dashboard/pomodoro/PomodoroDialog.vue'
 import GradientColor from '@/utils/GradientColor'
 
+const PomodoroStore = namespace('Pomodoro')
+
 @Component({
   components: {
     Clock,
@@ -55,13 +52,13 @@ import GradientColor from '@/utils/GradientColor'
   }
 })
 export default class Pomodoro extends Vue {
-  isPomodoroTime = false
-  totalTime = 0
-  passTime = 0
-  pause = false
-  timer: number | undefined = undefined
-  dialogVisible = false
-  interval = 100
+  @PomodoroStore.State('isPomodoroTime') isPomodoroTime!: boolean
+  @PomodoroStore.Getter('percentage') percentage!: number
+  @PomodoroStore.Mutation('PAUSE') pause!: () => void
+  @PomodoroStore.Mutation('END_TIME') end!: () => void
+  @PomodoroStore.Mutation('SHOW_DIALOG') showDialog!: (payload?: {
+    flag: boolean
+  }) => void
 
   get color() {
     return GradientColor.getColorByPercentage(
@@ -70,58 +67,15 @@ export default class Pomodoro extends Vue {
       this.percentage / 100
     )
   }
-  get percentage() {
-    if (this.isPomodoroTime) {
-      return (this.passTime / this.totalTime) * 100
-    } else {
-      return 100
-    }
-  }
-  // Hooks
-  beforeDestory() {
-    if (this.timer === undefined) {
-      clearInterval(this.timer)
-    }
-  }
   // Methods
   onDialogOpen() {
-    this.dialogVisible = true
-  }
-  onDialogSubmit(time: number) {
-    this.dialogVisible = false
-    this.isPomodoroTime = true
-    this.totalTime = time * 60 * 1000
-    this.passTime = 0
-    this.timer = setInterval(() => {
-      if (this.pause) {
-        return
-      } else if (this.passTime < this.totalTime) {
-        this.passTime += this.interval
-      } else {
-        if (this.timer) {
-          clearInterval(this.timer)
-        }
-        this.isPomodoroTime = false
-        this.$alert('OK')
-      }
-    }, this.interval)
-  }
-  onDialogClose() {
-    this.dialogVisible = false
+    this.showDialog({ flag: true })
   }
   onPause(flag?: boolean) {
-    if (flag !== undefined) {
-      this.pause = flag
-    } else {
-      this.pause = !this.pause
-    }
+    this.pause()
   }
   onExit() {
-    if (this.timer) {
-      clearInterval(this.timer)
-    }
-    this.isPomodoroTime = false
-    this.$alert('退出')
+    this.end()
   }
 }
 </script>

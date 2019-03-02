@@ -18,10 +18,7 @@
         @click="submit"
       >确定</el-button>
     </div>
-    <i
-      slot="reference"
-      :class="icon"
-    />
+    <slot slot="reference"/>
   </el-popover>
 </template>
 
@@ -29,7 +26,6 @@
 import { Vue, Component, Prop } from 'vue-property-decorator'
 @Component
 export default class TodoItemPopover extends Vue {
-  @Prop({ type: String, required: true }) icon!: string
   visible = false
 
   submit() {

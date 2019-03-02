@@ -13,15 +13,17 @@
     <p :class="[$style.content, { [$style.placeholder]: isPlaceholder}]">{{ content }}</p>
     <div :class="$style.btn">
       <i
+        :class="['el-icon-time', $style.icon]"
+        @click="onPomodoro"
+      />
+      <i
         v-if="todo.allowEdit"
-        :class="['fa fa-edit', $style.icon]"
+        :class="['el-icon-edit', $style.icon]"
         @click="onEdit"
       />
-      <TodoListItemPopover
-        :icon="'fa fa-close'"
-        :class="$style.icon"
-        @submit="onDelete"
-      />
+      <TodoListItemPopover @submit="onDelete">
+        <i :class="['el-icon-close', $style.icon]"/>
+      </TodoListItemPopover>
     </div>
   </el-collapse-item>
 </template>
@@ -30,6 +32,9 @@
 import { Vue, Component, Prop } from 'vue-property-decorator'
 import Todo from '@/models/Todo'
 import TodoListItemPopover from '@/components/dashboard/todolist/TodoListItemPopover.vue'
+import { State, Getter, Action, Mutation, namespace } from 'vuex-class'
+
+const Pomodoro = namespace('Pomodoro')
 
 @Component({
   components: {
@@ -38,6 +43,9 @@ import TodoListItemPopover from '@/components/dashboard/todolist/TodoListItemPop
 })
 export default class TodoItem extends Vue {
   @Prop({ type: Object, required: true }) todo!: Todo
+  @Pomodoro.Mutation('SHOW_DIALOG') showDialog!: (payload?: {
+    flag: boolean
+  }) => void
   popoverVisible = false
 
   get content() {
@@ -60,6 +68,9 @@ export default class TodoItem extends Vue {
   }
   onEdit() {
     this.$emit('edit', this.todo.id)
+  }
+  onPomodoro() {
+    this.showDialog({ flag: true })
   }
 }
 </script>
@@ -89,7 +100,6 @@ export default class TodoItem extends Vue {
     font-size: 130%;
     line-height: 50%;
     .icon {
-      margin-left: 15px;
       margin-right: 15px;
       opacity: 0.8;
       filter: alpha(opacity=100);
