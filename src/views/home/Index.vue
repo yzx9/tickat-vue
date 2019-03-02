@@ -6,6 +6,9 @@
         :height="'auto'"
       />
     </el-col>
+    <el-col :span="8">
+      <Pomodoro :class="$style.item"/>
+    </el-col>
     <el-col
       v-for="card in cards"
       :key="card.id"
@@ -24,11 +27,13 @@ import { Component, Vue } from 'vue-property-decorator'
 import CardClass from '@/models/Card'
 import TodoList from '@/components/dashboard/todolist/TodoList.vue'
 import Card from '@/components/dashboard/card/Card.vue'
+import Pomodoro from '@/components/dashboard/pomodoro/Pomodoro.vue'
 
 @Component({
   components: {
     TodoList,
-    Card
+    Card,
+    Pomodoro
   }
 })
 export default class Home extends Vue {

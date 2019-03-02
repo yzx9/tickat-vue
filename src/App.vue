@@ -7,9 +7,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-body {
-  background-color: #eef3f6;
   // 滚动条样式
   &::-webkit-scrollbar {
     // 滚动条整体样式
@@ -29,6 +26,9 @@ body {
     border-radius: 0;
     background: rgba(0, 0, 0, 0.1);
   }
+}
+body {
+  background-color: #eef3f6;
 }
 .app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
