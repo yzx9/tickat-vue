@@ -1,5 +1,23 @@
 <template>
   <el-row>
+    <el-col :span="24">
+      <el-carousel
+        :interval="4000"
+        :type="type"
+        height="200px"
+      >
+        <el-carousel-item
+          v-for="banner in banners"
+          :key="banner"
+          :class="$style.imgWrapper"
+        >
+          <img
+            :src="publicPath + banner"
+            :class="$style.img"
+          >
+        </el-carousel-item>
+      </el-carousel>
+    </el-col>
     <el-col
       v-for="post in posts"
       :key="post.id"
@@ -25,8 +43,20 @@ import { Post, Type } from '@/models/Post'
   }
 })
 export default class Index extends Vue {
+  @State('clientWidth') clientWidth!: number
+  publicPath = process.env.BASE_URL
+  banners = ['images/banner1.jpg', 'images/banner2.jpg', 'images/banner3.jpg']
+
+  get type() {
+    if (this.clientWidth >= 768) {
+      return 'card'
+    } else {
+      return null
+    }
+  }
+
   // TODO: Delete Demo Data, Post True Data
-  public posts: Post[] = [
+  posts: Post[] = [
     new Post(
       'post-1',
       Type.image,
@@ -78,5 +108,11 @@ export default class Index extends Vue {
 <style lang="scss" module>
 .item {
   margin: 20px 10px;
+}
+.imgWrapper {
+  text-align: center;
+  .img {
+    height: 100%;
+  }
 }
 </style>

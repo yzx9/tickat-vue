@@ -2,6 +2,42 @@
   <router-view class="app"/>
 </template>
 
+<script lang="ts">
+import { Vue, Component } from 'vue-property-decorator'
+import { State, Getter, Action, Mutation, namespace } from 'vuex-class'
+
+@Component
+export default class Index extends Vue {
+  @Mutation('SET_CLIENT_WIDTH') setClientWidth!: (payload: {
+    width: number
+  }) => void
+  @Mutation('SET_CLIENT_HEIGHT') setClientHeight!: (payload: {
+    height: number
+  }) => void
+
+  // Hooks
+  mounted() {
+    // 初始值
+    this.setClientWidth({
+      width: document.documentElement.clientWidth
+    })
+    this.setClientHeight({
+      height: document.documentElement.clientHeight
+    })
+    // 监听事件
+    window.onresize = () => {
+      this.setClientWidth({
+        width: document.documentElement.clientWidth
+      })
+      this.setClientHeight({
+        height: document.documentElement.clientHeight
+      })
+    }
+  }
+}
+</script>
+
+
 <style lang="scss">
 * {
   margin: 0;
