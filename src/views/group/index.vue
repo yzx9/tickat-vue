@@ -1,14 +1,31 @@
 <template>
   <el-row>
     <el-col
-      v-for="post in posts"
-      :key="post.id"
-      :span="8"
+      :span="5"
+      :class="$style.leftBar"
     >
-      <AppPost
-        :class="$style.item"
-        :post="post"
-      />
+      <GroupSelector/>
+    </el-col>
+    <el-col :span="14">
+      <el-row>
+        <el-col
+          v-for="post in posts"
+          :key="post.id"
+          :span="12"
+        >
+          <AppPost
+            :class="$style.post"
+            :post="post"
+          />
+        </el-col>
+      </el-row>
+    </el-col>
+    <el-col
+      :span="5"
+      :class="$style.rightBar"
+    >
+      <VoteCard/>
+      <AdCard :class="$style.ad"/>
     </el-col>
   </el-row>
 </template>
@@ -18,10 +35,16 @@ import { Component, Vue } from 'vue-property-decorator'
 import { State, Getter, Action, Mutation, namespace } from 'vuex-class'
 import AppPost from '@/components/dashboard/post/Post.vue'
 import { Post, Type } from '@/models/Post'
+import GroupSelector from '@/components/dashboard/selector/GroupSelector.vue'
+import VoteCard from '@/components/dashboard/card/VoteCard.vue'
+import AdCard from '@/components/dashboard/card/AdCard.vue'
 
 @Component({
   components: {
-    AppPost
+    AppPost,
+    GroupSelector,
+    VoteCard,
+    AdCard
   }
 })
 export default class Index extends Vue {
@@ -76,7 +99,18 @@ export default class Index extends Vue {
 </script>
 
 <style lang="scss" module>
-.item {
-  margin: 20px 10px;
+.leftBar {
+  padding: 10px;
+  padding-left: 20px;
+}
+.rightBar {
+  padding: 10px;
+  padding-right: 20px;
+}
+.post {
+  margin: 10px 10px;
+}
+.ad {
+  margin-top: 10px;
 }
 </style>
