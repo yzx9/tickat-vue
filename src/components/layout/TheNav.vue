@@ -7,25 +7,25 @@
     router
   >
     <el-menu-item
-      index="index"
+      index="Index"
       style="display: inline;"
       :route="{ name: 'Index' }"
     >
       <BaseLogo
         :height="'36px'"
-        :width="'36px'"
+        :width="'108px'"
       />
     </el-menu-item>
     <el-menu-item
-      index="square"
+      index="Square"
       :route="{ name: 'Square'}"
     >广场</el-menu-item>
     <el-menu-item
-      index="group"
+      index="Group"
       :route="{ name: 'Group'}"
     >圈子</el-menu-item>
     <el-submenu
-      index="user"
+      index="User-Submenu"
       :class="$style.right"
       popper-class="123"
     >
@@ -34,23 +34,23 @@
       </template>
       <el-menu-item
         v-if="!isAuth"
-        index="user/login"
+        index="Login"
         :route="{ name: 'Login'}"
       >登录</el-menu-item>
       <el-menu-item
-        index="user/profile"
+        index="User"
         v-if="isAuth"
         :route="{ name: 'User' }"
       >我的</el-menu-item>
       <el-menu-item
-        index="user/logout"
+        index="Logout"
         v-if="isAuth"
         :route="{}"
         @click="onLogout"
       >注销</el-menu-item>
     </el-submenu>
     <el-menu-item
-      index="message"
+      index="Message"
       :class="$style.right"
       :route="{ name: 'Message'}"
     >
@@ -76,8 +76,10 @@ export default class TheNav extends Vue {
   @Auth.State('account') account!: Account
   @Auth.Getter('isAuth') isAuth!: boolean
   @Auth.Action('Logout') logout!: () => void
-  defaultActive = '/home'
 
+  get defaultActive() {
+    return this.$route.name
+  }
   get authRouter() {
     return { name: this.isAuth ? 'User' : 'Login' }
   }

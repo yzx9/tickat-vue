@@ -24,7 +24,7 @@ import TheFooter from '@/components/layout/TheFooter.vue'
 export default class SignupView extends Vue {
   logo = {
     height: '100px',
-    width: '100px'
+    width: '300px'
   }
 }
 </script>
