@@ -6,6 +6,8 @@
 import { Vue, Component } from 'vue-property-decorator'
 import { State, Getter, Action, Mutation, namespace } from 'vuex-class'
 
+const Pomodoro = namespace('Pomodoro')
+
 @Component
 export default class Index extends Vue {
   @Mutation('SET_CLIENT_WIDTH') setClientWidth!: (payload: {
@@ -14,6 +16,9 @@ export default class Index extends Vue {
   @Mutation('SET_CLIENT_HEIGHT') setClientHeight!: (payload: {
     height: number
   }) => void
+  @Pomodoro.State('isPomodoroTime') isPomodoroTime!: boolean
+  @Pomodoro.Mutation('PAUSE') pause!: (payload?: { flag: boolean }) => void
+  @Pomodoro.Getter('remainingTime') remainingTime?: number
 
   // Hooks
   mounted() {
@@ -33,10 +38,53 @@ export default class Index extends Vue {
         height: document.documentElement.clientHeight
       })
     }
+    window.onblur = () => {
+      if (this.isPomodoroTime) {
+        this.pause({ flag: true })
+      }
+    }
+    window.onfocus = () => {
+      if (this.isPomodoroTime) {
+        this.pause({ flag: false })
+
+        let msg = '欢迎回来！在您离开的这一段时间，我们已经帮您暂停计时。'
+        if (this.remainingTime) {
+          let time = this.formatTime(this.remainingTime)
+          msg += `还有${time}就可以休息了哦！`
+        }
+        this.$notify({
+          title: '当前番茄钟尚未完成',
+          message: msg,
+          type: 'warning'
+        })
+      }
+    }
+  }
+
+  // Methods
+  formatTime(time: number) {
+    time = Math.floor(time / 1000)
+    const hours = Math.floor(time / 3600)
+    time -= hours * 3600
+    const minutes = Math.floor(time / 60)
+    // time -= minutes * 60
+    // const seconds = Math.floor(time / 60)
+
+    let str = ''
+    if (hours) {
+      str += `${hours}小时`
+    }
+    if (minutes) {
+      if (!hours && minutes <= 1) {
+        str = '不足一分钟'
+      } else {
+        str += `${minutes}分钟`
+      }
+    }
+    return str
   }
 }
 </script>
-
 
 <style lang="scss">
 * {

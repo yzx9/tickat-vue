@@ -1,23 +1,36 @@
 import { Getters, Mutations, Actions, Module } from 'vuex-smart-module'
 
 class PomodoroState {
+  /**是否处于番茄时间 */
   public isPomodoroTime = false
+  /**总时间, 单位为毫秒 */
   public totalTime = 0
+  /**已消耗时间, 单位为毫秒 */
   public passTime = 0
+  /**是否暂停 */
   public pause = false
+  /**计时器 */
   public timer: number | undefined = undefined
+  /**回调函数集 */
   public callback: ((flag: boolean) => void)[] = []
+  /**显示对话框 */
   public dialogVisible: boolean = false
+  /**时间间隔(毫秒), 越小越精确, 但消耗资源也越大 */
   public interval = 1000
 }
 
 class PomodoroGetters extends Getters<PomodoroState> {
+  /**已完成的百分比，0 ~ 100 */
   public get percentage() {
     if (this.state.isPomodoroTime) {
       return (this.state.passTime / this.state.totalTime) * 100
     } else {
       return 100
     }
+  }
+  /**剩余时间 */
+  public get remainingTime() {
+    return this.state.totalTime - this.state.passTime
   }
 }
 
