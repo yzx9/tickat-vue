@@ -21,6 +21,7 @@
     <el-col
       v-for="post in posts"
       :key="post.id"
+      :xs="{ span: 24 }"
       :span="8"
     >
       <AppPost

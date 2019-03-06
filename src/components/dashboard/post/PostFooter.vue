@@ -1,22 +1,43 @@
 <template>
-  <div :class="$style.footer">
-    <div :class="$style.left">
+  <el-row
+    :gutter="20"
+    :class="$style.footer"
+  >
+    <el-col
+      :span="20"
+      :class="$style.left"
+    >
       <VoteIcon
-        v-for="icon in voteIconsLeft"
-        :key="icon.id"
-        :type="icon"
+        :type="voteIcons.upvote"
         @click="handleClick"
       />
-    </div>
-    <div :class="$style.right">
       <VoteIcon
-        v-for="icon in voteIconsRight"
-        :key="icon.id"
-        :type="icon"
+        :type="voteIcons.downvote"
         @click="handleClick"
       />
-    </div>
-  </div>
+      <!-- <VoteIcon
+        :type="voteIcons.repost"
+        @click="handleClick"
+      />-->
+      <VoteIcon
+        :type="voteIcons.favorite"
+        @click="handleClick"
+      />
+      <VoteIcon
+        :type="voteIcons.comment"
+        @click="handleClick"
+      />
+    </el-col>
+    <el-col
+      :span="4"
+      :class="$style.right"
+    >
+      <VoteIcon
+        :type="voteIcons.share"
+        @click="handleClick"
+      />
+    </el-col>
+  </el-row>
 </template>
 
 <script lang="ts">
@@ -31,42 +52,33 @@ import VoteIcon, { VoteIconType } from '@/components/widgets/VoteIcon.vue'
 })
 export default class PostFooter extends Vue {
   @Prop({ type: Object, required: true }) post!: Post
-  get voteIconsLeft(): VoteIconType[] {
-    return [
-      {
-        id: 'upvote',
-        icon: 'icon-Upvote'
-      },
-      {
-        id: 'downvote',
-        icon: 'icon-Downvote'
-      },
-      // {
-      //   id: 'repost',
-      //   icon: 'icon-Repost'
-      // },
-      {
-        id: 'favorite',
-        icon: 'icon-Favorite_Full',
-        text: this.post.favorite
-      },
-      {
-        id: 'comment',
-        icon: 'icon-Comment_Full',
-        text: this.post.comment
-      }
-    ]
-  }
-  get voteIconsRight(): VoteIconType[] {
-    return [
-      {
-        id: 'share',
-        icon: 'icon-Share'
-      }
-    ]
-  }
-  get voteIcons(): VoteIconType[] {
-    return this.voteIconsLeft.concat(this.voteIconsRight)
+  voteIcons = {
+    upvote: {
+      id: 'upvote',
+      icon: 'icon-Upvote'
+    },
+    downvote: {
+      id: 'downvote',
+      icon: 'icon-Downvote'
+    },
+    repost: {
+      id: 'repost',
+      icon: 'icon-Repost'
+    },
+    favorite: {
+      id: 'favorite',
+      icon: 'icon-Favorite_Full',
+      text: this.post.favorite
+    },
+    comment: {
+      id: 'comment',
+      icon: 'icon-Comment_Full',
+      text: this.post.comment
+    },
+    share: {
+      id: 'share',
+      icon: 'icon-Share'
+    }
   }
 
   handleClick(id: string) {
@@ -78,22 +90,13 @@ export default class PostFooter extends Vue {
 <style lang="scss" module>
 .footer {
   margin-top: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  text-decoration: none;
-  .left,
-  .options {
-    margin-left: 5px;
-    div {
-      margin-right: 15px;
-    }
+  .left div {
+    margin-right: 20px;
   }
   .right {
-    margin-right: 5px;
-    div {
-      margin-left: 15px;
-    }
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
   }
 }
 </style>

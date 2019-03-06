@@ -1,16 +1,21 @@
 <template>
   <el-row>
     <el-col
+      :xs="{ span: 24 }"
       :span="5"
       :class="$style.leftBar"
     >
       <GroupSelector/>
     </el-col>
-    <el-col :span="14">
+    <el-col
+      :xs="{ span: 24 }"
+      :span="13"
+    >
       <el-row>
         <el-col
           v-for="post in posts"
           :key="post.id"
+          :xs="{ span: 24 }"
           :span="12"
         >
           <AppPost
@@ -21,8 +26,9 @@
       </el-row>
     </el-col>
     <el-col
-      :span="5"
-      :class="$style.rightBar"
+      :xs="{ span: 24 }"
+      :span="6"
+      :class="[$style.rightBar, 'hidden-xs']"
     >
       <VoteCard/>
       <AdCard :class="$style.ad"/>
@@ -33,6 +39,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { State, Getter, Action, Mutation, namespace } from 'vuex-class'
+import 'element-ui/lib/theme-chalk/display.css'
 import AppPost from '@/components/dashboard/post/Post.vue'
 import { Post, Type } from '@/models/Post'
 import GroupSelector from '@/components/dashboard/selector/GroupSelector.vue'

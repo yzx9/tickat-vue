@@ -63,12 +63,12 @@ export interface VoteIconType {
   i {
     font-size: 20px;
     cursor: pointer;
-    margin-right: 15px;
     color: #9fa3ac;
   }
   span {
     color: #1e1633;
     font-weight: 600;
+    margin-left: 5px;
   }
   i,
   span {
