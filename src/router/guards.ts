@@ -1,6 +1,6 @@
 import router from '@/router/router'
 import { store } from '@/store'
-import storageOperator from '@/utils/storage'
+import storageOperator from '@/utils/Storage'
 
 const unAuthPath = ['Login', 'Signup', 'square', 'NotFound']
 

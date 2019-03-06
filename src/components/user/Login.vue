@@ -27,7 +27,7 @@ import LoginFooter from '@/components/user/LoginFooter.vue'
 import { State, Getter, Action, Mutation, namespace } from 'vuex-class'
 import { AxiosPromise } from 'axios'
 import Account from '@/models/Account'
-import storageOperator from '@/utils/storage'
+import storageOperator from '@/utils/Storage'
 
 const Auth = namespace('Auth')
 

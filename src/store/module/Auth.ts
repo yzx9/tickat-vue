@@ -1,7 +1,7 @@
 import AccountModel from '@/models/Account'
 import { Getters, Mutations, Actions, Module } from 'vuex-smart-module'
 import Axios from 'axios'
-import storageOperator from '@/utils/storage'
+import storageOperator from '@/utils/Storage'
 
 class AuthState {
   public account: AccountModel = new AccountModel(
