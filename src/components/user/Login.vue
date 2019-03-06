@@ -27,7 +27,7 @@ import LoginFooter from '@/components/user/LoginFooter.vue'
 import { State, Getter, Action, Mutation, namespace } from 'vuex-class'
 import { AxiosPromise } from 'axios'
 import Account from '@/models/Account'
-import StorageOperator from '@/utils/Storage'
+import storageOperator from '@/utils/storage'
 
 const Auth = namespace('Auth')
 
@@ -100,7 +100,7 @@ export default class Login extends Vue {
   }
   Success(isStorage?: boolean, account?: Account) {
     if (isStorage && account) {
-      StorageOperator.set('Auth', account)
+      storageOperator.set('Auth', account)
     }
 
     if (this.redirect) {

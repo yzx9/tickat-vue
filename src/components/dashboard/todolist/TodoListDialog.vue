@@ -34,7 +34,7 @@
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 import { State, Getter, Action, Mutation, namespace } from 'vuex-class'
 import Todo from '@/models/Todo'
-import ObjectHelper from '@/utils/ObjectHelper'
+import objectHelper from '@/utils/objectHelper'
 
 @Component({
   components: {}
@@ -42,7 +42,7 @@ import ObjectHelper from '@/utils/ObjectHelper'
 export default class TodoListEditDialog extends Vue {
   @Prop({ type: Object, default: null }) todo!: Todo
   @Prop({ type: Boolean, required: true }) visible!: boolean
-  form: Todo = ObjectHelper.clone(this.todo)
+  form: Todo = objectHelper.clone(this.todo)
 
   onSubmit() {
     this.$emit('submit', this.form)

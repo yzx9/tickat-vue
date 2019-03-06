@@ -1,6 +1,6 @@
 import router from '@/router/router'
 import { store } from '@/store'
-import StorageOperator from '@/utils/Storage'
+import storageOperator from '@/utils/storage'
 
 const unAuthPath = ['Login', 'Signup', 'square', 'NotFound']
 
@@ -27,7 +27,7 @@ router.beforeEach((to, from, next) => {
 })
 
 function StorageAuth() {
-  const account: Account = StorageOperator.get('Auth') as Account
+  const account: Account = storageOperator.get('Auth') as Account
   if (account) {
     store.commit('Auth/SET_AUTH', account)
     return true

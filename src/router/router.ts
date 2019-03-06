@@ -25,19 +25,19 @@ export default new Router({
         {
           path: '/group',
           name: 'Group',
-          component: () => import('@/views/group/Index.vue')
+          component: () => import('@/views/group/index.vue')
         },
         {
           path: '/square',
           name: 'Square',
-          component: () => import('@/views/square/Index.vue')
+          component: () => import('@/views/square/index.vue')
         },
         // user
         {
           path: '/user/profile',
           alias: '/user',
           name: 'User',
-          component: () => import('@/views/user/Index.vue')
+          component: () => import('@/views/user/index.vue')
         },
         // Error Page
         {
@@ -69,7 +69,7 @@ export default new Router({
         {
           path: '/UserLicense',
           name: 'UserLicense',
-          component: () => import('@/views/user/License.vue')
+          component: () => import('@/views/user/license.vue')
         }
       ]
     },
