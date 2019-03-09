@@ -1,7 +1,7 @@
 <template>
   <el-card
-    :body-style="{ padding: '0px' }"
     shadow="hover"
+    :body-style="{ padding: '0px' }"
   >
     <!-- content -->
     <div :class="$style.content">

@@ -122,9 +122,9 @@ export default class GroupSelector extends Vue {
     }
     let id = node.id.substr(0, node.id.indexOf('-'))
     if (regs.filter.test(node.id)) {
-      console.log('filter')
+      // console.log('filter')
     } else if (regs.edit.test(node.id)) {
-      console.log('edit')
+      // console.log('edit')
     } else if (regs.exit.test(node.id)) {
       this.myGroups.map(a => {
         if (a.id === id) {
@@ -137,7 +137,7 @@ export default class GroupSelector extends Vue {
     this.currentPage = current
   }
   loadNode(node: any, resolve: (treeNode: TreeNode[]) => void) {
-    console.log(node)
+    // console.log(node)
     if (node.level === 0) {
       return resolve(this.filter)
     }

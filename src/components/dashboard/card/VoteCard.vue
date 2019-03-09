@@ -1,5 +1,5 @@
 <template>
-  <el-card>
+  <el-card shadow="hover">
     <el-form>
       <el-form-item :class="$style.topic">
         <h1>{{ topic.title }}</h1>

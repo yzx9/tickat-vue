@@ -1,12 +1,11 @@
 <template>
   <el-card
+    shadow="always"
     :body-style="{ padding: '0px' }"
-    shadow="hover"
   >
-    <img
-      :src="image"
-      :class="$style.img"
-    >
+    <div :class="$style.content">
+      <img :src="image">
+    </div>
   </el-card>
 </template>
 
@@ -23,7 +22,10 @@ export default class AdCard extends Vue {
 </script>
 
 <style lang="scss" module>
-.img {
-  width: 100%;
+.content {
+  img {
+    width: 100%;
+    display: block;
+  }
 }
 </style>
