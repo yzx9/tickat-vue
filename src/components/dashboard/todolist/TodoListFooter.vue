@@ -1,6 +1,6 @@
 <template>
   <div :class="$style.footer">
-    <span :class="$style.count">{{ count }} items left</span>
+    <span :class="[$style.count, 'hidden-sm-and-down']">Todo: {{ count }}</span>
     <ul :class="$style.filter">
       <li>
         <a
@@ -21,13 +21,14 @@
         >完成</a>
       </li>
     </ul>
-    <span :class="$style['flex-helper']">{{ count }} items left</span>
+    <span :class="[$style['flex-helper'], 'hidden-sm-and-down']">Todo:{{ count }}</span>
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Prop, Model } from 'vue-property-decorator'
 import Todo from '@/models/Todo'
+import 'element-ui/lib/theme-chalk/display.css'
 
 @Component
 export default class TodoFooter extends Vue {

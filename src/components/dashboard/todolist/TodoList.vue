@@ -78,7 +78,7 @@ export default class AppTodoList extends Vue {
   dialogVisible = false
   get itemsHeight() {
     if (this.height && this.height.toLowerCase() !== 'auto') {
-      return `calc(${this.height} - 61px)`
+      return `calc(${this.height} - 104px)`
     } else {
       return 'auto'
     }
