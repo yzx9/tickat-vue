@@ -1,18 +1,9 @@
 <template>
-  <el-card
-    shadow="hover"
-    :class="$style.wrapper"
-  >
+  <el-card shadow="hover" :class="$style.wrapper">
     <template slot="header">
-      <el-input
-        :placeholder="placeholder"
-        v-model="query"
-      >
+      <el-input :placeholder="placeholder" v-model="query">
         <template slot="append">
-          <i
-            class="el-icon-menu"
-            @click="onModeChange"
-          />
+          <i class="el-icon-menu" @click="onModeChange" />
         </template>
       </el-input>
     </template>
@@ -57,124 +48,91 @@ export default class GroupSelector extends Vue {
   }
 
   get total() {
-    let groups: TreeNode[]
-    if (this.flag) {
-      groups = this.myGroups
-    } else {
-      groups = this.allGroups
-    }
-    return groups
+    return this.flag ? this.myGroups : this.allGroups
   }
+
   get filter() {
+    const query = this.query.toLowerCase()
+    const cur = this.currentPage
+    const size = this.pageSize
+    const start = (cur - 1) * size
+
     return this.total
-      .filter(a => {
-        let label = a.label.toLowerCase()
-        let query = this.query.toLowerCase()
-        return label.indexOf(query) >= 0
-      })
-      .slice(
-        (this.currentPage - 1) * this.pageSize,
-        this.currentPage * this.pageSize
-      )
+      .filter(({ label }) => label.toLowerCase().indexOf(query) >= 0)
+      .slice(start, start + size)
   }
+
   get placeholder() {
-    if (this.flag) {
-      return '我的圈子'
-    } else {
-      return '全部圈子'
-    }
+    return this.flag ? '我的圈子' : '全部圈子'
   }
+
   get emptyText() {
-    if (this.query === '') {
-      return '暂无数据'
-    } else {
-      return '无匹配圈子'
-    }
+    return this.query === '' ? '暂无数据' : '无匹配圈子'
   }
+
   // Hooks
   mounted() {
+    const mock = (i: number) => ({
+      id: `${i}`,
+      label: `group ${i}`,
+      src: `${i}`
+    })
+
     for (let i = 0; i <= 6; i++) {
-      this.myGroups.push({
-        id: `${i}`,
-        label: `group ${i}`,
-        src: `${i}`
-      })
+      this.myGroups.push(mock(i))
     }
     for (let i = 0; i <= 11; i++) {
-      this.allGroups.push({
-        id: `${i}`,
-        label: `group ${i}`,
-        src: `${i}`
-      })
+      this.allGroups.push(mock(i))
     }
   }
+
   // Methods
   onModeChange() {
     this.flag = !this.flag
     this.query = ''
   }
+
   onNodeClick(node: TreeNode) {
-    let regs = {
-      filter: /-filter/,
-      edit: /-edit/,
-      exit: /-exit/,
-      join: /-join/
+    const regs = {
+      filter: /-filter$/,
+      edit: /-edit$/,
+      exit: /-exit$/,
+      join: /-join$/
     }
-    let id = node.id.substr(0, node.id.indexOf('-'))
+
     if (regs.filter.test(node.id)) {
       // console.log('filter')
     } else if (regs.edit.test(node.id)) {
       // console.log('edit')
     } else if (regs.exit.test(node.id)) {
-      this.myGroups.map(a => {
-        if (a.id === id) {
-          this.myGroups.splice(this.myGroups.indexOf(a), 1)
-        }
-      })
+      const id = node.id.substr(0, node.id.lastIndexOf('-'))
+      this.myGroups
+        .filter(a => a.id === id)
+        .map((a, i, arr) => arr.splice(i, 1))
     }
   }
+
   onCurrentChange(current: number) {
     this.currentPage = current
   }
+
   loadNode(node: any, resolve: (treeNode: TreeNode[]) => void) {
     // console.log(node)
     if (node.level === 0) {
       return resolve(this.filter)
-    }
-    if (node.level === 2) {
+    } else if (node.level === 2) {
       return resolve([])
     }
 
-    let id = node.data.id
-    let flag = 0
-    for (let a of this.myGroups) {
-      if (a.id === id) {
-        return resolve([
-          {
-            id: `${id}-filter`,
-            label: '查看',
-            isLeaf: true
-          },
-          {
-            id: `${id}-edit`,
-            label: '编辑',
-            isLeaf: true
-          },
-          {
-            id: `${id}-exit`,
-            label: '退出',
-            isLeaf: true
-          }
+    const id = node.data.id
+    const group = this.myGroups.find(a => a.id === id)
+    return group
+      ? resolve([
+          { id: `${id}-filter`, label: '查看', isLeaf: true },
+          { id: `${id}-edit`, label: '编辑', isLeaf: true },
+          { id: `${id}-exit`, label: '退出', isLeaf: true }
         ])
-      }
-    }
-    return resolve([
-      {
-        id: `${id}-filter`,
-        label: '查看',
-        isLeaf: true
-      }
-    ])
+      : resolve([{ id: `${id}-filter`, label: '查看', isLeaf: true }])
   }
 }
 

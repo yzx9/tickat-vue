@@ -14,18 +14,18 @@
           :loading="loading"
           @submit="handleSubmit"
         />
-        <LoginFooter/>
+        <LoginFooter />
       </el-col>
     </el-row>
   </div>
 </template>
 
 <script lang="ts">
+import { AxiosPromise } from 'axios'
 import { Vue, Component } from 'vue-property-decorator'
 import LoginForm from '@/components/user/LoginForm.vue'
 import LoginFooter from '@/components/user/LoginFooter.vue'
-import { State, Getter, Action, Mutation, namespace } from 'vuex-class'
-import { AxiosPromise } from 'axios'
+import { namespace } from 'vuex-class'
 import Account from '@/models/Account'
 import storageOperator from '@/utils/Storage'
 
@@ -47,7 +47,7 @@ export default class Login extends Vue {
     password: string
   }) => AxiosPromise
 
-  // 假登录
+  // MOCK
   @Auth.Mutation('SET_AUTH') SET_AUTH!: (account: Account) => void
 
   // Hooks
@@ -58,8 +58,9 @@ export default class Login extends Vue {
       this.redirect = redirect
     }
   }
+
   mounted() {
-    // 假登录
+    // MOCK
     this.$message({ type: 'warning', message: '账号：admin，密码任意' })
   }
 
@@ -70,7 +71,10 @@ export default class Login extends Vue {
     isStorage: boolean
   }) {
     this.loading = true
-    this.Login({ username: form.username, password: form.password })
+    this.Login({
+      username: form.username,
+      password: form.password
+    })
       .then(re => {
         this.loading = false
         if (re.data.type === 0) {
@@ -80,7 +84,7 @@ export default class Login extends Vue {
         }
       })
       .catch(e => {
-        // 假登录
+        // MOCK
         if (form.username === 'admin') {
           const account = new Account(
             'admin',
@@ -98,6 +102,7 @@ export default class Login extends Vue {
         this.formError = '服务器开小差了，请稍后再试'
       })
   }
+
   Success(isStorage?: boolean, account?: Account) {
     if (isStorage && account) {
       storageOperator.set('Auth', account)

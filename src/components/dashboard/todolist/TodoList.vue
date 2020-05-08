@@ -1,25 +1,16 @@
 <template>
   <div :class="$style.wrapper">
-    <el-card
-      shadow="hover"
-      :body-style="bodyStyle"
-    >
-      <template
-        slot="header"
-        :body-style="bodyStyle"
-      >
+    <el-card shadow="hover" :body-style="bodyStyle">
+      <template slot="header" :body-style="bodyStyle">
         <input
           v-model="newTodoText"
           title="Add New Todo"
           placeholder="Add New Todo"
           :class="$style.input"
           @keydown.enter="onCreate"
-        >
+        />
       </template>
-      <div
-        :style="{ height: itemsHeight }"
-        :class="$style.items"
-      >
+      <div :style="{ height: itemsHeight }" :class="$style.items">
         <el-collapse accordion>
           <TodoListItem
             v-for="todo in filter"
@@ -31,10 +22,7 @@
           />
         </el-collapse>
       </div>
-      <TodoListFooter
-        v-model="mode"
-        :todos="todos"
-      />
+      <TodoListFooter v-model="mode" :todos="todos" />
     </el-card>
     <TodoListDialog
       v-if="dialogVisible"
@@ -64,88 +52,74 @@ import TodoListDialog from '@/components/dashboard/todolist/TodoListDialog.vue'
 })
 export default class AppTodoList extends Vue {
   @Prop({ type: String, default: 'auto' }) height!: string
+
   todos: Todo[] = []
   removeTodoIds: string[] = []
   mode: Mode = Mode.todo
   bodyStyle = {
     padding: '0px'
   }
+
   // new Todo
   nextTodoId = 1
   newTodoText = ''
+
   // dialog
   dialogTodo: Todo | null | undefined = null
   dialogVisible = false
-  get itemsHeight() {
-    if (this.height && this.height.toLowerCase() !== 'auto') {
-      return `calc(${this.height} - 104px)`
-    } else {
-      return 'auto'
-    }
-  }
-  get filter() {
-    if (!this.todos.length) {
-      return null
-    }
 
-    let filter: Todo[] = []
-    switch (this.mode) {
-      case Mode.all:
-        filter = this.todos
-        break
-      case Mode.todo:
-        this.todos.map(todo => {
-          if (!todo.isDone) {
-            filter.push(todo)
-          }
-        })
-        break
-      case Mode.completed:
-        this.todos.map(todo => {
-          if (todo.isDone) {
-            filter.push(todo)
-          }
-        })
-        break
-      default:
-        filter = this.todos
-        break
-    }
-    return filter
+  get itemsHeight() {
+    return this.height && this.height.toLowerCase() !== 'auto'
+      ? `calc(${this.height} - 104px)`
+      : 'auto'
   }
+
+  get filter() {
+    if (!this.todos.length) return null
+
+    switch (this.mode) {
+      case Mode.todo:
+        return this.todos.filter(todo => !todo.isDone)
+      case Mode.completed:
+        return this.todos.filter(todo => todo.isDone)
+      case Mode.all:
+      default:
+        return this.todos
+    }
+  }
+
   // hooks
-  created() {
-    this.$http
-      .get('/todolist')
-      .then(re => {
-        re.data.map((todo: Todo) => {
-          this.todos.push(todo)
-        })
+  async created() {
+    try {
+      const re = await this.$http.get('/todolist')
+      re.data.map((todo: Todo) => {
+        this.todos.push(todo)
       })
-      .catch(e => {
-        // TODO: catch error
-      })
+    } catch (e) {
+      // TODO: catch error
+    }
 
     // TODO: 假数据
-    this.todos.push(
-      new Todo((this.nextTodoId++).toString(), '1', new Date(), 'This is first')
-    )
-    this.todos.push(
+    const todos = [
+      new Todo(
+        (this.nextTodoId++).toString(),
+        '1',
+        new Date(),
+        'This is first'
+      ),
       new Todo(
         (this.nextTodoId++).toString(),
         '2',
         new Date(),
         'OMG, what happened to cause I am not the first'
-      )
-    )
-    this.todos.push(
+      ),
       new Todo(
         (this.nextTodoId++).toString(),
         '3',
         new Date(),
         'Well, I am third'
       )
-    )
+    ]
     for (let i = 0; i < 0; i++) {
       this.todos.push(
         new Todo(
@@ -157,6 +131,7 @@ export default class AppTodoList extends Vue {
       )
     }
   }
+
   // methods
   onCreate() {
     const text = this.newTodoText.trim()
@@ -180,13 +155,16 @@ export default class AppTodoList extends Vue {
       this.newTodoText = ''
     }
   }
+
   onEdit(id: string) {
     this.dialogTodo = this.todos.find(todo => todo.id === id)
     this.dialogVisible = true
   }
+
   onEditClose() {
     this.dialogVisible = false
   }
+
   onDone(id: string) {
     this.todos.map(todo => {
       if (todo.id === id) {
@@ -194,6 +172,7 @@ export default class AppTodoList extends Vue {
       }
     })
   }
+
   onDelete(id: string) {
     this.$http
       .delete(`/todolist/${id}`)

@@ -29,13 +29,11 @@ class AuthActions extends Actions<
   AuthMutations,
   AuthActions
 > {
-  public Login(payload: { username: string; password: string }) {
-    return Axios.post('/api/login', payload).then(re => {
-      if (re.data.type === 0) {
-        this.commit('SET_AUTH', re.data.data as AccountModel)
-      }
-    })
+  public async Login(payload: { username: string; password: string }) {
+    const re = await Axios.post('/api/login', payload)
+    this.commit('SET_AUTH', re.data as AccountModel)
   }
+
   public Logout() {
     this.commit(
       'SET_AUTH',

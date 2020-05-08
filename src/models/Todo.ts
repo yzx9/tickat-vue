@@ -7,6 +7,7 @@ export default class Todo {
   public set monday(flag: boolean) {
     this.repeat[0] = flag
   }
+
   /** 星期二 */
   public get tuesday() {
     return this.getRe(1)
@@ -14,6 +15,7 @@ export default class Todo {
   public set tuesday(flag: boolean) {
     this.repeat[1] = flag
   }
+
   /** 星期三 */
   public get wednesday() {
     return this.getRe(2)
@@ -21,6 +23,7 @@ export default class Todo {
   public set wednesday(flag: boolean) {
     this.repeat[2] = flag
   }
+
   /** 星期四 */
   public get thursday() {
     return this.getRe(3)
@@ -28,6 +31,7 @@ export default class Todo {
   public set thursday(flag: boolean) {
     this.repeat[3] = flag
   }
+
   /** 星期五 */
   public get friday() {
     return this.getRe(4)
@@ -35,6 +39,7 @@ export default class Todo {
   public set friday(flag: boolean) {
     this.repeat[4] = flag
   }
+
   /** 星期六 */
   public get saturday() {
     return this.getRe(5)
@@ -42,6 +47,7 @@ export default class Todo {
   public set saturday(flag: boolean) {
     this.repeat[5] = flag
   }
+
   /** 星期天 */
   public get sunday() {
     return this.getRe(6)
@@ -49,10 +55,12 @@ export default class Todo {
   public set sunday(flag: boolean) {
     this.repeat[6] = flag
   }
+
   /** 是否为重复代办 */
   public get isRepeat() {
     return this.isRe
   }
+
   private isRe: boolean = false
   private startDate: Date = new Date()
   private endDate: Date = new Date()
