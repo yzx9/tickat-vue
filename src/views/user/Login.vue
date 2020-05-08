@@ -1,10 +1,7 @@
 <template>
   <div>
-    <BaseLogo
-      :height="logo.height"
-      :width="logo.width"
-    />
-    <Login/>
+    <BaseLogo :height="logo.height" :width="logo.width" />
+    <Login />
   </div>
 </template>
 
