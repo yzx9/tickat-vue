@@ -92,67 +92,52 @@ export default class AppTodoList extends Vue {
   async created() {
     try {
       const re = await this.$http.get('/todolist')
-      re.data.map((todo: Todo) => {
-        this.todos.push(todo)
-      })
+      this.todos.push(...(re.data as Todo[]))
     } catch (e) {
-      // TODO: catch error
-    }
-
-    // TODO: 假数据
-    const todos = [
-      new Todo(
-        (this.nextTodoId++).toString(),
-        '1',
-        new Date(),
-        'This is first'
-      ),
-      new Todo(
-        (this.nextTodoId++).toString(),
-        '2',
-        new Date(),
-        'OMG, what happened to cause I am not the first'
-      ),
-      new Todo(
-        (this.nextTodoId++).toString(),
-        '3',
-        new Date(),
-        'Well, I am third'
-      )
-    ]
-    for (let i = 0; i < 0; i++) {
-      this.todos.push(
+      // TODO: mock
+      const todos = [
         new Todo(
           (this.nextTodoId++).toString(),
-          `${i + 4}`,
+          '早上吃什么呢',
           new Date(),
-          `Well, I am ${i + 4}th`
+          'This is first'
+        ),
+        new Todo(
+          (this.nextTodoId++).toString(),
+          '中午吃什么呢',
+          new Date(),
+          'OMG, what happened to cause I am not the first'
+        ),
+        new Todo(
+          (this.nextTodoId++).toString(),
+          '晚上吃什么呢',
+          new Date(),
+          'Well, I am third'
         )
-      )
+      ]
+      const mock = (i: number, id: number) =>
+        new Todo(id.toString(), `todo ${i}`, new Date(), `Well, I am ${i}th`)
+
+      for (let i = 0; i < 3; i++) {
+        this.todos.push(todos[i] || mock(i, this.nextTodoId++))
+      }
     }
   }
 
   // methods
-  onCreate() {
+  async onCreate() {
     const text = this.newTodoText.trim()
-    let todo = new Todo((this.nextTodoId++).toString(), text, new Date())
-    this.$http
-      .post('/todolist', todo)
-      .then(re => {
-        if (re.data.type === 0) {
-          todo = re.data.data as Todo
-        } else {
-          // TODO: 创建失败错误处理
-        }
-      })
-      .catch(e => {
-        // TODO: 错误
-      })
-    if (text) {
-      this.todos.push(
-        new Todo((this.nextTodoId++).toString(), text, new Date())
-      )
-      this.newTodoText = ''
+    const todo = new Todo((this.nextTodoId++).toString(), text, new Date())
+
+    if (!text) return
+    this.todos.push(todo)
+    this.newTodoText = ''
+
+    try {
+      const { data } = await this.$http.post('/todolist', todo)
+      todo.id = (data as Todo).id
+    } catch {
+      // TODO
     }
   }
 
@@ -166,60 +151,38 @@ export default class AppTodoList extends Vue {
   }
 
   onDone(id: string) {
-    this.todos.map(todo => {
-      if (todo.id === id) {
-        todo.isDone = !todo.isDone
-      }
-    })
+    const todo = this.todos.find(a => a.id === id)
+    if (todo) todo.isDone = !todo.isDone
   }
 
-  onDelete(id: string) {
-    this.$http
-      .delete(`/todolist/${id}`)
-      .then(re => {
-        let i = -1
-        this.todos.map(todo => {
-          if (todo.id === id) {
-            i = this.todos.indexOf(todo)
-            this.removeTodoIds.push(id)
-          }
-        })
-        if (i >= 0) {
-          this.todos.splice(i, 1)
+  async onDelete(id: string) {
+    this.$http.delete(`/todolist/${id}`).then(re => {
+      let i = -1
+      this.todos.map(todo => {
+        if (todo.id === id) {
+          i = this.todos.indexOf(todo)
+          this.removeTodoIds.push(id)
         }
       })
-      .catch(e => {
-        // TODO: catch error
-      })
-
-    // TODO: DELETE demo data
-    let index = -1
-    this.todos.map(todo => {
-      if (todo.id === id) {
-        index = this.todos.indexOf(todo)
+      if (i >= 0) {
+        this.todos.splice(i, 1)
       }
     })
+
+    // TODO mock
+    const index = this.todos.findIndex(a => a.id === id)
     if (index >= 0) {
       this.todos.splice(index, 1)
     }
   }
+
   handleEdit(todo: Todo) {
     this.dialogVisible = false
-    this.$http
-      .put(`/todolist/${todo.id}`, todo)
-      .then(re => {
-        // TODO
-      })
-      .catch(e => {
-        // TODO
-      })
-
-    let i = -1
-    this.todos.map(t => {
-      if (t.id === todo.id) {
-        i = this.todos.indexOf(t)
-      }
+    this.$http.put(`/todolist/${todo.id}`, todo).then(re => {
+      // TODO
     })
+
+    const i = this.todos.findIndex(t => t.id === todo.id)
     if (i >= 0) {
       this.todos[i].title = todo.title
       this.todos[i].content = todo.content
@@ -237,6 +200,7 @@ export default class AppTodoList extends Vue {
     border: none;
     outline: none;
     width: calc(100% - 40px);
+    box-sizing: border-box;
     height: 100%;
     font-size: 130%;
     border-bottom-style: solid;

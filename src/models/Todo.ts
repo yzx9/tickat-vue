@@ -1,4 +1,3 @@
-/** Todo类 */
 export default class Todo {
   /** 星期一 */
   public get monday() {
