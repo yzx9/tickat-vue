@@ -29,11 +29,8 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-import { State, Getter, Action, Mutation, namespace } from 'vuex-class'
 
-@Component({
-  components: {}
-})
+@Component
 export default class GroupSelector extends Vue {
   myGroups: TreeNode[] = []
   allGroups: TreeNode[] = []
@@ -106,9 +103,7 @@ export default class GroupSelector extends Vue {
       // console.log('edit')
     } else if (regs.exit.test(node.id)) {
       const id = node.id.substr(0, node.id.lastIndexOf('-'))
-      this.myGroups
-        .filter(a => a.id === id)
-        .map((a, i, arr) => arr.splice(i, 1))
+      this.myGroups = this.myGroups.filter(a => a.id === id)
     }
   }
 
