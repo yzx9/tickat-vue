@@ -65,42 +65,38 @@ export default class Login extends Vue {
   }
 
   // Methods
-  handleSubmit(form: {
+  async handleSubmit(form: {
     username: string
     password: string
     isStorage: boolean
   }) {
     this.loading = true
-    this.Login({
-      username: form.username,
-      password: form.password
-    })
-      .then(re => {
-        this.loading = false
-        if (re.data.type === 0) {
-          this.Success(form.isStorage, re.data.data as Account)
-        } else if (re.data.type === 1) {
-          this.formError = re.data.message
-        }
+
+    try {
+      const { data } = await this.Login({
+        username: form.username,
+        password: form.password
       })
-      .catch(e => {
-        // MOCK
-        if (form.username === 'admin') {
-          const account = new Account(
-            'admin',
-            'admin',
-            'images/avatars/default.jpg'
-          )
-          this.SET_AUTH(account)
-          this.Success(form.isStorage, account)
-        } else {
-          throw e
-        }
-      })
-      .catch(error => {
-        this.loading = false
-        this.formError = '服务器开小差了，请稍后再试'
-      })
+
+      this.loading = false
+      this.Success(form.isStorage, data.data as Account)
+    } catch (e) {
+      // MOCK
+      if (form.username === 'admin') {
+        const account = new Account(
+          'admin',
+          'admin',
+          'images/avatars/default.jpg'
+        )
+        this.SET_AUTH(account)
+        this.Success(form.isStorage, account)
+        return
+      }
+
+      this.loading = false
+      this.formError = e.message
+      this.formError = '服务器开小差了，请稍后再试'
+    }
   }
 
   Success(isStorage?: boolean, account?: Account) {
