@@ -4,7 +4,7 @@
       <p>{{ post.content }}</p>
       <div :class="$style.image">
         <a @click="clickHandle">
-          <img :src="src">
+          <img :src="src" />
         </a>
       </div>
     </div>
@@ -13,7 +13,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
-import { Post, Type } from '@/models/Post'
+import { Post } from '@/models/Post'
 
 @Component
 export default class PostContent extends Vue {

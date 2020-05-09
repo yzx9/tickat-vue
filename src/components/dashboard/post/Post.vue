@@ -1,9 +1,9 @@
 <template>
   <el-card shadow="hover">
     <template slot="header">
-      <PostHeader :post="post"/>
+      <PostHeader :post="post" />
     </template>
-    <PostContent :post="post"/>
+    <PostContent :post="post" />
     <PostFooter
       :post="post"
       @upvote="handleUpvote"
@@ -17,7 +17,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
-import { Post, Type } from '@/models/Post'
+import { Post } from '@/models/Post'
 import PostHeader from '@/components/dashboard/post/PostHeader.vue'
 import PostContent from '@/components/dashboard/post/PostContent.vue'
 import PostFooter from '@/components/dashboard/post/PostFooter.vue'

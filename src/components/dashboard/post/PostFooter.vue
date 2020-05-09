@@ -21,7 +21,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
-import { Post, Type } from '@/models/Post'
+import { Post } from '@/models/Post'
 import VoteIcon, { VoteIconType } from '@/components/widgets/VoteIcon.vue'
 
 @Component({
