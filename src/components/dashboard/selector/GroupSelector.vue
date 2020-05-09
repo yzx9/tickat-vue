@@ -98,12 +98,18 @@ export default class GroupSelector extends Vue {
     }
 
     if (regs.filter.test(node.id)) {
-      // console.log('filter')
+      // console.log('filter', node)
     } else if (regs.edit.test(node.id)) {
-      // console.log('edit')
-    } else if (regs.exit.test(node.id)) {
+      // console.log('edit', node)
+    } else if (regs.join.test(node.id)) {
+      // console.log('join', node)
       const id = node.id.substr(0, node.id.lastIndexOf('-'))
-      this.myGroups = this.myGroups.filter(a => a.id === id)
+      const group = this.allGroups.find(a => a.id === id)
+      if (group) this.myGroups.push(group)
+    } else if (regs.exit.test(node.id)) {
+      // console.log('exit', node)
+      const id = node.id.substr(0, node.id.lastIndexOf('-'))
+      this.myGroups = this.myGroups.filter(a => a.id !== id)
     }
   }
 
@@ -121,13 +127,18 @@ export default class GroupSelector extends Vue {
 
     const id = node.data.id
     const group = this.myGroups.find(a => a.id === id)
-    return group
+    return this.flag
       ? resolve([
           { id: `${id}-filter`, label: '查看', isLeaf: true },
           { id: `${id}-edit`, label: '编辑', isLeaf: true },
           { id: `${id}-exit`, label: '退出', isLeaf: true }
         ])
-      : resolve([{ id: `${id}-filter`, label: '查看', isLeaf: true }])
+      : group
+      ? resolve([{ id: `${id}-filter`, label: '查看', isLeaf: true }])
+      : resolve([
+          { id: `${id}-filter`, label: '查看', isLeaf: true },
+          { id: `${id}-join`, label: '加入', isLeaf: true }
+        ])
   }
 }
 
