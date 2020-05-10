@@ -3,7 +3,7 @@
     <div :class="$style.content">
       <p>{{ post.content }}</p>
       <div :class="$style.image">
-        <a @click="clickHandle">
+        <a @click="handleClick">
           <img :src="src" />
         </a>
       </div>
@@ -20,9 +20,12 @@ export default class PostContent extends Vue {
   @Prop({ type: Object, required: true }) post!: Post
 
   get src() {
-    return `${process.env.BASE_URL}${this.post.image}`
+    const image = this.post.image
+    const protocol = image.startsWith('http://') || image.startsWith('https://')
+    return protocol ? image : `${process.env.BASE_URL}${image}`
   }
-  clickHandle() {
+
+  handleClick() {
     this.$router.push({ name: 'Post', params: { id: this.post.id } })
   }
 }
@@ -60,6 +63,7 @@ export default class PostContent extends Vue {
     }
     .info {
       position: absolute;
+      box-sizing: border-box;
       width: 100%;
       padding: 28px 24px;
       bottom: -1px;
