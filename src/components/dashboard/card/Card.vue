@@ -1,22 +1,16 @@
 <template>
-  <el-card
-    shadow="hover"
-    :body-style="{ padding: '0px' }"
-  >
+  <el-card shadow="hover" :body-style="{ padding: '0px' }">
     <!-- content -->
     <div :class="$style.content">
-      <img :src="src">
+      <img :src="src" />
     </div>
 
     <!-- footer -->
     <div :class="$style.footer">
-      <span>好吃的汉堡</span>
+      <span>{{ card.content }}</span>
       <div :class="[$style.bottom, $style.clearfix]">
         <time>{{ card.createTime }}</time>
-        <el-button
-          type="text"
-          :class="$style.button"
-        >操作按钮</el-button>
+        <el-button type="text" :class="$style.button">开始</el-button>
       </div>
     </div>
   </el-card>
@@ -26,9 +20,7 @@
 import { Vue, Component, Prop } from 'vue-property-decorator'
 import Card from '@/models/Card.ts'
 
-@Component({
-  components: {}
-})
+@Component
 export default class AppCard extends Vue {
   @Prop({ type: Object, required: true }) card!: Card
 
