@@ -25,7 +25,9 @@ export default class AppCard extends Vue {
   @Prop({ type: Object, required: true }) card!: Card
 
   get src() {
-    return `${process.env.BASE_URL}${this.card.image}`
+    const image = this.card.image
+    const protocol = image.startsWith('http://') || image.startsWith('https://')
+    return protocol ? image : `${process.env.BASE_URL}${image}`
   }
 }
 </script>
